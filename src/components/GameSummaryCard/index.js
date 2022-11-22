@@ -1,4 +1,5 @@
 import gameStatusText from 'Utils/gameStatus/gameStatusText';
+import { ONGOING_CODE, COMPLETE_CODE } from 'Utils/gameStatus/statuses';
 
 import Status from './Status';
 import Score from './Score';
@@ -17,6 +18,8 @@ const GameSummaryCard = function GameSummaryCard(props) {
   } = game;
 
   const status = gameStatusText(game);
+  const isFinal = gameStatus === COMPLETE_CODE;
+  const isLive = gameStatus === ONGOING_CODE;
 
   return (
     <div className={styles.container}>
@@ -27,6 +30,8 @@ const GameSummaryCard = function GameSummaryCard(props) {
       <Score
         homeTeam={homeTeam}
         awayTeam={awayTeam}
+        isFinal={isFinal}
+        isLive={isLive}
       />
     </div>
   );

@@ -2,12 +2,15 @@ import {
   UPCOMING,
   ONGOING,
   COMPLETE,
+  UPCOMING_CODE,
+  ONGOING_CODE,
+  COMPLETE_CODE,
 } from './statuses';
 
 const statuses = new Map([
-  [1, UPCOMING],
-  [2, ONGOING],
-  [3, COMPLETE],
+  [UPCOMING_CODE, UPCOMING],
+  [ONGOING_CODE, ONGOING],
+  [COMPLETE_CODE, COMPLETE],
 ]);
 
 const statusCodeToSlug = function statusCodeToSlug(status) {

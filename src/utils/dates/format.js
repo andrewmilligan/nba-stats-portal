@@ -28,8 +28,6 @@ const format = function format(dateInput, formatString) {
     timezone,
   };
 
-  console.log(dateComponents);
-
   return formatDateFromString(dateComponents, formatString);
 };
 

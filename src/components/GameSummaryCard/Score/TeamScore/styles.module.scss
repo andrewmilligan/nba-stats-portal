@@ -16,6 +16,12 @@
 
 .tricode {
   @include body-bold;
+
+  &.lost {
+    color: $text-light;
+
+    @include body-regular;
+  }
 }
 
 .logo {
@@ -25,4 +31,8 @@
 
 .score {
   color: $text-light;
+
+  &.won {
+    color: inherit;
+  }
 }

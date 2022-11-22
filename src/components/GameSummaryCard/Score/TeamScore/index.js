@@ -1,3 +1,5 @@
+import classnames from 'classnames';
+
 import dataUrl from 'Utils/data/dataUrl';
 
 import styles from './styles.module.scss';
@@ -9,10 +11,17 @@ const TeamScore = function TeamScore(props) {
       teamCity,
       teamName,
       score,
+      wins,
+      losses,
     },
+    lost,
+    isFinal,
+    isLive,
   } = props;
 
   const logo = dataUrl(`images/teams/logos/${teamId}/primary/L/logo.svg`);
+
+  const showScore = isLive || isFinal;
 
   return (
     <div className={styles.container}>
@@ -22,12 +31,23 @@ const TeamScore = function TeamScore(props) {
           src={logo}
           alt={`${teamCity} ${teamName} logo`}
         />
-        <div className={styles.tricode}>
+        <div
+          className={classnames(
+            styles.tricode,
+            { [styles.lost]: lost },
+          )}
+        >
           {`${teamCity} ${teamName}`}
         </div>
       </div>
-      <div className={styles.score}>
-        {score}
+
+      <div
+        className={classnames(
+          styles.score,
+          { [styles.won]: isFinal && !lost },
+        )}
+      >
+        {showScore ? score : `${wins} - ${losses}`}
       </div>
     </div>
   );
