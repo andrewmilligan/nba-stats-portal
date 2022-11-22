@@ -1,0 +1,17 @@
+@import "~Styles/colors.scss";
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $text-light;
+}
+
+.statusIndicator {
+  &.ongoing {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: $live-indicator;
+  }
+}

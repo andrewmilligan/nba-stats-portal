@@ -1,0 +1,12 @@
+@import "~Styles/fonts.scss";
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  background-color: #ececec;
+}
+
+.date {
+  @include body-bold;
+}

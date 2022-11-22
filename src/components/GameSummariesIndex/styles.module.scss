@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  max-width: 766px;
+  padding: 0 6px;
+  margin: 0 auto;
+}
+
+.games {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
+}

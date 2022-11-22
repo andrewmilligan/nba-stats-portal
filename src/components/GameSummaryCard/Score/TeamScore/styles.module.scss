@@ -1,0 +1,28 @@
+@import "~Styles/colors.scss";
+@import "~Styles/fonts.scss";
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.tricode {
+  @include body-bold;
+}
+
+.logo {
+  width: 2em;
+  height: 2em;
+}
+
+.score {
+  color: $text-light;
+}

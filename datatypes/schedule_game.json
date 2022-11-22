@@ -1,0 +1,34 @@
+{
+    "gameId": "0012200001",
+    "gameStatus": 3,
+    "gameStatusText": "Final",
+    "gameDateTime": "2022-09-30T10:00:00.000Z",
+    "arenaName": "Saitama Super Arena",
+    "arenaState": "",
+    "arenaCity": "Tokyo",
+    "weekNumber": 0,
+    "weekName": "",
+    "ifNecessary": false,
+    "homeTeam": {
+        "teamId": 1610612764,
+        "teamName": "Wizards",
+        "teamCity": "Washington",
+        "teamTricode": "WAS",
+        "teamSlug": "wizards",
+        "wins": 0,
+        "losses": 1,
+        "score": 87,
+        "seed": 0
+    },
+    "awayTeam": {
+        "teamId": 1610612744,
+        "teamName": "Warriors",
+        "teamCity": "Golden State",
+        "teamTricode": "GSW",
+        "teamSlug": "warriors",
+        "wins": 1,
+        "losses": 0,
+        "score": 96,
+        "seed": 0
+    }
+}
