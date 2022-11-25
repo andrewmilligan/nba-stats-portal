@@ -1,6 +1,5 @@
 import { COMPLETE_CODE } from 'Utils/gameStatus/statuses';
 
-import Topline from './Topline';
 import Lineup from './Lineup';
 import styles from './styles.module.scss';
 
@@ -13,7 +12,6 @@ const FloorLineup = function FloorLineup(props) {
 
   return (
     <div className={styles.container}>
-      <Topline boxScore={boxScore} />
       <div className={styles.lineups}>
         <Lineup
           team={boxScore.homeTeam}

@@ -1,5 +1,10 @@
+@import "~Styles/colors.scss";
+@import "~Styles/fonts.scss";
+
 .container {
   padding: 6px;
+
+  @include condensed-regular;
 }
 
 .content {

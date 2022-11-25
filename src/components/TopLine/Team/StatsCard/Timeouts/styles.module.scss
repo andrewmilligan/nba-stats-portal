@@ -1,0 +1,16 @@
+@import "~Styles/colors.scss";
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(1, 4px);
+  gap: 4px;
+}
+
+.slot {
+  background-color: $color-neutral-muted;
+
+  &.timeout {
+    background-color: $color-neutral-emphasis-plus;
+  }
+}

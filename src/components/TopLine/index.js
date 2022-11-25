@@ -1,8 +1,8 @@
-import TeamLogo from './TeamLogo';
+import Team from './Team';
 import Score from './Score';
 import styles from './styles.module.scss';
 
-const Topline = function Topline(props) {
+const TopLine = function TopLine(props) {
   const {
     boxScore,
   } = props;
@@ -12,21 +12,19 @@ const Topline = function Topline(props) {
     awayTeam,
   } = boxScore;
 
-  console.log(boxScore);
-
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <TeamLogo team={homeTeam} />
+        <Team team={homeTeam} />
         <Score boxScore={boxScore} />
-        <TeamLogo team={awayTeam} />
+        <Team team={awayTeam} />
       </div>
     </div>
   );
 };
 
-Topline.defaultProps = {
+TopLine.defaultProps = {
   boxScore: {},
 };
 
-export default Topline;
+export default TopLine;

@@ -3,6 +3,7 @@ import Head from 'next/head'
 import useHashProps from 'Utils/hooks/useHashProps';
 import useDataFetch from 'Utils/hooks/useDataFetch';
 import { gameBoxScore } from 'Utils/data/urls';
+import TopLine from 'Components/TopLine';
 import FloorLineup from 'Components/FloorLineup';
 
 export default function Game() {
@@ -21,6 +22,7 @@ export default function Game() {
         <title>NBA Stats: Game Stats</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <TopLine boxScore={boxScore} />
       <FloorLineup boxScore={boxScore} />
     </div>
   )

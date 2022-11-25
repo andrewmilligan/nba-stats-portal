@@ -1,3 +1,4 @@
+@import "~Styles/colors.scss";
 @import "~Styles/fonts.scss";
 
 .container {
@@ -5,6 +6,8 @@
   grid-template-columns: 1fr;
   gap: 1em;
   text-align: center;
+
+  @include condensed-regular;
 }
 
 .content {
@@ -12,5 +15,5 @@
 }
 
 .score {
-  @include body-bold;
+  @include condensed-bold;
 }
