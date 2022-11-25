@@ -17,3 +17,19 @@
 .score {
   @include condensed-bold;
 }
+
+.status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.statusIndicator {
+  &.ongoing {
+    margin-left: 0.5em;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: $color-live-indicator;
+  }
+}
