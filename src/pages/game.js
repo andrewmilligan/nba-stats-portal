@@ -1,23 +1,33 @@
 import Head from 'next/head'
-import fetch from 'isomorphic-unfetch';
+
+import useHashProps from 'Utils/hooks/useHashProps';
+import useDataFetch from 'Utils/hooks/useDataFetch';
+import { gameBoxScore } from 'Utils/data/urls';
+import FloorLineup from 'Components/FloorLineup';
 
 export default function Game() {
+  const {
+    game,
+  } = useHashProps();
+
+  const { data: boxScore } = useDataFetch(
+    gameBoxScore(game),
+    { interval: 10000 },
+  );
+
   return (
     <div>
       <Head>
-        <title>NBA Stats: Game</title>
+        <title>NBA Stats: Game Stats</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <FloorLineup boxScore={boxScore} />
     </div>
   )
 }
 
 export const getStaticProps = async function getStaticProps() {
-  const rsp = await fetch('https://d19kaplwqv19rl.cloudfront.net/stats/global/dates.json');
-  const dates = await rsp.json();
   return {
-    props: {
-      dates,
-    },
+    props: {},
   };
 };

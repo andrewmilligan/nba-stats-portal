@@ -1,29 +1,26 @@
 import { useState, useEffect } from 'react';
 
-import fetchDailySchedule from 'Utils/data/fetchDailySchedule';
+import useDataFetch from 'Utils/hooks/useDataFetch';
+import { dailySchedule } from 'Utils/data/urls';
 
 import useCurrentDate from './useCurrentDate';
+
+console.log(dailySchedule);
 
 const useDailySchedule = function useDailySchedule(dates) {
   const dateControls = useCurrentDate(dates);
   const { date } = dateControls;
-  const [isLoading, setIsLoading] = useState(true);
-  const [schedule, setSchedule] = useState();
-
-  useEffect(() => {
-    if (!date) return;
-    const fetchSchedule = async () => {
-      setIsLoading(true);
-      const sched = await fetchDailySchedule(date);
-      setSchedule(sched);
-      setIsLoading(false);
-    };
-    fetchSchedule();
-  }, [date]);
+  const {
+    data: schedule,
+    isLoadingNewData,
+  } = useDataFetch(
+    dailySchedule(date),
+    { interval: 10000 },
+  );
 
   return {
     schedule,
-    isLoading,
+    isLoading: isLoadingNewData,
     ...dateControls,
   };
 };

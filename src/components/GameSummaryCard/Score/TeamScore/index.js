@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 
-import dataUrl from 'Utils/data/dataUrl';
+import { teamLogo } from 'Utils/data/urls';
 
 import styles from './styles.module.scss';
 
@@ -19,7 +19,7 @@ const TeamScore = function TeamScore(props) {
     isLive,
   } = props;
 
-  const logo = dataUrl(`images/teams/logos/${teamId}/primary/L/logo.svg`);
+  const logo = teamLogo(teamId, { variant: 'D' });
 
   const showScore = isLive || isFinal;
 

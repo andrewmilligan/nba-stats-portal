@@ -1,0 +1,40 @@
+@import "~Styles/colors.scss";
+@import "~Styles/fonts.scss";
+
+.topline {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  align-items: baseline;
+}
+
+.name {
+  font-size: 1.2em;
+
+  @include body-bold;
+
+  .jersey {
+    color: $color-fg-muted;
+
+    @include condensed-bold;
+  }
+}
+
+.minutes {
+  color: $color-fg-muted;
+
+  @include condensed-regular;
+
+  .plusminus {
+    margin-left: 0.4em;
+
+    @include condensed-bold;
+
+    &.positive {
+      color: $color-success-fg;
+    }
+
+    &.negative {
+      color: $color-danger-fg;
+    }
+  }
+}

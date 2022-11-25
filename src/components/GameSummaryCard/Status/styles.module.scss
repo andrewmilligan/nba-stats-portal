@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: $text-light;
+  color: $color-fg-muted;
 }
 
 .statusIndicator {
@@ -12,6 +12,6 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: $live-indicator;
+    background-color: $color-live-indicator;
   }
 }

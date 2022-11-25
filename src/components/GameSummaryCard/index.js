@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import gameStatusText from 'Utils/gameStatus/gameStatusText';
 import { ONGOING_CODE, COMPLETE_CODE } from 'Utils/gameStatus/statuses';
 
@@ -22,7 +24,10 @@ const GameSummaryCard = function GameSummaryCard(props) {
   const isLive = gameStatus === ONGOING_CODE;
 
   return (
-    <div className={styles.container}>
+    <Link
+      href={`/game#game=${game.gameId}`}
+      className={styles.container}
+    >
       <Status
         gameStatus={gameStatus}
         gameStatusText={status}
@@ -33,7 +38,7 @@ const GameSummaryCard = function GameSummaryCard(props) {
         isFinal={isFinal}
         isLive={isLive}
       />
-    </div>
+    </Link>
   );
 };
 

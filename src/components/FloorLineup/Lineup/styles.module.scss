@@ -1,0 +1,26 @@
+@import "~Styles/colors.scss";
+@import "~Styles/fonts.scss";
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1em;
+}
+
+.bench {
+  border-bottom: 1px solid $color-border-default;
+  margin: 0.4em 0;
+}
+
+.expand {
+  background: $color-canvas-overlay;
+  border: 1px solid $color-border-default;
+  padding: 0.6em 1em;
+  text-transform: uppercase;
+  color: $color-fg-muted;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $color-primer-border-active;
+  }
+}

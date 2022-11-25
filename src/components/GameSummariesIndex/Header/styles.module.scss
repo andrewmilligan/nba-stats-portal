@@ -1,10 +1,11 @@
 @import "~Styles/fonts.scss";
+@import "~Styles/colors.scss";
 
 .container {
   display: flex;
   justify-content: space-between;
   padding: 1em;
-  background-color: #ececec;
+  background-color: $color-canvas-overlay;
 }
 
 .date {

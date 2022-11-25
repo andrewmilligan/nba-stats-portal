@@ -1,0 +1,13 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2em;
+  padding: 1em;
+}
+
+.lineups {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 2em;
+};

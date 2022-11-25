@@ -11,7 +11,7 @@ const DateButton = function DateButton(props) {
   } = props;
 
   return (
-    <div className={styles.container}>
+    <div>
       {!!date && (
         <button
           type="button"

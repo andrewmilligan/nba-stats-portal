@@ -1,0 +1,18 @@
+@import "~Styles/colors.scss";
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(6, 4px);
+  grid-template-rows: repeat(1, 12px);
+  gap: 4px;
+}
+
+.foul {
+  background-color: $color-danger-fg;
+  transform: skewX(-15deg);
+  border-radius: 2px 2px 0 0 ;
+
+  &.slot {
+    background-color: $color-neutral-muted;
+  }
+}

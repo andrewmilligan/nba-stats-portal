@@ -1,0 +1,39 @@
+@import "~Styles/colors.scss";
+@import "~Styles/fonts.scss";
+
+.container {
+  padding: 1em 1em 0 1em;
+  border: 1px solid $color-border-default;
+  background-color: $color-canvas-overlay;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 1em;
+}
+
+.minutes {
+  color: $color-fg-muted;
+  text-transform: uppercase;
+}
+
+.fouls {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 1em;
+  row-gap: 0.4em;
+  color: $color-fg-muted;
+  margin: 0.5em 0;
+
+  @include condensed-regular;
+
+  .mainStat {
+    color: $color-fg-default;
+  }
+}

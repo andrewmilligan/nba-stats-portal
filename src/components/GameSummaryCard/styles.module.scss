@@ -1,7 +1,10 @@
+@import "~Styles/colors.scss";
+
 .container {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
-  border: 1px solid #ececec;
+  border: 1px solid $color-border-default;
+  background-color: $color-canvas-overlay;
   padding: 1em;
 }

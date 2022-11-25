@@ -6,6 +6,7 @@ import statusCodeToSlug from './statusCodeToSlug';
 const gameStatusText = function gameStatusText(game) {
   const {
     gameStatus,
+    gameStatusText: defaultText,
     gameDateTime,
   } = game;
 
@@ -13,7 +14,7 @@ const gameStatusText = function gameStatusText(game) {
   const time = format(gameDateTime, '{aptime} {timezone}');
   const text = {
     [UPCOMING]: time,
-    [ONGOING]: 'LIVE',
+    [ONGOING]: defaultText,
     [COMPLETE]: 'FINAL',
   };
   return text[status];

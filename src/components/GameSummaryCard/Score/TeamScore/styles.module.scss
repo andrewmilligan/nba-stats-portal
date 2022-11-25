@@ -18,7 +18,7 @@
   @include body-bold;
 
   &.lost {
-    color: $text-light;
+    color: $color-fg-muted;
 
     @include body-regular;
   }
@@ -30,7 +30,7 @@
 }
 
 .score {
-  color: $text-light;
+  color: $color-fg-muted;
 
   &.won {
     color: inherit;

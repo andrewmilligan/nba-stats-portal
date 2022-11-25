@@ -1,3 +1,75 @@
-$live-indicator: #DC0228;
+// Foregrounds
+$color-fg-default: var(--color-fg-default);
+$color-fg-muted: var(--color-fg-muted);
+$color-fg-subtle: var(--color-fg-subtle);
+$color-fg-on-emphasis: var(--color-fg-on-emphasis);
 
-$text-light: #8e9196;
+// Backgrounds
+$color-canvas-default: var(--color-canvas-default);
+$color-canvas-overlay: var(--color-canvas-overlay);
+$color-canvas-inset: var(--color-canvas-inset);
+$color-canvas-subtle: var(--color-canvas-subtle);
+
+// Borders
+$color-border-default: var(--color-border-default);
+$color-border-muted: var(--color-border-muted);
+$color-border-subtle: var(--color-border-subtle);
+
+// Shadows
+$color-shadow-small: var(--color-shadow-small);
+$color-shadow-medium: var(--color-shadow-medium);
+$color-shadow-large: var(--color-shadow-large);
+$color-shadow-extra-large: var(--color-shadow-extra-large);
+
+// Neutrals
+$color-neutral-emphasis-plus: var(--color-neutral-emphasis-plus);
+$color-neutral-emphasis: var(--color-neutral-emphasis);
+$color-neutral-muted: var(--color-neutral-muted);
+$color-neutral-subtle: var(--color-neutral-subtle);
+
+// Accents
+$color-accent-fg: var(--color-accent-fg);
+$color-accent-emphasis: var(--color-accent-emphasis);
+$color-accent-muted: var(--color-accent-muted);
+$color-accent-subtle: var(--color-accent-subtle);
+
+// Semantics
+$color-success-fg: var(--color-success-fg);
+$color-success-emphasis: var(--color-success-emphasis);
+$color-success-muted: var(--color-success-muted);
+$color-success-subtle: var(--color-success-subtle);
+$color-attention-fg: var(--color-attention-fg);
+$color-attention-emphasis: var(--color-attention-emphasis);
+$color-attention-muted: var(--color-attention-muted);
+$color-attention-subtle: var(--color-attention-subtle);
+$color-severe-fg: var(--color-severe-fg);
+$color-severe-emphasis: var(--color-severe-emphasis);
+$color-severe-muted: var(--color-severe-muted);
+$color-severe-subtle: var(--color-severe-subtle);
+$color-danger-fg: var(--color-danger-fg);
+$color-danger-emphasis: var(--color-danger-emphasis);
+$color-danger-muted: var(--color-danger-muted);
+$color-danger-subtle: var(--color-danger-subtle);
+$color-open-fg: var(--color-open-fg);
+$color-open-emphasis: var(--color-open-emphasis);
+$color-open-muted: var(--color-open-muted);
+$color-open-subtle: var(--color-open-subtle);
+$color-closed-fg: var(--color-closed-fg);
+$color-closed-emphasis: var(--color-closed-emphasis);
+$color-closed-muted: var(--color-closed-muted);
+$color-closed-subtle: var(--color-closed-subtle);
+$color-done-fg: var(--color-done-fg);
+$color-done-emphasis: var(--color-done-emphasis);
+$color-done-muted: var(--color-done-muted);
+$color-done-subtle: var(--color-done-subtle);
+$color-primer-fg-disabled: var(--color-primer-fg-disabled);
+$color-primer-canvas-backdrop: var(--color-primer-canvas-backdrop);
+$color-primer-canvas-sticky: var(--color-primer-canvas-sticky);
+$color-primer-border-active: var(--color-primer-border-active);
+$color-primer-border-contrast: var(--color-primer-border-contrast);
+$color-primer-shadow-highlight: var(--color-primer-shadow-highlight);
+$color-primer-shadow-inset: var(--color-primer-shadow-inset);
+$color-primer-shadow-focus: var(--color-primer-shadow-focus);
+
+// Product specific colors
+$color-live-indicator: var(--color-live-indicator);

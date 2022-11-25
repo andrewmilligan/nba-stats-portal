@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import fetch from 'isomorphic-unfetch';
+import { dates } from 'Utils/data/urls';
 
 import GameSummariesIndex from 'Components/GameSummariesIndex';
 
