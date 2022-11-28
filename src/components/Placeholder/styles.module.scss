@@ -1,0 +1,31 @@
+@import "~Styles/colors.scss";
+
+.container {
+  border: 1px solid $color-border-default;
+  min-height: 8em;
+}
+
+.gradient {
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: ease;
+  background: $color-canvas-overlay;
+  background: linear-gradient(
+    to right,
+    #{$color-canvas-overlay} 8%,
+    #1e2329 38%,
+    #{$color-canvas-overlay} 50%
+  );
+  background-size: 200% 100%;
+}
+
+@keyframes placeHolderShimmer{
+  0%{
+    background-position: 100% 0;
+  }
+  100%{
+    background-position: -100% 0;
+  }
+}
