@@ -10,6 +10,7 @@ const TeamScore = function TeamScore(props) {
       teamId,
       teamCity,
       teamName,
+      teamTricode,
       score,
       wins,
       losses,
@@ -17,11 +18,21 @@ const TeamScore = function TeamScore(props) {
     lost,
     isFinal,
     isLive,
+    mode,
   } = props;
 
   const logo = teamLogo(teamId, { variant: 'D' });
 
   const showScore = isLive || isFinal;
+
+  const teamDisplayNameByMode = {
+    default: `${teamCity} ${teamName}`,
+    condensed: teamTricode,
+  };
+  const teamDisplayName = (
+    teamDisplayNameByMode[mode]
+    || teamDisplayNameByMode.default
+  );
 
   return (
     <div className={styles.container}>
@@ -37,7 +48,7 @@ const TeamScore = function TeamScore(props) {
             { [styles.lost]: lost },
           )}
         >
-          {`${teamCity} ${teamName}`}
+          {teamDisplayName}
         </div>
       </div>
 

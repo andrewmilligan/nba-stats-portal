@@ -1,7 +1,7 @@
 import TeamLogo from './TeamLogo';
-import StatsCard from './StatsCard';
+import Name from './Name';
 
-const TopLine = function TopLine(props) {
+const TeamName = function TeamName(props) {
   const {
     team,
   } = props;
@@ -9,9 +9,9 @@ const TopLine = function TopLine(props) {
   return (
     <div>
       <TeamLogo team={team} />
-      <StatsCard team={team} />
+      <Name team={team} />
     </div>
   );
 };
 
-export default TopLine;
+export default TeamName;

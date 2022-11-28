@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 
 import statusCodeToSlug from 'Utils/gameStatus/statusCodeToSlug';
+import StatusIndicator from 'Components/StatusIndicator';
 
 import styles from './styles.module.scss';
 
@@ -10,19 +11,12 @@ const Status = function Status(props) {
     gameStatusText,
   } = props;
 
-  const statusSlug = statusCodeToSlug(gameStatus);
-
   return (
     <div className={styles.container}>
       <div>
         {gameStatusText}
       </div>
-      <div
-        className={classnames(
-          styles.statusIndicator,
-          styles[statusSlug],
-        )}
-      />
+      <StatusIndicator gameStatus={gameStatus} />
     </div>
   );
 };

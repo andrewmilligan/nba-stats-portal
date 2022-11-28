@@ -19,11 +19,17 @@ const formatDateFromString = function formatDateFromString(data, string) {
   const apdate = `${apday} ${data.year}`;
   const minute = (data.minute === '00') ? '' : `:${data.minute}`;
   const aptime = `${data.hour}${minute} ${data.ampm}`;
+  const monthpadded = data.month.padStart(2, '0');
+  const daypadded = data.day.padStart(2, '0');
+  const isodate = `${data.year}-${monthpadded}-${daypadded}`;
   const dateComponents = {
     apmonth,
     apday,
     apdate,
     aptime,
+    monthpadded,
+    daypadded,
+    isodate,
     ...data,
   };
 

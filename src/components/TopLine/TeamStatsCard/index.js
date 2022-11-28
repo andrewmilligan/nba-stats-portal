@@ -2,7 +2,7 @@ import Timeouts from './Timeouts';
 import Fouls from './Fouls';
 import styles from './styles.module.scss';
 
-const StatsCard = function StatsCard(props) {
+const TeamStatsCard = function TeamStatsCard(props) {
   const {
     team,
   } = props;
@@ -31,10 +31,10 @@ const StatsCard = function StatsCard(props) {
   );
 };
 
-StatsCard.defaultProps = {
+TeamStatsCard.defaultProps = {
   team: {
     statistics: {},
   },
 };
 
-export default StatsCard;
+export default TeamStatsCard;

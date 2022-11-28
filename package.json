@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "classnames": "^2.3.2",
+    "d3-scale": "^4.0.2",
+    "d3-shape": "^3.1.0",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.3",
     "isomorphic-unfetch": "^3.1.0",

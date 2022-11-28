@@ -1,0 +1,9 @@
+@import "~Styles/fonts.scss";
+
+.container {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 0.4em;
+
+  @include body-bold;
+}

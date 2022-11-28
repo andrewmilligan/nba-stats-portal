@@ -1,0 +1,12 @@
+@import "~Styles/colors.scss";
+@import "~Styles/fonts.scss";
+@import "~Styles/spacing.scss";
+
+.container {
+  border-top: 1px solid $color-border-default;
+  margin: $module-spacer 0;
+  padding: $module-spacer 0;
+  color: $color-fg-muted;
+
+  @include condensed-regular;
+}

@@ -18,6 +18,11 @@ export const gameBoxScore = function gameBoxScore(gameId) {
   return dataUrl(`stats/game/${gameId}/boxscore.json`);
 };
 
+export const gamePlayByPlay = function gamePlayByPlay(gameId) {
+  if (!gameId) return undefined;
+  return dataUrl(`stats/game/${gameId}/playbyplay.json`);
+};
+
 export const teamLogo = function teamLogo(teamId, opts = {}) {
   const {
     variant = 'L',

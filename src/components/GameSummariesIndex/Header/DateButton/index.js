@@ -1,5 +1,3 @@
-import classnames from 'classnames';
-
 import formatUTCDate from 'Utils/dates/formatUTCDate';
 
 import styles from './styles.module.scss';
@@ -7,23 +5,24 @@ import styles from './styles.module.scss';
 const DateButton = function DateButton(props) {
   const {
     date,
-    selectDate,
+    direction,
   } = props;
+
+  const label = [
+    direction === 'backward' && '←',
+    date && formatUTCDate(date, '{apday}'),
+    direction === 'forward' && '→',
+  ].filter(Boolean).join(' ');
 
   return (
     <div>
       {!!date && (
-        <button
-          type="button"
-          className={classnames(
-            styles.button,
-            { [styles.disabled]: !selectDate },
-          )}
-          disabled={!selectDate}
-          onClick={selectDate}
+        <a
+          className={styles.button}
+          href={`#date=${date}`}
         >
-          {formatUTCDate(date, '{apday}')}
-        </button>
+          {label}
+        </a>
       )}
     </div>
   );

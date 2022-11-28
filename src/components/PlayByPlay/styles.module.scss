@@ -1,0 +1,29 @@
+@import "~Styles/colors.scss";
+@import "~Styles/fonts.scss";
+@import "~Styles/spacing.scss";
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr minmax(320px, 1fr) 1fr;
+  gap: $internal-spacer;
+}
+
+.actions {
+}
+
+.button {
+  appearance: none;
+  cursor: pointer;
+  padding: none;
+  background: none;
+  border: none;
+  color: $color-fg-muted;
+
+  &.back {
+    justify-self: end;
+  }
+
+  &.forward {
+    justify-self: start;
+  }
+}

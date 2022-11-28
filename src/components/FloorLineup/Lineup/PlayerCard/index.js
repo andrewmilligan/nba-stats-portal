@@ -63,7 +63,7 @@ const PlayerCard = function PlayerCard(props) {
               {stat(points, 'point')}
             </div>
             <div>
-              {points > 0 && (
+              {fieldGoalsAttempted > 0 && (
                 <span>
                   {`${fieldGoalsMade}/${fieldGoalsAttempted} from the field`}
                 </span>

@@ -1,0 +1,18 @@
+@import "~Styles/colors.scss";
+@import "~Styles/fonts.scss";
+
+.container {
+  position: relative;
+  height: 100%;
+  width: 3ch;
+}
+
+.scoreLabel {
+  position: absolute;
+  color: $color-fg-subtle;
+  transform: translateY(50%);
+  right: 0;
+  padding-right: 0.5em;
+
+  @include condensed-bold;
+}

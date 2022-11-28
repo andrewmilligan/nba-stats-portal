@@ -26,21 +26,25 @@ const useDataFetch = function useDataFetch(url, opts = {}) {
       headers['If-Modified-Since'] = lastModified;
     }
 
-    const response = await fetch(url, { headers });
-    if (!response.ok) {
-      return;
+    try {
+      const response = await fetch(url, { headers });
+      if (!response.ok) {
+        return;
+      }
+
+      fetchHeaders.current.lastModified = response.headers.get('Last-Modified');
+      const contentType = response.headers.get('Content-Type');
+
+      if (contentType === 'application/json') {
+        setData(await response.json());
+      } else {
+        setData(await response.text());
+      }
+
+      loadedUrl.current = url;
+    } catch (error) {
+      // pass
     }
-
-    fetchHeaders.current.lastModified = response.headers.get('Last-Modified');
-    const contentType = response.headers.get('Content-Type');
-
-    if (contentType === 'application/json') {
-      setData(await response.json());
-    } else {
-      setData(await response.text());
-    }
-
-    loadedUrl.current = url;
   }, [url]);
 
   useEffect(() => {

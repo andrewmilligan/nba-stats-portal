@@ -15,12 +15,12 @@
 }
 
 .tricode {
-  @include body-bold;
+  @include condensed-bold;
 
   &.lost {
     color: $color-fg-muted;
 
-    @include body-regular;
+    @include condensed-regular;
   }
 }
 

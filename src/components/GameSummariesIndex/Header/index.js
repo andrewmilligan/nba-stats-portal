@@ -8,8 +8,6 @@ const Header = function Header(props) {
     gameDate,
     nextDate,
     previousDate,
-    selectNextDate,
-    selectPreviousDate,
   } = props;
 
   if (!gameDate) return null;
@@ -18,12 +16,14 @@ const Header = function Header(props) {
     <div className={styles.container}>
       <DateButton
         date={previousDate}
-        selectDate={selectPreviousDate}
+        direction="backward"
       />
 
-      <div>
-        Games on
-        {' '}
+      <div className={styles.title}>
+        <span className={styles.preamble}>
+          Games on
+          {' '}
+        </span>
         <span className={styles.date}>
           {formatUTCDate(gameDate, '{weekday}, {apday}')}
         </span>
@@ -31,7 +31,7 @@ const Header = function Header(props) {
 
       <DateButton
         date={nextDate}
-        selectDate={selectNextDate}
+        direction="forward"
       />
     </div>
   );

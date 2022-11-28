@@ -1,7 +1,7 @@
+import useDailySchedule from 'Utils/hooks/useDailySchedule';
 import GameSummaryCard from 'Components/GameSummaryCard';
 
 import Header from './Header';
-import useDailySchedule from './_hooks/useDailySchedule';
 import styles from './styles.module.scss';
 
 const GameSummariesIndex = function GameSummariesIndex(props) {
@@ -13,28 +13,26 @@ const GameSummariesIndex = function GameSummariesIndex(props) {
 
   const {
     date,
+    isCurrentDate,
     schedule,
     isLoading,
     nextDate,
     previousDate,
-    selectNextDate,
-    selectPreviousDate,
   } = useDailySchedule(gameDates);
 
   if (!schedule) return null;
 
   const {
-    games,
+    games = [],
   } = schedule;
 
   return (
     <div className={styles.container}>
       <Header
         gameDate={date}
+        isCurrentDate={isCurrentDate}
         nextDate={nextDate}
         previousDate={previousDate}
-        selectNextDate={selectNextDate}
-        selectPreviousDate={selectPreviousDate}
       />
 
       <div className={styles.games}>

@@ -1,4 +1,5 @@
-import Team from './Team';
+import TeamName from './TeamName';
+import TeamStatsCard from './TeamStatsCard';
 import Score from './Score';
 import styles from './styles.module.scss';
 
@@ -15,9 +16,26 @@ const TopLine = function TopLine(props) {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <Team team={homeTeam} />
-        <Score boxScore={boxScore} />
-        <Team team={awayTeam} />
+        <div className={styles.awayTeamName}>
+          <TeamName team={awayTeam} />
+        </div>
+
+        <div className={styles.awayTeamStats}>
+          <TeamStatsCard team={awayTeam} />
+        </div>
+
+        <div className={styles.homeTeamName}>
+          <TeamName team={homeTeam} />
+        </div>
+
+        <div className={styles.homeTeamStats}>
+          <TeamStatsCard team={homeTeam} />
+        </div>
+
+        <div className={styles.score}>
+          <Score boxScore={boxScore} />
+        </div>
+
       </div>
     </div>
   );

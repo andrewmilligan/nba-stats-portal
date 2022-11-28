@@ -14,11 +14,11 @@ const FloorLineup = function FloorLineup(props) {
     <div className={styles.container}>
       <div className={styles.lineups}>
         <Lineup
-          team={boxScore.homeTeam}
+          team={boxScore.awayTeam}
           gameIsOver={gameIsOver}
         />
         <Lineup
-          team={boxScore.awayTeam}
+          team={boxScore.homeTeam}
           gameIsOver={gameIsOver}
         />
       </div>

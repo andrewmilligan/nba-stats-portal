@@ -1,13 +1,29 @@
 @import "~Styles/fonts.scss";
 @import "~Styles/colors.scss";
+@import "~Styles/spacing.scss";
 
 .container {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   padding: 1em;
-  background-color: $color-canvas-overlay;
+  border-bottom: 1px solid $color-border-default;
+
+  @include condensed-regular;
+}
+
+.title {
+  font-size: 1.2em;
+
+  .preamble {
+    display: none;
+
+    @media screen and (min-width: 760px) {
+      display: initial;
+    }
+  }
 }
 
 .date {
-  @include body-bold;
+  @include condensed-bold;
 }

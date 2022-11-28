@@ -1,13 +1,19 @@
+@import "~Styles/spacing.scss";
+
 .container {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2em;
-  padding: 1em;
+  margin: $module-spacer 0;
 }
 
 .lineups {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   align-items: start;
   gap: 2em;
+
+  @media screen and (min-width: 960px) {
+    grid-template-columns: 1fr 1fr;
+  }
 };

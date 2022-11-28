@@ -1,0 +1,23 @@
+@import "~Styles/colors.scss";
+@import "~Styles/fonts.scss";
+
+.container {
+  background-color: $color-canvas-overlay;
+  margin-bottom: 1em;
+  color: $color-fg-muted;
+
+  @include condensed-bold;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4em;
+  align-items: center;
+}
+
+.brand {
+  text-transform: uppercase;
+  font-size: 1.2em;
+  padding: 1em 0;
+}

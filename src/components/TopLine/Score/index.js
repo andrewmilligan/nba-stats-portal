@@ -1,9 +1,8 @@
 import classnames from 'classnames';
 
 import gameStatusText from 'Utils/gameStatus/gameStatusText';
-import statusCodeToSlug from 'Utils/gameStatus/statusCodeToSlug';
-import { ONGOING_CODE } from 'Utils/gameStatus/statuses';
 import { teamLogo } from 'Utils/data/urls';
+import StatusIndicator from 'Components/StatusIndicator';
 
 import styles from './styles.module.scss';
 
@@ -18,15 +17,13 @@ const Score = function Score(props) {
     awayTeam = {},
   } = boxScore;
 
-  const isLive = gameStatus === ONGOING_CODE;
   const status = gameStatusText(boxScore);
-  const statusSlug = statusCodeToSlug(gameStatus);
 
   return (
     <div className={styles.container}>
       <div className={styles.content}>
         <span className={styles.score}>
-          {homeTeam.score}
+          {awayTeam.score}
         </span>
         {' '}
         <span className={styles.to}>
@@ -34,19 +31,14 @@ const Score = function Score(props) {
         </span>
         {' '}
         <span className={styles.score}>
-          {awayTeam.score}
+          {homeTeam.score}
         </span>
       </div>
       <div className={styles.status}>
         <div>
           {status}
         </div>
-        <div
-          className={classnames(
-            styles.statusIndicator,
-            styles[statusSlug],
-          )}
-        />
+        <StatusIndicator gameStatus={gameStatus} />
       </div>
     </div>
   );

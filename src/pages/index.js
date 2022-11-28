@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import fetch from 'isomorphic-unfetch';
-import { dates } from 'Utils/data/urls';
 
+import Navigation from 'Components/Navigation';
+import Footer from 'Components/Footer';
+import Well from 'Components/Well';
 import GameSummariesIndex from 'Components/GameSummariesIndex';
 
 export default function Home(props) {
@@ -15,9 +17,13 @@ export default function Home(props) {
         <title>NBA Stats</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <GameSummariesIndex
-        dates={dates}
-      />
+      <Navigation />
+      <Well>
+        <GameSummariesIndex
+          dates={dates}
+        />
+      </Well>
+      <Footer />
     </div>
   )
 }

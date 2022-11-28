@@ -1,0 +1,10 @@
+@import "~Styles/colors.scss";
+@import "~Styles/fonts.scss";
+
+.container {
+  padding: 0.6em;
+  background-color: $color-canvas-overlay;
+  border: 1px solid $color-border-default;
+
+  @include condensed-regular;
+}

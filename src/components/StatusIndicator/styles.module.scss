@@ -1,0 +1,30 @@
+@import "~Styles/colors.scss";
+
+.indicator {
+  &.ongoing {
+    position: relative;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: $color-live-indicator;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 50%;
+      background-color: $color-live-indicator;
+      box-shadow: 0 0 6px 0 $color-live-indicator;
+      animation: blink 1s infinite;
+    }
+  }
+}
+
+@keyframes blink {
+  0%    { opacity: 0; }
+  50%  { opacity: 1; }
+  100%  { opacity: 0; }
+}

@@ -6,12 +6,3 @@
   align-items: center;
   color: $color-fg-muted;
 }
-
-.statusIndicator {
-  &.ongoing {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: $color-live-indicator;
-  }
-}

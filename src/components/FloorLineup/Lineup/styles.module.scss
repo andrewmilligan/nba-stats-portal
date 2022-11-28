@@ -7,6 +7,15 @@
   gap: 1em;
 }
 
+.teamName {
+  text-transform: uppercase;
+  color: $color-fg-muted;
+  border-bottom: 1px solid $color-border-default;
+  padding: 0.6em 1em;
+
+  @include condensed-bold;
+}
+
 .bench {
   border-bottom: 1px solid $color-border-default;
   margin: 0.4em 0;

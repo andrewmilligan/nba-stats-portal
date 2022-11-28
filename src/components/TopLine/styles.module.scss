@@ -1,8 +1,9 @@
 @import "~Styles/colors.scss";
 @import "~Styles/fonts.scss";
+@import "~Styles/spacing.scss";
 
 .container {
-  padding: 6px;
+  margin: $module-spacer 0;
 
   @include condensed-regular;
 }
@@ -11,7 +12,35 @@
   max-width: 700px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   gap: 1em;
+  grid-template-areas: "away-team-name score score home-team-name"
+                       "away-team-stats away-team-stats home-team-stats home-team-stats";
+
+  @media screen and (min-width: 760px) {
+    // grid-template-areas: "away-team-name score home-team-name"
+    //                      "away-team-stats blank home-team-stats";
+    grid-template-areas: "away-team-name score home-team-name"
+                         "away-team-stats score home-team-stats";
+  }
+}
+
+.awayTeamName {
+  grid-area: away-team-name;
+}
+
+.awayTeamStats {
+  grid-area: away-team-stats;
+}
+
+.homeTeamName {
+  grid-area: home-team-name;
+}
+
+.homeTeamStats {
+  grid-area: home-team-stats;
+}
+
+.score {
+  grid-area: score;
 }

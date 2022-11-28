@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import classnames from 'classnames';
 
 import gameStatusText from 'Utils/gameStatus/gameStatusText';
 import { ONGOING_CODE, COMPLETE_CODE } from 'Utils/gameStatus/statuses';
@@ -10,6 +11,8 @@ import styles from './styles.module.scss';
 const GameSummaryCard = function GameSummaryCard(props) {
   const {
     game,
+    mode,
+    border,
   } = props;
 
   const {
@@ -26,7 +29,11 @@ const GameSummaryCard = function GameSummaryCard(props) {
   return (
     <Link
       href={`/game#game=${game.gameId}`}
-      className={styles.container}
+      className={classnames(
+        styles.container,
+        styles[mode],
+        { [styles.border]: border },
+      )}
     >
       <Status
         gameStatus={gameStatus}
@@ -37,9 +44,15 @@ const GameSummaryCard = function GameSummaryCard(props) {
         awayTeam={awayTeam}
         isFinal={isFinal}
         isLive={isLive}
+        mode={mode}
       />
     </Link>
   );
+};
+
+GameSummaryCard.defaultProps = {
+  mode: 'default',
+  border: true,
 };
 
 export default GameSummaryCard;

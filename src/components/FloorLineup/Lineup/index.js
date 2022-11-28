@@ -31,6 +31,10 @@ const Lineup = function Lineup(props) {
 
   return (
     <div className={styles.container}>
+      <div className={styles.teamName}>
+        {`${team.teamCity} ${team.teamName}`}
+      </div>
+
       {onFloor.map((player) => (
         <PlayerCard
           key={player.personId}

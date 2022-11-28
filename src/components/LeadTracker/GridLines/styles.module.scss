@@ -1,0 +1,19 @@
+@import "~Styles/colors.scss";
+@import "~Styles/fonts.scss";
+
+.axis {
+  stroke: $color-border-default;
+}
+
+.quarterLabels {
+  position: relative;
+}
+
+.quarterLabel {
+  position: absolute;
+  bottom: 0;
+  color: $color-fg-subtle;
+  padding-left: 0.5em;
+
+  @include condensed-bold;
+}
