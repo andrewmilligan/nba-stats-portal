@@ -1,6 +1,6 @@
-import Head from 'next/head'
 import fetch from 'isomorphic-unfetch';
 
+import Head from 'Components/Head';
 import Navigation from 'Components/Navigation';
 import Footer from 'Components/Footer';
 import Well from 'Components/Well';
@@ -13,10 +13,7 @@ export default function Home(props) {
 
   return (
     <div>
-      <Head>
-        <title>NBA Stats</title>
-        <link rel="icon" href="/nba/favicon.ico" />
-      </Head>
+      <Head />
       <Navigation />
       <Well>
         <GameSummariesIndex
