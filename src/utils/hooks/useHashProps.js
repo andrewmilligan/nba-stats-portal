@@ -9,7 +9,6 @@ const useHashProps = function useHashProps(opts = {}) {
 
   useEffect(() => {
     const updateHashProps = () => {
-      console.log('Updating window props');
       const hash = window.location.hash.slice(1);
       const hashQuery = new URLSearchParams(hash);
       setHashProps(Object.fromEntries(hashQuery));

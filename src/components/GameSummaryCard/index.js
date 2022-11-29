@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import classnames from 'classnames';
 
+import gamePath from 'Utils/routes/games/gamePath';
 import gameStatusText from 'Utils/gameStatus/gameStatusText';
 import { ONGOING_CODE, COMPLETE_CODE } from 'Utils/gameStatus/statuses';
 
@@ -29,7 +30,7 @@ const GameSummaryCard = function GameSummaryCard(props) {
 
   return (
     <Link
-      href={`/game/#game=${gameDate}--${game.gameId}`}
+      href={gamePath({ gameDate, game })}
       className={classnames(
         styles.container,
         styles[mode],

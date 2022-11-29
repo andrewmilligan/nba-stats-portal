@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 
+import teamMetadata from 'Utils/teams/metadata';
 import useDataFetch from 'Utils/hooks/useDataFetch';
 import { dailySchedule } from 'Utils/data/urls';
 
@@ -19,9 +20,14 @@ const useDailySchedule = function useDailySchedule(dates) {
   const schedule = useMemo(() => {
     if (!rawSchedule) return rawSchedule;
 
-    const games = rawSchedule.games.sort((a, b) => (
-      a.gameDateTime.localeCompare(b.gameDateTime)
-    ));
+    const games = rawSchedule.games
+      .filter((game) => (
+        !!teamMetadata.get(game.homeTeam.teamId)
+        && !!teamMetadata.get(game.awayTeam.teamId)
+      ))
+      .sort((a, b) => (
+        a.gameDateTime.localeCompare(b.gameDateTime)
+      ));
     return {
       ...rawSchedule,
       games,
