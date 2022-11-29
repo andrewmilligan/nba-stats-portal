@@ -11,3 +11,21 @@
   color: $color-danger-fg;
   text-transform: uppercase;
 }
+
+.labelLong {
+  display: none;
+}
+
+.labelShort {
+  display: initial;
+}
+
+@media screen and (min-width: 760px) {
+  .labelLong {
+    display: initial;
+  }
+
+  .labelShort {
+    display: none;
+  }
+}

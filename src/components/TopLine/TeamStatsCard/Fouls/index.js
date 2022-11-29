@@ -11,7 +11,16 @@ const Fouls = function Fouls(props) {
   return (
     <div className={styles.container}>
       <div>
-        {`Total Fouls: ${fouls}`}
+        <span className={styles.labelLong}>
+          Total Fouls:
+        </span>
+        <span className={styles.labelShort}>
+          Fouls:
+        </span>
+        {' '}
+        <span className={styles.fouls}>
+          {fouls}
+        </span>
       </div>
       <div className={styles.bonus}>
         {isInBonus && 'Bonus'}
