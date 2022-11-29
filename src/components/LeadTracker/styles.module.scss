@@ -32,6 +32,7 @@
   bottom: 0;
   color: $color-fg-subtle;
   padding-left: 0.5em;
+  text-shadow: 0 0 4px $color-canvas-default;
 
   @include condensed-bold;
 }

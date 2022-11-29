@@ -12,6 +12,7 @@ const TopInfo = function TopInfo(props) {
   const {
     status,
     name,
+    nameI,
     jerseyNum,
     statistics: {
       minutes,
@@ -30,7 +31,12 @@ const TopInfo = function TopInfo(props) {
   return (
     <div className={styles.topline}>
       <div className={styles.name}>
-        {name}
+        <span className={styles.fullName}>
+          {name}
+        </span>
+        <span className={styles.shortName}>
+          {nameI}
+        </span>
         {' '}
         <span className={styles.jersey}>
           {`#${jerseyNum}`}

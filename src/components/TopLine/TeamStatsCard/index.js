@@ -12,7 +12,7 @@ const TeamStatsCard = function TeamStatsCard(props) {
     inBonus,
     statistics: {
       foulsTeam,
-    },
+    } = {},
   } = team;
 
   const isInBonus = inBonus === '1';

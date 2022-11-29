@@ -15,7 +15,7 @@ export default function Home(props) {
     <div>
       <Head>
         <title>NBA Stats</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/nba/favicon.ico" />
       </Head>
       <Navigation />
       <Well>

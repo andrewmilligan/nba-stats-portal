@@ -15,6 +15,7 @@ const Games = function Games(props) {
   } = props;
 
   const {
+    date,
     schedule,
     isLoading,
   } = useDailySchedule(gameDates);
@@ -39,6 +40,7 @@ const Games = function Games(props) {
             >
               <GameSummaryCard
                 game={game}
+                gameDate={date}
                 mode="condensed"
                 border={false}
               />

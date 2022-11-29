@@ -18,8 +18,6 @@
                        "away-team-stats away-team-stats home-team-stats home-team-stats";
 
   @media screen and (min-width: 760px) {
-    // grid-template-areas: "away-team-name score home-team-name"
-    //                      "away-team-stats blank home-team-stats";
     grid-template-areas: "away-team-name score home-team-name"
                          "away-team-stats score home-team-stats";
   }

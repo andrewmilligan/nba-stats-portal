@@ -18,7 +18,7 @@ const Headshot = function Headshot(props) {
   const isInactive = status === 'INACTIVE';
 
   return (
-    <div>
+    <div className={styles.container}>
       <div
         className={classnames(
           styles.headshot,

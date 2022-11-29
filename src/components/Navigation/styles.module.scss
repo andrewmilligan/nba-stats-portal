@@ -11,13 +11,22 @@
 
 .content {
   display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: 4em;
+  grid-template-columns: 40px 1fr;
+  gap: 2em;
   align-items: center;
+
+  @media screen and (min-width: 760px) {
+    grid-template-columns: 80px 1fr;
+    gap: 4em;
+  }
 }
 
 .brand {
   text-transform: uppercase;
   font-size: 1.2em;
   padding: 1em 0;
+}
+
+.logo {
+  display: block;
 }

@@ -9,6 +9,7 @@ import styles from './styles.module.scss';
 const Score = function Score(props) {
   const {
     boxScore,
+    isUpcoming,
   } = props;
 
   const {
@@ -46,6 +47,7 @@ const Score = function Score(props) {
 
 Score.defaultProps = {
   boxScore: {},
+  isUpcoming: true,
 };
 
 export default Score;

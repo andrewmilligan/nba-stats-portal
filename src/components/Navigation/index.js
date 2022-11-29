@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import logo from 'Images/logo.svg';
 import Well from 'Components/Well';
 import Games from './Games';
 
@@ -19,7 +20,11 @@ const Navigation = function Navigation(props) {
             href="/"
             className={styles.brandLink}
           >
-            Stats
+            <img
+              className={styles.logo}
+              src={logo.src}
+              alt="basketball stats logo"
+            />
           </Link>
         </div>
         {withGames && (

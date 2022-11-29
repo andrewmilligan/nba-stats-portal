@@ -5,8 +5,6 @@ import { dailySchedule } from 'Utils/data/urls';
 
 import useCurrentDate from './useCurrentDate';
 
-console.log(dailySchedule);
-
 const useDailySchedule = function useDailySchedule(dates) {
   const dateControls = useCurrentDate(dates);
   const { date } = dateControls;

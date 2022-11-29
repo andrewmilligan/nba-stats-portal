@@ -1,17 +1,20 @@
 import TeamName from './TeamName';
 import TeamStatsCard from './TeamStatsCard';
 import Score from './Score';
+import UpcomingStatus from './UpcomingStatus';
 import styles from './styles.module.scss';
 
 const TopLine = function TopLine(props) {
   const {
     boxScore,
+    gameInSchedule,
+    isUpcoming,
   } = props;
 
   const {
     homeTeam,
     awayTeam,
-  } = boxScore;
+  } = boxScore || gameInSchedule;
 
   return (
     <div className={styles.container}>
@@ -21,7 +24,9 @@ const TopLine = function TopLine(props) {
         </div>
 
         <div className={styles.awayTeamStats}>
-          <TeamStatsCard team={awayTeam} />
+          {!isUpcoming && (
+            <TeamStatsCard team={awayTeam} />
+          )}
         </div>
 
         <div className={styles.homeTeamName}>
@@ -29,11 +34,21 @@ const TopLine = function TopLine(props) {
         </div>
 
         <div className={styles.homeTeamStats}>
-          <TeamStatsCard team={homeTeam} />
+          {!isUpcoming && (
+            <TeamStatsCard team={homeTeam} />
+          )}
         </div>
 
         <div className={styles.score}>
-          <Score boxScore={boxScore} />
+          {isUpcoming ? (
+            <UpcomingStatus
+              game={gameInSchedule}
+            />
+          ) : (
+            <Score
+              boxScore={boxScore}
+            />
+          )}
         </div>
 
       </div>
@@ -42,7 +57,8 @@ const TopLine = function TopLine(props) {
 };
 
 TopLine.defaultProps = {
-  boxScore: {},
+  gameInSchedule: {},
+  isUpcoming: true,
 };
 
 export default TopLine;

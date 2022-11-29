@@ -1,0 +1,12 @@
+@import "~Styles/colors.scss";
+@import "~Styles/spacing.scss";
+
+.container {
+  max-width: 700px;
+  margin: 0 auto $module-spacer auto;
+  background-color: $color-canvas-overlay;
+  border: 1px solid $color-border-default;
+  padding: 2em;
+  text-align: center;
+  font-size: 1.2rem;
+}

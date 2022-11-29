@@ -1,7 +1,13 @@
+import AtomsRoot from 'Atoms/index';
+
 import 'Styles/globals.scss'
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+const App = function App({ Component, pageProps }) {
+  return (
+    <AtomsRoot>
+      <Component {...pageProps} />
+    </AtomsRoot>
+  );
+};
 
-export default MyApp
+export default App;

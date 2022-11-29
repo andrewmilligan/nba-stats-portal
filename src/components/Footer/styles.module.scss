@@ -3,6 +3,10 @@
 @import "~Styles/spacing.scss";
 
 .container {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 1.4em;
+  align-items: center;
   border-top: 1px solid $color-border-default;
   margin: $module-spacer 0;
   padding: $module-spacer 0;

@@ -2,7 +2,9 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
+      "Atoms/*": ["atoms/*"],
       "Components/*": ["components/*"],
+      "Images/*": ["images/*"],
       "Utils/*": ["utils/*"],
       "Styles/*": ["styles/*"],
       "package.json": ["../package.json"]

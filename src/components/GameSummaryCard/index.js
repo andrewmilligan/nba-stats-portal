@@ -10,6 +10,7 @@ import styles from './styles.module.scss';
 
 const GameSummaryCard = function GameSummaryCard(props) {
   const {
+    gameDate,
     game,
     mode,
     border,
@@ -28,7 +29,7 @@ const GameSummaryCard = function GameSummaryCard(props) {
 
   return (
     <Link
-      href={`/game#game=${game.gameId}`}
+      href={`/game/#game=${gameDate}--${game.gameId}`}
       className={classnames(
         styles.container,
         styles[mode],

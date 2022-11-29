@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  basePath: '/nba',
   trailingSlash: true,
   reactStrictMode: true,
   async rewrites() {

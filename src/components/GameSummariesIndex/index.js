@@ -39,6 +39,7 @@ const GameSummariesIndex = function GameSummariesIndex(props) {
             <GameSummaryCard
               key={game.gameId}
               game={game}
+              gameDate={date}
             />
           ))
         )}

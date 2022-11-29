@@ -9,8 +9,12 @@
 
 .content {
   display: grid;
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: 60px 1fr;
   gap: 1em;
+
+  @media screen and (min-width: 760px) {
+    grid-template-columns: 80px 1fr;
+  }
 }
 
 .minutes {
@@ -25,7 +29,7 @@
 
 .stats {
   display: grid;
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: 1fr;
   column-gap: 1em;
   row-gap: 0.4em;
   color: $color-fg-muted;
@@ -35,5 +39,9 @@
 
   .mainStat {
     color: $color-fg-default;
+  }
+
+  @media screen and (min-width: 760px) {
+    grid-template-columns: max-content 1fr;
   }
 }

@@ -17,6 +17,24 @@
 
     @include condensed-bold;
   }
+
+  .fullName {
+    display: none;
+  }
+
+  .shortName {
+    display: initial;
+  }
+
+  @media screen and (min-width: 760px) {
+    .fullName {
+      display: initial;
+    }
+
+    .shortName {
+      display: none;
+    }
+  }
 }
 
 .minutes {

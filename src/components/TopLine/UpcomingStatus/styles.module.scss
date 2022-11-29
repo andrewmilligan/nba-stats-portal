@@ -1,0 +1,18 @@
+@import "~Styles/fonts.scss";
+
+.container {
+  text-align: center;
+
+  @include condensed-bold;
+}
+
+.date {
+  font-size: 2rem;
+  margin-bottom: 0.2em;
+}
+
+.time {
+  font-size: 1.4em;
+
+  @include condensed-regular;
+}

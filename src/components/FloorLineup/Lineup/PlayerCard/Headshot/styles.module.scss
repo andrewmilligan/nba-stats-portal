@@ -1,12 +1,15 @@
 @import "~Styles/colors.scss";
 
+.container {
+}
+
 .headshot {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  width: 100%;
+  aspect-ratio: 1;
   overflow: hidden;
-  width: 80px;
-  height: 80px;
   border-radius: 50%;
   background-color: $color-neutral-muted;
 
