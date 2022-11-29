@@ -1,0 +1,26 @@
+@import "~Styles/colors.scss";
+@import "~Styles/fonts.scss";
+
+.container {
+}
+
+.divider {
+  margin: 1em 0;
+  border-bottom: 1px solid $color-border-default;
+}
+
+.sectionTitle {
+  text-transform: uppercase;
+  color: $color-fg-muted;
+  margin-bottom: 0.5em;
+
+  @include condensed-bold;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: max-content max-content 1fr max-content;
+  align-items: center;
+  row-gap: 0.5em;
+  margin-bottom: 1em;
+}

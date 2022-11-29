@@ -7,6 +7,7 @@ const Lineup = function Lineup(props) {
   const {
     team,
     gameIsOver,
+    seasonBoxScores,
   } = props;
 
   const {
@@ -29,6 +30,15 @@ const Lineup = function Lineup(props) {
   const onFloor = lineup.slice(0, 5);
   const bench = lineup.slice(5);
 
+  const seasonBoxScoresByPlayer = useMemo(() => (
+    seasonBoxScores.reduce((byPlayer, boxScore) => {
+      const { personId } = boxScore;
+      if (!byPlayer.has(personId)) byPlayer.set(personId, []);
+      byPlayer.get(personId).push(boxScore);
+      return byPlayer;
+    }, new Map())
+  ), [seasonBoxScores]);
+
   return (
     <div className={styles.container}>
       <div className={styles.teamName}>
@@ -39,6 +49,7 @@ const Lineup = function Lineup(props) {
         <PlayerCard
           key={player.personId}
           player={player}
+          seasonBoxScores={seasonBoxScoresByPlayer.get(player.personId)}
         />
       ))}
 
@@ -48,6 +59,7 @@ const Lineup = function Lineup(props) {
         <PlayerCard
           key={player.personId}
           player={player}
+          seasonBoxScores={seasonBoxScoresByPlayer.get(player.personId)}
         />
       ))}
 
@@ -65,6 +77,7 @@ const Lineup = function Lineup(props) {
 Lineup.defaultProps = {
   team: {},
   gameIsOver: false,
+  seasonBoxScores: [],
 };
 
 export default Lineup;

@@ -1,3 +1,4 @@
+import { useState, useCallback } from 'react';
 import classnames from 'classnames';
 
 import { playerHeadshot } from 'Utils/data/urls';
@@ -6,12 +7,17 @@ import playerMinutes from 'Utils/clock/playerMinutes';
 import Headshot from './Headshot';
 import TopInfo from './TopInfo';
 import Fouls from './Fouls';
+import ExtendedStats from './ExtendedStats';
 import styles from './styles.module.scss';
 
 const PlayerCard = function PlayerCard(props) {
   const {
     player,
+    seasonBoxScores,
   } = props;
+
+  const [isExpanded, setIsExpanded] = useState(false);
+  const toggleExpanded = useCallback(() => setIsExpanded((old) => !old), []);
 
   const {
     status,
@@ -48,7 +54,10 @@ const PlayerCard = function PlayerCard(props) {
   };
 
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      onClick={toggleExpanded}
+    >
       <div className={styles.content}>
 
         <Headshot player={player} />
@@ -100,6 +109,13 @@ const PlayerCard = function PlayerCard(props) {
         </div>
 
       </div>
+
+      {isExpanded && (
+        <ExtendedStats
+          player={player}
+          seasonBoxScores={seasonBoxScores}
+        />
+      )}
 
       <div className={styles.fouls}>
         <Fouls fouls={foulsPersonal} />

@@ -10,6 +10,7 @@ import {
   dailySchedule,
   gameBoxScore,
   gamePlayByPlay,
+  playerBoxScores,
 } from 'Utils/data/urls';
 import gameSlug from 'Utils/routes/games/gameSlug';
 import parseGameSlug from 'Utils/routes/games/parseGameSlug';
@@ -54,6 +55,13 @@ export default function Game(props) {
     || (!playByPlayIsLoading && !playByPlay)
   );
 
+  const { data: homeTeamPlayerBoxScores, } = useDataFetch(
+    playerBoxScores(game.homeTeam.teamId),
+  );
+  const { data: awayTeamPlayerBoxScores, } = useDataFetch(
+    playerBoxScores(game.awayTeam.teamId),
+  );
+
   const homeName = `${game.homeTeam.teamCity} ${game.homeTeam.teamName}`;
   const awayName = `${game.awayTeam.teamCity} ${game.awayTeam.teamName}`;
   const date = formatUTCDate(game.gameDateTime, '{apday}');
@@ -91,7 +99,13 @@ export default function Game(props) {
                 playByPlay={playByPlay}
               />
               {/* <PlayByPlay playByPlay={playByPlay} /> */}
-              <FloorLineup boxScore={boxScore} />
+              <FloorLineup
+                boxScore={boxScore}
+                seasonBoxScores={{
+                  homeTeam: homeTeamPlayerBoxScores,
+                  awayTeam: awayTeamPlayerBoxScores,
+                }}
+              />
             </>
           )}
         </Well>

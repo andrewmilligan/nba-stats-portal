@@ -22,7 +22,7 @@ const Footer = function Footer() {
           </Link>
         </div>
         <div>
-          All data comes from the NBA.
+          Data from the NBA.
           {' '}
           <a href="https://www.nba.com/">
             See more at nba.com.

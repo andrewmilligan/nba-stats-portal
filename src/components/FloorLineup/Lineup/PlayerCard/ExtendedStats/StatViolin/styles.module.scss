@@ -1,0 +1,43 @@
+@import "~Styles/colors.scss";
+
+.container {
+  display: grid;
+  grid-template-columns: max-content max-content 1fr max-content;
+  align-items: center;
+}
+
+.chartLabel {
+  margin-right: 1em;
+}
+
+.chartContainer {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.violin {
+  fill: $color-neutral-muted;
+}
+
+.current {
+  fill: $color-fg-default;
+}
+
+.seasonAverage {
+  fill: $color-fg-muted;
+}
+
+.label {
+  color: $color-fg-muted;
+
+  &.left {
+    text-align: right;
+    margin-right: 0.2em;
+  }
+
+  &.right {
+    text-align: left;
+    margin-left: 0.2em;
+  }
+}
