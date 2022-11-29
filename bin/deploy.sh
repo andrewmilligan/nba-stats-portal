@@ -6,6 +6,17 @@ CLOUDFRONT_DISTRIBUTION="E3VYHWQGUHITE2"
 
 set -e
 
+# Forcibly sync everything but the CDN assets
+echo "+ Uploading non-CDN files"
+aws s3 sync \
+  --profile personal \
+  --delete \
+  --sse AES256 \
+  --cache-control "max-age=30,s-maxage=300" \
+  --exclude "_next/*" \
+  out/ \
+  "s3://${BUCKET}/${PREFIX}/"
+
 # Forcibly sync all of the CDN assets
 echo "+ Uploading CDN assets"
 aws s3 sync \
@@ -15,19 +26,6 @@ aws s3 sync \
   --cache-control "max-age=3153600000" \
   out/_next/ \
   "s3://${BUCKET}/${PREFIX}/_next/"
-
-# Deploy the mutable files
-FILES=( $( find out -type f | grep -v '/_next/' ) )
-for FILE in "${FILES[@]}"; do
-  FILENAME=$( echo "$FILE" | sed 's/^out\///' )
-  echo "+ Uploading ${FILENAME}"
-  aws s3 cp \
-    --profile personal \
-    --sse AES256 \
-    --cache-control "max-age=30,s-maxage=300" \
-    "$FILE" \
-    "s3://${BUCKET}/${PREFIX}/${FILENAME}"
-done
 
 # Clear cache
 PATHS=( $( find out -type f | grep -v '/_next/' | sed 's/^out\//\//' ) )
