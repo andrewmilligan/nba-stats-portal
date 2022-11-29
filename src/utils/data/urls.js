@@ -1,4 +1,12 @@
-const baseUrl = '/nba/backend';
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig = {} } = getConfig();
+const {
+  IS_DEVELOPMENT = false,
+} = publicRuntimeConfig;
+const baseUrl = IS_DEVELOPMENT
+  ? '/nba/backend'
+  : '';
 
 export const dataUrl = function dataUrl(path) {
   return `${baseUrl}/${path}`;

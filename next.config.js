@@ -1,8 +1,13 @@
+const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = (phase) => ({
   basePath: '/nba',
   trailingSlash: true,
   reactStrictMode: true,
+  publicRuntimeConfig: {
+    IS_DEVELOPMENT: phase === PHASE_DEVELOPMENT_SERVER,
+  },
   async rewrites() {
     return [
       {
@@ -11,6 +16,6 @@ const nextConfig = {
       },
     ];
   },
-}
+});
 
 module.exports = nextConfig
