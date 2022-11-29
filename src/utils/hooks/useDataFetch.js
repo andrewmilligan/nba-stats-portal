@@ -11,25 +11,28 @@ const useDataFetch = function useDataFetch(url, opts = {}) {
     interval,
   } = opts;
 
-  const loadedUrl = useRef();
+  const fetchId = useRef();
+  const [loadedUrl, setLoadedUrl] = useState();
   const fetchHeaders = useRef({});
   const [data, setData] = useState(initial);
 
-  const fetchData = useCallback(async () => {
+  const fetchData = useCallback(async (uid) => {
     if (!url) return;
+    if (uid !== fetchId.current) return;
 
     const {
       lastModified,
     } = fetchHeaders.current;
+    const isFirstPoll = !lastModified;
     const headers = {};
-    if (url === loadedUrl.current && lastModified) {
+    if (lastModified) {
       headers['If-Modified-Since'] = lastModified;
     }
 
     try {
       const response = await fetch(url, { headers });
       if (!response.ok) {
-        return;
+        throw new Error(`bad response from ${url}`);
       }
 
       fetchHeaders.current.lastModified = response.headers.get('Last-Modified');
@@ -40,17 +43,24 @@ const useDataFetch = function useDataFetch(url, opts = {}) {
       } else {
         setData(await response.text());
       }
-
-      loadedUrl.current = url;
     } catch (error) {
-      // pass
+      if (isFirstPoll) {
+        setData(initial);
+      }
+    } finally {
+      setLoadedUrl(url);
     }
-  }, [url]);
+  }, [url, initial]);
 
   useEffect(() => {
+    fetchHeaders.current = {};
+    const uid = Date.now();
+    fetchId.current = uid;
     let timer;
     const poll = async () => {
-      await fetchData();
+      if (!url) return;
+      if (fetchId.current !== uid) return;
+      await fetchData(uid);
       if (interval) {
         timer = setTimeout(poll, interval);
       }
@@ -61,12 +71,12 @@ const useDataFetch = function useDataFetch(url, opts = {}) {
         clearTimeout(timer);
       }
     };
-  }, [fetchData, interval]);
+  }, [url, fetchData, interval]);
 
   return {
     data,
     fetchData,
-    isLoadingNewData: loadedUrl.current !== url,
+    isLoadingNewData: loadedUrl !== url,
   };
 };
 
