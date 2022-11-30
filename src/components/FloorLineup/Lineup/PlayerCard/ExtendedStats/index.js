@@ -7,8 +7,6 @@ const ExtendedStats = function ExtendedStats(props) {
     seasonBoxScores,
   } = props;
 
-  console.log(seasonBoxScores);
-
   if (!seasonBoxScores) {
     return (
       <div className={styles.noStats}>

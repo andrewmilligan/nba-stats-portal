@@ -3,7 +3,6 @@ const deploymentDomain = process.env.DEPLOYMENT_DOMAIN;
 
 // Deployment domain plus base path with single trailing slash even if
 // basePath is just a single slash
-console.log({ basePath, deploymentDomain });
 const baseUrl = new URL(
   `${basePath}/`.replace(/[\/]+$/, '/'),
   deploymentDomain,
