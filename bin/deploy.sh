@@ -28,7 +28,8 @@ aws s3 sync \
   "s3://${BUCKET}/${PREFIX}/_next/"
 
 # Clear cache
-PATHS=( $( find out -type f | grep -v '/_next/' | sed 's/^out\//\//' ) )
+SAFE_PREFIX=$( echo "$PREFIX" | sed 's/\//\\\//g' )
+PATHS=( $( find out -type f | grep -v '/_next/' | sed "s/^out\//\/${SAFE_PREFIX}\//" ) )
 echo "+ Clearing cache on ${#PATHS[@]} files"
 CF_STATUS=$( aws cloudfront \
   --profile personal \
