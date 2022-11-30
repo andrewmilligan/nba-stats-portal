@@ -16,7 +16,7 @@ const Head = function Head(props) {
       <link
         key="favicon"
         rel="icon"
-        href={getAssetUrl('favicon.ico')}
+        href={getAssetUrl('favicon.ico').href}
       />
 
       {/* Viewport */}
@@ -101,7 +101,7 @@ const Head = function Head(props) {
 Head.defaultProps = {
   title: 'NBA Stats',
   description: 'Live results and stats for NBA games.',
-  image: getAssetUrl(social.src),
+  image: getAssetUrl(social.src).href,
 };
 
 export default Head;
