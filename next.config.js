@@ -2,22 +2,23 @@ const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = (phase) => {
-  const basePath = '/nba';
+  const isDev = phase === PHASE_DEVELOPMENT_SERVER;
   const deploymentDomain = 'https://milligan.news';
+  const basePath = '/nba';
   return {
     basePath,
     trailingSlash: true,
     reactStrictMode: true,
-    publicRuntimeConfig: {
-      basePath,
-      deploymentDomain,
-      IS_DEVELOPMENT: phase === PHASE_DEVELOPMENT_SERVER,
+    env: {
+      BASE_PATH: basePath,
+      DEPLOYMENT_DOMAIN: deploymentDomain,
+      IS_DEVELOPMENT: isDev,
     },
     async rewrites() {
       return [
         {
           source: '/backend/:path*',
-          destination: 'https://d19kaplwqv19rl.cloudfront.net/:path*',
+          destination: `${deploymentDomain}/:path*`,
         },
       ];
     },

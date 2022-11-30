@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
 import fs from 'fs';
 
+import getAssetUrl from 'Utils/paths/getAssetUrl';
 import formatUTCDate from 'Utils/dates/formatUTCDate';
 import useHashProps from 'Utils/hooks/useHashProps';
 import useDataFetch from 'Utils/hooks/useDataFetch';
@@ -151,12 +152,11 @@ export const getStaticProps = async function getStaticProps(props) {
 export const getStaticPaths = async function getStaticPaths() {
   fs.mkdirSync('__cache__', { recursive: true });
 
-  const urlBase = 'https://milligan.news/stats/global';
-  const datesRsp = await fetch(`${urlBase}/dates.json`);
+  const datesRsp = await fetch(getAssetUrl('/stats/global/dates.json'));
   const dates = await datesRsp.json();
   fs.writeFileSync('__cache__/dates.json', JSON.stringify(dates));
 
-  const scheduleRsp = await fetch(`${urlBase}/schedule.json`);
+  const scheduleRsp = await fetch(getAssetUrl('/stats/global/schedule.json'));
   const schedule = await scheduleRsp.json();
   fs.writeFileSync('__cache__/schedule.json', JSON.stringify(schedule));
 

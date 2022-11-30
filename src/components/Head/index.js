@@ -1,7 +1,7 @@
 import NextHead from 'next/head';
 
 import social from 'Images/social.png';
-import getStaticAsset from 'Utils/paths/getStaticAsset';
+import getAssetUrl from 'Utils/paths/getAssetUrl';
 
 const Head = function Head(props) {
   const {
@@ -16,7 +16,7 @@ const Head = function Head(props) {
       <link
         key="favicon"
         rel="icon"
-        href={getStaticAsset('favicon.ico')}
+        href={getAssetUrl('favicon.ico')}
       />
 
       {/* Viewport */}
@@ -101,7 +101,7 @@ const Head = function Head(props) {
 Head.defaultProps = {
   title: 'NBA Stats',
   description: 'Live results and stats for NBA games.',
-  image: getStaticAsset(social),
+  image: getAssetUrl(social.src),
 };
 
 export default Head;

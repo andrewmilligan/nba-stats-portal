@@ -1,11 +1,8 @@
-import getConfig from 'next/config';
+import getAssetUrl from 'Utils/paths/getAssetUrl';
 
-const { publicRuntimeConfig = {} } = getConfig();
-const {
-  IS_DEVELOPMENT = false,
-} = publicRuntimeConfig;
+const IS_DEVELOPMENT = process.env.IS_DEVELOPMENT;
 const baseUrl = IS_DEVELOPMENT
-  ? '/nba/backend'
+  ? getAssetUrl('backend').pathname
   : '';
 
 export const dataUrl = function dataUrl(path) {
