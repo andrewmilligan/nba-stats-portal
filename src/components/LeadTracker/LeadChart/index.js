@@ -21,6 +21,7 @@ const LeadChart = function LeadChart(props) {
 
   const [ref, [width]] = useResizeObserver();
   const height = 100;
+  const viewBox = [0, -1, width, height + 2]
 
   const homeGradientId = useId();
   const awayGradientId = useId();
@@ -48,7 +49,7 @@ const LeadChart = function LeadChart(props) {
         <svg
           width={width}
           height={height}
-          viewBox={[0, 0, width, height]}
+          viewBox={viewBox}
         >
           <defs>
             <GradientDef
