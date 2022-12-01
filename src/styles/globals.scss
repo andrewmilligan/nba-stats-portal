@@ -95,6 +95,15 @@
   --color-primer-shadow-highlight: 0 0 transparent;
   --color-primer-shadow-inset: 0 0 transparent;
   --color-primer-shadow-focus: 0 0 0 3px #0c2d6b;
+
+  // spacing
+  --spacer-module-gap: 1em;
+  --spacer-module-padding: 0.5em;
+
+  @media screen and (min-width: 760px) {
+    --spacer-module-gap: 2em;
+    --spacer-module-padding: 1em;
+  }
 }
 
 html,

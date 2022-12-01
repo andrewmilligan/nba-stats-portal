@@ -1,4 +1,5 @@
 @import "~Styles/colors.scss";
+@import "~Styles/spacing.scss";
 
 .container {
   background-color: $color-canvas-overlay;
@@ -6,5 +7,5 @@
 }
 
 .content {
-  padding: 1em;
+  padding: $spacer-module-padding;
 }

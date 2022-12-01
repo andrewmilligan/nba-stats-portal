@@ -3,7 +3,7 @@
 
 .container {
   max-width: 700px;
-  margin: 0 auto $module-spacer auto;
+  margin: 0 auto $spacer-module-gap auto;
   background-color: $color-canvas-overlay;
   border: 1px solid $color-border-default;
   padding: 2em;

@@ -1,8 +1,9 @@
 @import "~Styles/colors.scss";
 @import "~Styles/fonts.scss";
+@import "~Styles/spacing.scss";
 
 .container {
-  padding: 1em 1em 0 1em;
+  padding: $spacer-module-padding $spacer-module-padding 0 $spacer-module-padding;
   border: 1px solid $color-border-default;
   background-color: $color-canvas-overlay;
   cursor: pointer;

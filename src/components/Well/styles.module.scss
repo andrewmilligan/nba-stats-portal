@@ -1,5 +1,7 @@
+@import "~Styles/spacing.scss";
+
 .container {
-  padding: 0 1em;
+  padding: 0 $spacer-module-padding;
   max-width: 1400px;
   margin: 0 auto;
 }

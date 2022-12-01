@@ -1,0 +1,35 @@
+@import "~Styles/colors.scss";
+@import "~Styles/fonts.scss";
+
+.chart {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+}
+
+.chartContainer {
+  width: 100%;
+  overflow: hidden;
+}
+
+.axis {
+  stroke: $color-border-default;
+}
+
+.axisSubtle {
+  stroke: $color-border-muted;
+  stroke-dasharray: 4;
+}
+
+.quarterLabels {
+  position: relative;
+}
+
+.quarterLabel {
+  position: absolute;
+  bottom: 0;
+  color: $color-fg-subtle;
+  padding-left: 0.5em;
+  text-shadow: 0 0 4px $color-canvas-default;
+
+  @include condensed-bold;
+}

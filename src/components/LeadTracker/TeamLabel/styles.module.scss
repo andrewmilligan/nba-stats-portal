@@ -1,0 +1,26 @@
+@import "~Styles/colors.scss";
+@import "~Styles/fonts.scss";
+
+.container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.teamLabel {
+  color: $color-fg-muted;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  text-align: right;
+
+  @include condensed-bold;
+
+  &.isInLead {
+    color: $color-fg-default;
+  }
+}
+
+.currentLead {
+  font-size: 1em;
+
+  @include condensed-bold;
+}

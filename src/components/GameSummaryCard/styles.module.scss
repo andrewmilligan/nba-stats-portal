@@ -1,12 +1,13 @@
 @import "~Styles/colors.scss";
 @import "~Styles/fonts.scss";
+@import "~Styles/spacing.scss";
 
 .container {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
   background-color: $color-canvas-overlay;
-  padding: 1em;
+  padding: $spacer-module-padding;
 
   @include condensed-regular;
 

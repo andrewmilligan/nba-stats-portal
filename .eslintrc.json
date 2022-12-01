@@ -1,6 +1,11 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    "@next/next/no-img-element": "off"
+    "@next/next/no-img-element": "off",
+    "no-undef": "error"
+  },
+  "globals": {
+    "React": "writable",
+    "window": "writable"
   }
 }

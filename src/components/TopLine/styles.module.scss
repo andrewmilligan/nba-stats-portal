@@ -3,7 +3,7 @@
 @import "~Styles/spacing.scss";
 
 .container {
-  margin: $module-spacer 0;
+  margin: $spacer-module-gap 0;
 
   @include condensed-regular;
 }

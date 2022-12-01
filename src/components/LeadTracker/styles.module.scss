@@ -3,49 +3,11 @@
 @import "~Styles/spacing.scss";
 
 .container {
-  margin: $module-spacer 0;
-}
-
-.chart {
   display: grid;
-  grid-template-columns: max-content 1fr max-content;
-  padding: 1em;
+  grid-template-columns: 1fr;
+  row-gap: 1em;
+  margin: $spacer-module-gap 0;
+  padding: $spacer-module-padding;
   background-color: $color-canvas-overlay;
   border: 1px solid $color-border-default;
-}
-
-.chartContainer {
-  width: 100%;
-  overflow: hidden;
-}
-
-.axis {
-  stroke: $color-border-default;
-}
-
-.quarterLabels {
-  position: relative;
-}
-
-.quarterLabel {
-  position: absolute;
-  bottom: 0;
-  color: $color-fg-subtle;
-  padding-left: 0.5em;
-  text-shadow: 0 0 4px $color-canvas-default;
-
-  @include condensed-bold;
-}
-
-.canvas {
-  overflow: visible;
-}
-
-.leadContainer {
-  position: relative;
-  width: 2em;
-
-  &.lead {
-    position: absolute;
-  }
 }
