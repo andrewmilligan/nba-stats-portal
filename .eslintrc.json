@@ -1,11 +1,10 @@
 {
   "extends": "next/core-web-vitals",
+  "env": {
+    "es6": true
+  },
   "rules": {
     "@next/next/no-img-element": "off",
     "no-undef": "error"
-  },
-  "globals": {
-    "React": "writable",
-    "window": "writable"
   }
 }
