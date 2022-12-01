@@ -1,4 +1,5 @@
 import { useId, useMemo } from 'react';
+import classnames from 'classnames';
 
 import useResizeObserver from 'Utils/hooks/useResizeObserver';
 
@@ -17,11 +18,19 @@ const LeadChart = function LeadChart(props) {
     maxLead,
     maxTime,
     events,
+    homeCurrentLead,
   } = props;
+
+  const leadColor = useMemo(() => {
+    if (homeCurrentLead > 0) return homeColor;
+    if (homeCurrentLead < 0) return awayColor;
+    return undefined;
+  }, [homeCurrentLead, homeColor, awayColor]);
 
   const [ref, [width]] = useResizeObserver();
   const height = 100;
-  const viewBox = [0, -1, width, height + 2]
+  const viewBox = [0, 0, width, height]
+  const margin = { top: 4, right: 4, bottom: 4, left: 0 };
 
   const homeGradientId = useId();
   const awayGradientId = useId();
@@ -40,6 +49,14 @@ const LeadChart = function LeadChart(props) {
     maxLead,
     width,
     height,
+    margin,
+  });
+
+  console.log({
+    maxTime,
+    events,
+    clockDomain: clockScale.domain(),
+    clockRange: clockScale.range(),
   });
 
   return (
@@ -111,6 +128,16 @@ const LeadChart = function LeadChart(props) {
               className={styles.axis}
             />
           ))}
+
+          <circle
+            cx={clockScale.range()[1]}
+            cy={leadScale(homeCurrentLead)}
+            r="4"
+            className={classnames({
+              [styles.leadMarker]: !leadColor,
+            })}
+            fill={leadColor}
+          />
 
         </svg>
         <div className={styles.quarterLabels}>

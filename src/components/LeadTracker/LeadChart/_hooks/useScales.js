@@ -8,16 +8,17 @@ const useScales = function useScales(opts = {}) {
     maxLead,
     width,
     height,
+    margin,
   } = opts;
 
   return useMemo(() => {
     const clockScale = scaleLinear()
       .domain([0, maxTime])
-      .range([0, width])
+      .range([margin.left, width - margin.right])
 
     const leadScale = scaleLinear()
       .domain([-maxLead, maxLead])
-      .range([0, height]);
+      .range([margin.top, height - margin.bottom]);
 
     const homeArea = area()
       .x((event) => clockScale(event.seconds))
@@ -63,7 +64,16 @@ const useScales = function useScales(opts = {}) {
       awayArea,
       awayLine,
     };
-  }, [maxTime, maxLead, width, height]);
+  }, [
+    maxTime,
+    maxLead,
+    width,
+    height,
+    margin.top,
+    margin.right,
+    margin.bottom,
+    margin.left,
+  ]);
 };
 
 export default useScales;

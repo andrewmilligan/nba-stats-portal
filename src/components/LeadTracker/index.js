@@ -54,6 +54,7 @@ const LeadTracker = function LeadTracker(props) {
         maxLead={maxLead}
         maxTime={maxTime}
         events={events}
+        homeCurrentLead={homeCurrentLead}
       />
 
       <TeamLabel

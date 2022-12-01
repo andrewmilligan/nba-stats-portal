@@ -12,6 +12,7 @@
     bottom: 0;
     width: 60px;
     background: linear-gradient(-90deg, $color-canvas-overlay, rgba(0 0 0 / 0));
+    pointer-events: none;
   }
 }
 
