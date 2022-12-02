@@ -47,7 +47,7 @@ export default function Game(props) {
 
   const homeName = `${homeTeam.teamCity} ${homeTeam.teamName}`;
   const awayName = `${awayTeam.teamCity} ${awayTeam.teamName}`;
-  const date = game ? formatUTCDate(game.gameDateTime, '{apday}') : '';
+  const date = gameMetadata ? formatUTCDate(gameMetadata.gameDateTime, '{apday}') : '';
   const gameName = `${awayName} at ${homeName} on ${date}: Live Game Stats`;
 
   return (
