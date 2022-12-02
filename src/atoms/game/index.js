@@ -7,14 +7,23 @@ import {
   useResetRecoilState,
 } from 'recoil';
 
-import { useGameInDailyScoreboard } from 'Atoms/dailyScoreboard';
-import { ONGOING_CODE } from 'Utils/gameStatus/statuses';
+import {
+  useGameInDailyScoreboard,
+  gameInDailyScoreboardSelectorFamily,
+} from 'Atoms/dailyScoreboard';
+import { nowAtom } from 'Atoms/schedule';
+import { ONGOING_CODE, UPCOMING_CODE } from 'Utils/gameStatus/statuses';
 import useDataFetch from 'Utils/hooks/useDataFetch';
 import { gameBoxScore, gamePlayByPlay, playerBoxScores } from 'Utils/data/urls';
 import secondsBeforePeriodStart from 'Utils/clock/secondsBeforePeriodStart';
 import secondsInPeriod from 'Utils/clock/secondsInPeriod';
 import parseClock from 'Utils/clock/parseClock';
 import { statusFromLastAction } from 'Utils/gameStatus/statusFromLastAction';
+
+export const gameMetadataAtomFamily = atomFamily({
+  key: 'game.gameMetadataAtomFamily',
+  default: undefined,
+});
 
 export const boxScoreAtomFamily = atomFamily({
   key: 'game.boxScoreAtomFamily',
@@ -82,16 +91,34 @@ export const gameStateSelector = selectorFamily({
 export const gameSelector = selectorFamily({
   key: 'game.gameSelector',
   get: (gameId) => ({ get }) => {
+    const now = get(nowAtom);
+    const metadata = get(gameMetadataAtomFamily(gameId));
+    if (!metadata) return undefined;
+
     const boxScore = get(boxScoreAtomFamily(gameId));
     const playByPlay = get(playByPlaySelectorFamily(gameId));
     const state = get(gameStateSelector(gameId));
+    const gameInScoreboard = get(gameInDailyScoreboardSelectorFamily(gameId));
+    const isFuture = new Date(metadata.gameDateTime) > now && !gameInScoreboard;
+    const isLaterToday = gameInScoreboard && gameInScoreboard.gameStatus === UPCOMING_CODE;
+
     return {
+      isUpcoming: isFuture || isLaterToday,
+      metadata,
       state,
       boxScore,
       playByPlay,
     };
   },
 });
+
+export const initGame = function initGame(snapshot, opts = {}) {
+  const {
+    gameMetadata,
+  } = opts;
+
+  snapshot.set(gameMetadataAtomFamily(gameMetadata.gameId), gameMetadata);
+};
 
 export const useInitializeGame = function useInitializeGame(gameId) {
   const game = useGameInDailyScoreboard(gameId);
@@ -109,11 +136,13 @@ export const useInitializeGame = function useInitializeGame(gameId) {
   const resetPlayByPlay = useResetRecoilState(playByPlayAtom);
 
   // subscribe to the data we need
-  useDataFetch(gameBoxScore(gameId), {
+  const boxScoreUrl = game && gameBoxScore(gameId);
+  useDataFetch(boxScoreUrl, {
     onLoad: setBoxScore,
     interval,
   });
-  useDataFetch(gamePlayByPlay(gameId), {
+  const playByPlayUrl = game && gamePlayByPlay(gameId);
+  useDataFetch(playByPlayUrl, {
     onLoad: setPlayByPlay,
     interval,
   });
@@ -123,6 +152,23 @@ export const useInitializeGame = function useInitializeGame(gameId) {
     resetBoxScore();
     resetPlayByPlay();
   }, [gameId, resetBoxScore, resetPlayByPlay]);
+};
+
+export const useInitializeGameMetadata = function useInitializeGameMetadata(
+  gameMetadata,
+) {
+  const {
+    gameId,
+  } = gameMetadata || {};
+  const setGameMeta = useSetRecoilState(gameMetadataAtomFamily(gameId));
+  const resetGameMeta = useResetRecoilState(gameMetadataAtomFamily(gameId));
+
+  useEffect(() => {
+    setGameMeta(gameMetadata);
+    return () => {
+      resetGameMeta();
+    };
+  }, [gameMetadata, setGameMeta, resetGameMeta]);
 };
 
 export const useGame = function useGame(gameId) {

@@ -82,21 +82,8 @@ export const initSchedule = function initSchedule(snapshot, { dates }) {
   snapshot.set(nowAtom, new Date());
 };
 
-export const useInitializeDailySchedule = function useInitializeDailySchedule(date) {
-  const dailyScheduleAtom = dailyScheduleAtomFamily(date);
-  const setDailySchedule = useSetRecoilState(dailyScheduleAtom);
-  const resetDailySchedule = useResetRecoilState(dailyScheduleAtom);
+export const useInitializeSchedule = function useInitializeSchedule() {
   const setNow = useSetRecoilState(nowAtom);
-
-  // load data
-  useDataFetch(dailySchedule(date), {
-    onLoad: setDailySchedule,
-  });
-
-  // reset when we're done
-  useEffect(() => () => {
-    resetDailySchedule();
-  }, [date, resetDailySchedule]);
 
   // update now atom periodically
   useEffect(() => {
@@ -108,6 +95,22 @@ export const useInitializeDailySchedule = function useInitializeDailySchedule(da
     pollUpdateNow();
     return () => clearTimeout(timer);
   }, [setNow]);
+};
+
+export const useInitializeDailySchedule = function useInitializeDailySchedule(date) {
+  const dailyScheduleAtom = dailyScheduleAtomFamily(date);
+  const setDailySchedule = useSetRecoilState(dailyScheduleAtom);
+  const resetDailySchedule = useResetRecoilState(dailyScheduleAtom);
+
+  // load data
+  useDataFetch(dailySchedule(date), {
+    onLoad: setDailySchedule,
+  });
+
+  // reset when we're done
+  useEffect(() => () => {
+    resetDailySchedule();
+  }, [date, resetDailySchedule]);
 };
 
 export const useDailySchedule = function useDailySchedule(date) {

@@ -30,8 +30,6 @@ export default function Game(props) {
   useInitializeGame(gameId);
   const game = useGame(gameId);
 
-  const isUpcoming = !game || !game.boxScore || !game.playByPlay;
-
   const {
     homeTeam,
     awayTeam,
@@ -43,12 +41,14 @@ export default function Game(props) {
     playerBoxScores(awayTeam.teamId),
   );
 
+  const isLoaded = game && (
+    game.isUpcoming || !!(game.boxScore && game.playByPlay)
+  );
+
   const homeName = `${homeTeam.teamCity} ${homeTeam.teamName}`;
   const awayName = `${awayTeam.teamCity} ${awayTeam.teamName}`;
-  const date = formatUTCDate(game.gameDateTime, '{apday}');
+  const date = game ? formatUTCDate(game.gameDateTime, '{apday}') : '';
   const gameName = `${awayName} at ${homeName} on ${date}: Live Game Stats`;
-
-  const isLoaded = !!game;
 
   return (
     <div>
@@ -61,9 +61,9 @@ export default function Game(props) {
           <TopLine
             game={game}
             gameMetadata={gameMetadata}
-            isUpcoming={isUpcoming}
+            isUpcoming={game.isUpcoming}
           />
-          {isUpcoming ? (
+          {game.isUpcoming ? (
             <Promo
               game={gameMetadata}
             />
