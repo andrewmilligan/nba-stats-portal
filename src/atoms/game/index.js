@@ -129,7 +129,7 @@ export const useInitializeGame = function useInitializeGame(gameId) {
   const interval = (!game || game.gameStatus !== ONGOING_CODE) ? null : 10000;
   const meta = useGameMetadata(gameId);
   const now = new Date();
-  const isFuture = new Date(meta.gameDateTime) > now && !game;
+  const isFuture = !meta || (new Date(meta.gameDateTime) > now && !game);
   const isLaterToday = game && game.gameStatus === UPCOMING_CODE;
   const isUpcoming = !!(isFuture || isLaterToday);
 
