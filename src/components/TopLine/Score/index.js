@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 
-import gameStatusText from 'Utils/gameStatus/gameStatusText';
+import gameStatusTextFromState from 'Utils/gameStatus/gameStatusTextFromState';
 import { teamLogo } from 'Utils/data/urls';
 import StatusIndicator from 'Components/StatusIndicator';
 
@@ -8,23 +8,23 @@ import styles from './styles.module.scss';
 
 const Score = function Score(props) {
   const {
-    boxScore,
+    state,
     isUpcoming,
   } = props;
 
   const {
     gameStatus,
-    homeTeam = {},
-    awayTeam = {},
-  } = boxScore;
+    scoreHome,
+    scoreAway,
+  } = state;
 
-  const status = gameStatusText(boxScore);
+  const status = gameStatusTextFromState(state);
 
   return (
     <div className={styles.container}>
       <div className={styles.content}>
         <span className={styles.score}>
-          {awayTeam.score}
+          {scoreAway}
         </span>
         {' '}
         <span className={styles.to}>
@@ -32,7 +32,7 @@ const Score = function Score(props) {
         </span>
         {' '}
         <span className={styles.score}>
-          {homeTeam.score}
+          {scoreHome}
         </span>
       </div>
       <div className={styles.status}>

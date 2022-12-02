@@ -40,7 +40,7 @@ const LeadTracker = function LeadTracker(props) {
     maxTime,
     homeCurrentLead,
     awayCurrentLead,
-    maxPeriod,
+    periods,
   } = usePlayByPlayEvents(playByPlay);
 
   return (
@@ -54,10 +54,10 @@ const LeadTracker = function LeadTracker(props) {
       <LeadChart
         homeColor={homeColor}
         awayColor={awayColor}
-        maxPeriod={maxPeriod}
         maxLead={maxLead}
         maxTime={maxTime}
         events={events}
+        periods={periods}
         homeCurrentLead={homeCurrentLead}
       />
 

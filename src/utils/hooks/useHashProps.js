@@ -6,8 +6,6 @@ const useHashProps = function useHashProps() {
   const path = router.asPath;
   const [hashProps, setHashProps] = useState({});
 
-  console.log({ path, router });
-
   useEffect(() => {
     const updateHashProps = () => {
       const hash = window.location.hash.slice(1);

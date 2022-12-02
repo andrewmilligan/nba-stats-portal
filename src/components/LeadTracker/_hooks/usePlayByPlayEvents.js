@@ -1,35 +1,34 @@
 import { useMemo } from 'react';
 
 import playerMinutes from 'Utils/clock/playerMinutes';
+import secondsBeforePeriodStart from 'Utils/clock/secondsBeforePeriodStart';
+import secondsInPeriod from 'Utils/clock/secondsInPeriod';
+import periodLabel from 'Utils/clock/periodLabel';
 
 const usePlayByPlayEvents = function usePlayByPlayEvents(playByPlay) {
   return useMemo(() => {
-    const eventToSeconds = (event) => {
-      const { clock, period } = event;
-      const pastPeriods = [...Array(period - 1)]
-        .reduce((total, _, i) => total + 60 * (i < 4 ? 12 : 5), 0);
-      const periodLength = 60 * (period > 4 ? 5 : 12);
-      const { minutes, seconds } = playerMinutes(clock);
-      const secondsIntoPeriod = periodLength - ((minutes * 60) + seconds);
-      return pastPeriods + secondsIntoPeriod;
-    };
-
     let maxTime = 0;
     let maxLead = 0;
     let maxPeriod = 0;
 
     const events = playByPlay
       .reduce((es, e) => {
-        const { period } = e;
-        const homeLead = +e.scoreHome - +e.scoreAway;
-        const seconds = eventToSeconds(e);
+        const {
+          period,
+          seconds,
+          scoreHome,
+          scoreAway,
+        } = e;
+        const homeLead = scoreHome - scoreAway;
         const newEvent = {
           seconds,
-          period,
           homeLead,
         };
 
-        maxTime = Math.max(maxTime, seconds);
+        const endOfPeriod = (
+          secondsBeforePeriodStart(period) + secondsInPeriod(period)
+        );
+        maxTime = Math.max(maxTime, endOfPeriod);
         maxLead = Math.max(maxLead, Math.abs(homeLead));
         maxPeriod = Math.max(maxPeriod, period);
 
@@ -71,14 +70,11 @@ const usePlayByPlayEvents = function usePlayByPlayEvents(playByPlay) {
 
     const periods = [...Array(maxPeriod)].map((_, i) => {
       const period = i + 1;
-      const labelPrefix = period > 4 ? 'OT' : 'Q';
-      const labelNum = period > 4 ? period - 4 : period;
-      const minutes = (12 * Math.min(i, 4)) + (5 * Math.max(0, i - 4));
-      const seconds = minutes * 60;
+      const seconds = secondsBeforePeriodStart(period);
       return {
         period,
         seconds, 
-        label: `${labelPrefix}${labelNum}`,
+        label: periodLabel(period),
       };
     });
 

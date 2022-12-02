@@ -12,6 +12,7 @@ const TopLine = function TopLine(props) {
   } = props;
 
   const {
+    state,
     boxScore,
   } = game;
 
@@ -50,7 +51,7 @@ const TopLine = function TopLine(props) {
             />
           ) : (
             <Score
-              boxScore={boxScore}
+              state={state}
             />
           )}
         </div>

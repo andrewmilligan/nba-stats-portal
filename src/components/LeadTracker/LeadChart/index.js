@@ -3,7 +3,6 @@ import classnames from 'classnames';
 
 import useResizeObserver from 'Utils/hooks/useResizeObserver';
 
-import usePeriods from './_hooks/usePeriods';
 import useScales from './_hooks/useScales';
 import GradientDef from './GradientDef';
 import Area from './Area';
@@ -14,10 +13,10 @@ const LeadChart = function LeadChart(props) {
   const {
     homeColor,
     awayColor,
-    maxPeriod,
     maxLead,
     maxTime,
     events,
+    periods,
     homeCurrentLead,
   } = props;
 
@@ -35,8 +34,6 @@ const LeadChart = function LeadChart(props) {
   const homeGradientId = useId();
   const awayGradientId = useId();
 
-  const periods = usePeriods(maxPeriod);
-
   const {
     clockScale,
     leadScale,
@@ -50,13 +47,6 @@ const LeadChart = function LeadChart(props) {
     width,
     height,
     margin,
-  });
-
-  console.log({
-    maxTime,
-    events,
-    clockDomain: clockScale.domain(),
-    clockRange: clockScale.range(),
   });
 
   return (

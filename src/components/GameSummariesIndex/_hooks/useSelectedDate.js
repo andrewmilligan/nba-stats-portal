@@ -14,8 +14,6 @@ const useSelectedDate = function useSelectedDate() {
   const date = hashDate || currentDate;
   const index = dates.findIndex((d) => d === date);
 
-  console.log({ hashDate, currentDate, date });
-
   return {
     index,
     date,

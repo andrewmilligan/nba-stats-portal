@@ -1,0 +1,11 @@
+@import "~Styles/colors.scss";
+@import "~Styles/fonts.scss";
+@import "~Styles/spacing.scss";
+
+.container {
+  padding-top: $spacer-module-padding;
+  color: $color-fg-muted;
+  text-align: right;
+
+  @include condensed-regular;
+}
