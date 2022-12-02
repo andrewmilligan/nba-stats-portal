@@ -1,25 +1,22 @@
-import useDailySchedule from 'Utils/hooks/useDailySchedule';
+import { useInitializeDailySchedule, useDailySchedule } from 'Atoms/schedule';
 import GameSummaryCard from 'Components/GameSummaryCard';
 import Placeholder from 'Components/Placeholder';
 
+import useSelectedDate from './_hooks/useSelectedDate';
 import Header from './Header';
 import styles from './styles.module.scss';
 
-const GameSummariesIndex = function GameSummariesIndex(props) {
-  const {
-    dates: {
-      gameDates,
-    },
-  } = props;
-
+const GameSummariesIndex = function GameSummariesIndex() {
   const {
     date,
     isCurrentDate,
-    schedule,
-    isLoading,
     nextDate,
     previousDate,
-  } = useDailySchedule(gameDates);
+  } = useSelectedDate();
+
+  useInitializeDailySchedule(date);
+  const schedule = useDailySchedule(date);
+  const isLoading = !schedule;
 
   const {
     games = [],

@@ -9,12 +9,19 @@ const useDataFetch = function useDataFetch(url, opts = {}) {
   const {
     initial,
     interval,
+    onLoad,
   } = opts;
 
   const fetchId = useRef();
   const [loadedUrl, setLoadedUrl] = useState();
   const fetchHeaders = useRef({});
   const [data, setData] = useState(initial);
+  const setNewData = useCallback((newData) => {
+    setData(newData);
+    if (onLoad) {
+      onLoad(newData);
+    }
+  }, [onLoad]);
 
   const fetchData = useCallback(async (uid) => {
     if (!url) return;
@@ -39,18 +46,18 @@ const useDataFetch = function useDataFetch(url, opts = {}) {
       const contentType = response.headers.get('Content-Type');
 
       if (contentType === 'application/json') {
-        setData(await response.json());
+        setNewData(await response.json());
       } else {
-        setData(await response.text());
+        setNewData(await response.text());
       }
     } catch (error) {
       if (isFirstPoll) {
-        setData(initial);
+        setNewData(initial);
       }
     } finally {
       setLoadedUrl(url);
     }
-  }, [url, initial]);
+  }, [url, initial, setNewData]);
 
   useEffect(() => {
     fetchHeaders.current = {};

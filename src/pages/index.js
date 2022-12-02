@@ -7,19 +7,13 @@ import Footer from 'Components/Footer';
 import Well from 'Components/Well';
 import GameSummariesIndex from 'Components/GameSummariesIndex';
 
-export default function Home(props) {
-  const {
-    dates,
-  } = props;
-
+export default function Home() {
   return (
     <div>
       <Head />
       <Navigation />
       <Well>
-        <GameSummariesIndex
-          dates={dates}
-        />
+        <GameSummariesIndex />
       </Well>
       <Footer />
     </div>

@@ -4,7 +4,7 @@ import 'Styles/globals.scss'
 
 const App = function App({ Component, pageProps }) {
   return (
-    <AtomsRoot>
+    <AtomsRoot pageProps={pageProps}>
       <Component {...pageProps} />
     </AtomsRoot>
   );

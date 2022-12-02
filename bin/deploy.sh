@@ -12,7 +12,7 @@ aws s3 sync \
   --profile personal \
   --delete \
   --sse AES256 \
-  --cache-control "max-age=30,s-maxage=300" \
+  --cache-control "max-age=30" \
   --exclude "_next/*" \
   out/ \
   "s3://${BUCKET}/${PREFIX}/"
@@ -27,19 +27,19 @@ aws s3 sync \
   out/_next/ \
   "s3://${BUCKET}/${PREFIX}/_next/"
 
-# Clear cache
-SAFE_PREFIX=$( echo "$PREFIX" | sed 's/\//\\\//g' )
-PATHS=( $( find out -type f | grep -v '/_next/' | sed "s/^out\//\/${SAFE_PREFIX}\//" ) )
-echo "+ Clearing cache on ${#PATHS[@]} files"
-CF_STATUS=$( aws cloudfront \
-  --profile personal \
-  create-invalidation \
-  --distribution-id "$CLOUDFRONT_DISTRIBUTION" \
-  --paths "${PATHS[@]}"
-)
-if [[ $? -ne 0 ]]; then
-  exit 1
-fi
-INVALIDATION_ID=$( echo "$CF_STATUS" | jq '.Invalidation.Id' | sed 's/"//g' )
-INVALIDATION_STATUS=$( echo "$CF_STATUS" | jq '.Invalidation.Status' | sed 's/"//g' )
-echo "+ CloudFront invalidation $INVALIDATION_ID is $INVALIDATION_STATUS"
+# # Clear cache
+# SAFE_PREFIX=$( echo "$PREFIX" | sed 's/\//\\\//g' )
+# PATHS=( $( find out -type f | grep -v '/_next/' | sed "s/^out\//\/${SAFE_PREFIX}\//" ) )
+# echo "+ Clearing cache on ${#PATHS[@]} files"
+# CF_STATUS=$( aws cloudfront \
+#   --profile personal \
+#   create-invalidation \
+#   --distribution-id "$CLOUDFRONT_DISTRIBUTION" \
+#   --paths "${PATHS[@]}"
+# )
+# if [[ $? -ne 0 ]]; then
+#   exit 1
+# fi
+# INVALIDATION_ID=$( echo "$CF_STATUS" | jq '.Invalidation.Id' | sed 's/"//g' )
+# INVALIDATION_STATUS=$( echo "$CF_STATUS" | jq '.Invalidation.Status' | sed 's/"//g' )
+# echo "+ CloudFront invalidation $INVALIDATION_ID is $INVALIDATION_STATUS"

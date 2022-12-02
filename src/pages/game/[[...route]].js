@@ -5,17 +5,10 @@ import fs from 'fs';
 
 import getAssetUrl from 'Utils/paths/getAssetUrl';
 import formatUTCDate from 'Utils/dates/formatUTCDate';
-import useHashProps from 'Utils/hooks/useHashProps';
 import useDataFetch from 'Utils/hooks/useDataFetch';
-import {
-  dailySchedule,
-  gameBoxScore,
-  gamePlayByPlay,
-  playerBoxScores,
-} from 'Utils/data/urls';
+import { playerBoxScores } from 'Utils/data/urls';
 import gameSlug from 'Utils/routes/games/gameSlug';
-import parseGameSlug from 'Utils/routes/games/parseGameSlug';
-import { UPCOMING_CODE } from 'Utils/gameStatus/statuses';
+import { useInitializeGame, useGame } from 'Atoms/game';
 import Head from 'Components/Head';
 import Navigation from 'Components/Navigation';
 import Footer from 'Components/Footer';
@@ -28,80 +21,60 @@ import FloorLineup from 'Components/FloorLineup';
 
 export default function Game(props) {
   const {
-    dates,
     gameDate,
-    game,
+    gameMetadata,
   } = props;
 
-  const { gameId } = game;
+  const { gameId } = gameMetadata;
+
+  useInitializeGame(gameId);
+  const game = useGame(gameId);
+
+  const isUpcoming = !game || !game.boxScore || !game.playByPlay;
 
   const {
-    data: boxScore,
-    isLoadingNewData: boxScoreIsLoading,
-  } = useDataFetch(
-    gameBoxScore(gameId),
-    { interval: 10000 },
-  );
-
-  const {
-    data: playByPlay,
-    isLoadingNewData: playByPlayIsLoading,
-  } = useDataFetch(
-    gamePlayByPlay(gameId),
-    { interval: 10000 },
-  );
-
-  const isUpcoming = (
-    (!boxScoreIsLoading && !boxScore)
-    || (!playByPlayIsLoading && !playByPlay)
-  );
-
+    homeTeam,
+    awayTeam,
+  } = gameMetadata;
   const { data: homeTeamPlayerBoxScores, } = useDataFetch(
-    playerBoxScores(game.homeTeam.teamId),
+    playerBoxScores(homeTeam.teamId),
   );
   const { data: awayTeamPlayerBoxScores, } = useDataFetch(
-    playerBoxScores(game.awayTeam.teamId),
+    playerBoxScores(awayTeam.teamId),
   );
 
-  const homeName = `${game.homeTeam.teamCity} ${game.homeTeam.teamName}`;
-  const awayName = `${game.awayTeam.teamCity} ${game.awayTeam.teamName}`;
+  const homeName = `${homeTeam.teamCity} ${homeTeam.teamName}`;
+  const awayName = `${awayTeam.teamCity} ${awayTeam.teamName}`;
   const date = formatUTCDate(game.gameDateTime, '{apday}');
   const gameName = `${awayName} at ${homeName} on ${date}: Live Game Stats`;
 
-  const isLoaded = (
-    !boxScoreIsLoading
-    && !playByPlayIsLoading
-  );
+  const isLoaded = !!game;
 
   return (
     <div>
       <Head
         title={gameName}
       />
-      <Navigation
-        dates={dates}
-        withGames
-      />
+      <Navigation withGames />
       {isLoaded && (
         <Well>
           <TopLine
-            boxScore={boxScore}
-            gameInSchedule={game}
+            game={game}
+            gameMetadata={gameMetadata}
             isUpcoming={isUpcoming}
           />
           {isUpcoming ? (
             <Promo
-              game={game}
+              game={gameMetadata}
             />
           ) : (
             <>
               <LeadTracker
-                boxScore={boxScore}
-                playByPlay={playByPlay}
+                game={game}
               />
               {/* <PlayByPlay playByPlay={playByPlay} /> */}
               <FloorLineup
-                boxScore={boxScore}
+                game={game}
                 seasonBoxScores={{
                   homeTeam: homeTeamPlayerBoxScores,
                   awayTeam: awayTeamPlayerBoxScores,
@@ -144,7 +117,7 @@ export const getStaticProps = async function getStaticProps(props) {
     props: {
       dates,
       gameDate,
-      game: gameMetadata,
+      gameMetadata,
     },
   };
 };

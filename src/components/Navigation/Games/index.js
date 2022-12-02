@@ -2,27 +2,19 @@ import { useMemo } from 'react';
 import classnames from 'classnames';
 
 import { COMPLETE_CODE } from 'Utils/gameStatus/statuses';
-import useDailySchedule from 'Utils/hooks/useDailySchedule';
+import { useDailyScoreboard } from 'Atoms/dailyScoreboard';
 import GameSummaryCard from 'Components/GameSummaryCard';
 
 import styles from './styles.module.scss';
 
-const Games = function Games(props) {
-  const {
-    dates: {
-      gameDates,
-    },
-  } = props;
-
-  const {
-    date,
-    schedule,
-    isLoading,
-  } = useDailySchedule(gameDates);
+const Games = function Games() {
+  const schedule = useDailyScoreboard();
+  const isLoading = !schedule;
 
   if (!schedule) return null;
 
   const {
+    gameDate: date,
     games = [],
   } = schedule;
 

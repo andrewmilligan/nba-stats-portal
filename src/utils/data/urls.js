@@ -13,6 +13,10 @@ export const dates = function dates() {
   return dataUrl('stats/global/dates.json');
 };
 
+export const dailyScoreboard = function dailyScoreboard() {
+  return dataUrl('stats/global/scoreboard.json');
+};
+
 export const dailySchedule = function dailySchedule(date) {
   if (!date) return undefined;
   return dataUrl(`stats/global/daily-schedule/${date}.json`);

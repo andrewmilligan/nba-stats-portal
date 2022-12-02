@@ -11,9 +11,13 @@ import styles from './styles.module.scss';
 
 const LeadTracker = function LeadTracker(props) {
   const {
+    game,
+  } = props;
+
+  const {
     boxScore,
     playByPlay,
-  } = props;
+  } = game;
 
   const {
     homeTeam: {

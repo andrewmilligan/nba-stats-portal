@@ -6,15 +6,19 @@ import styles from './styles.module.scss';
 
 const TopLine = function TopLine(props) {
   const {
-    boxScore,
-    gameInSchedule,
+    game,
+    gameMetadata,
     isUpcoming,
   } = props;
 
   const {
+    boxScore,
+  } = game;
+
+  const {
     homeTeam,
     awayTeam,
-  } = boxScore || gameInSchedule;
+  } = boxScore || gameMetadata;
 
   return (
     <div className={styles.container}>
@@ -42,7 +46,7 @@ const TopLine = function TopLine(props) {
         <div className={styles.score}>
           {isUpcoming ? (
             <UpcomingStatus
-              game={gameInSchedule}
+              game={gameMetadata}
             />
           ) : (
             <Score

@@ -8,7 +8,6 @@ import styles from './styles.module.scss';
 
 const Navigation = function Navigation(props) {
   const {
-    dates,
     withGames,
   } = props;
 
@@ -28,9 +27,7 @@ const Navigation = function Navigation(props) {
           </Link>
         </div>
         {withGames && (
-          <Games
-            dates={dates}
-          />
+          <Games />
         )}
       </Well>
     </nav>
@@ -38,7 +35,6 @@ const Navigation = function Navigation(props) {
 };
 
 Navigation.defaultProps = {
-  dates: [],
   withGames: false,
 };
 

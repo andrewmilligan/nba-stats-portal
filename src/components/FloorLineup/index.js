@@ -5,9 +5,13 @@ import styles from './styles.module.scss';
 
 const FloorLineup = function FloorLineup(props) {
   const {
-    boxScore,
+    game,
     seasonBoxScores,
   } = props;
+
+  const {
+    boxScore,
+  } = game;
 
   const gameIsOver = boxScore.gameStatus === COMPLETE_CODE;
 
