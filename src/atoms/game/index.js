@@ -103,7 +103,7 @@ export const gameSelector = selectorFamily({
     const isLaterToday = gameInScoreboard && gameInScoreboard.gameStatus === UPCOMING_CODE;
 
     return {
-      isUpcoming: isFuture || isLaterToday,
+      isUpcoming: !!(isFuture || isLaterToday),
       metadata,
       state,
       boxScore,
@@ -120,9 +120,18 @@ export const initGame = function initGame(snapshot, opts = {}) {
   snapshot.set(gameMetadataAtomFamily(gameMetadata.gameId), gameMetadata);
 };
 
+export const useGameMetadata = function useGameMetadata(gameId) {
+  return useRecoilValue(gameMetadataAtomFamily(gameId));
+};
+
 export const useInitializeGame = function useInitializeGame(gameId) {
   const game = useGameInDailyScoreboard(gameId);
   const interval = (!game || game.gameStatus !== ONGOING_CODE) ? null : 10000;
+  const meta = useGameMetadata(gameId);
+  const now = new Date();
+  const isFuture = new Date(meta.gameDateTime) > now && !game;
+  const isLaterToday = game && game.gameStatus === UPCOMING_CODE;
+  const isUpcoming = !!(isFuture || isLaterToday);
 
   const boxScoreAtom = boxScoreAtomFamily(gameId);
   const playByPlayAtom = playByPlayAtomFamily(gameId);
@@ -136,12 +145,12 @@ export const useInitializeGame = function useInitializeGame(gameId) {
   const resetPlayByPlay = useResetRecoilState(playByPlayAtom);
 
   // subscribe to the data we need
-  const boxScoreUrl = game && gameBoxScore(gameId);
+  const boxScoreUrl = !isUpcoming && gameBoxScore(gameId);
   useDataFetch(boxScoreUrl, {
     onLoad: setBoxScore,
     interval,
   });
-  const playByPlayUrl = game && gamePlayByPlay(gameId);
+  const playByPlayUrl = !isUpcoming && gamePlayByPlay(gameId);
   useDataFetch(playByPlayUrl, {
     onLoad: setPlayByPlay,
     interval,
