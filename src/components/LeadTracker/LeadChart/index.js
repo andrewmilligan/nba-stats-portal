@@ -17,6 +17,7 @@ const LeadChart = function LeadChart(props) {
     maxTime,
     events,
     periods,
+    periodEnd,
     homeCurrentLead,
   } = props;
 
@@ -34,6 +35,8 @@ const LeadChart = function LeadChart(props) {
   const homeGradientId = useId();
   const awayGradientId = useId();
 
+  console.log({ maxTime, periodEnd });
+
   const {
     clockScale,
     leadScale,
@@ -42,7 +45,7 @@ const LeadChart = function LeadChart(props) {
     awayArea,
     awayLine,
   } = useScales({
-    maxTime,
+    maxTime: periodEnd,
     maxLead,
     width,
     height,
@@ -120,7 +123,7 @@ const LeadChart = function LeadChart(props) {
           ))}
 
           <circle
-            cx={clockScale.range()[1]}
+            cx={clockScale(maxTime)}
             cy={leadScale(homeCurrentLead)}
             r="4"
             className={classnames({

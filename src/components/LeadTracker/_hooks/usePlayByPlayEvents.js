@@ -7,6 +7,7 @@ import periodLabel from 'Utils/clock/periodLabel';
 
 const usePlayByPlayEvents = function usePlayByPlayEvents(playByPlay) {
   return useMemo(() => {
+    let periodEnd = 0;
     let maxTime = 0;
     let maxLead = 0;
     let maxPeriod = 0;
@@ -28,7 +29,8 @@ const usePlayByPlayEvents = function usePlayByPlayEvents(playByPlay) {
         const endOfPeriod = (
           secondsBeforePeriodStart(period) + secondsInPeriod(period)
         );
-        maxTime = Math.max(maxTime, endOfPeriod);
+        periodEnd = Math.max(periodEnd, endOfPeriod);
+        maxTime = Math.max(maxTime, seconds);
         maxLead = Math.max(maxLead, Math.abs(homeLead));
         maxPeriod = Math.max(maxPeriod, period);
 
@@ -83,6 +85,7 @@ const usePlayByPlayEvents = function usePlayByPlayEvents(playByPlay) {
       maxTime,
       maxLead,
       maxPeriod,
+      periodEnd,
       homeCurrentLead,
       awayCurrentLead,
       periods,

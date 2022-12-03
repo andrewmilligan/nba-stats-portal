@@ -51,6 +51,7 @@ const TopLine = function TopLine(props) {
             />
           ) : (
             <Score
+              gameStatus={boxScore.gameStatus}
               state={state}
             />
           )}

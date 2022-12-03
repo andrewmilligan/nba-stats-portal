@@ -38,6 +38,7 @@ const LeadTracker = function LeadTracker(props) {
     events,
     maxLead,
     maxTime,
+    periodEnd,
     homeCurrentLead,
     awayCurrentLead,
     periods,
@@ -56,6 +57,7 @@ const LeadTracker = function LeadTracker(props) {
         awayColor={awayColor}
         maxLead={maxLead}
         maxTime={maxTime}
+        periodEnd={periodEnd}
         events={events}
         periods={periods}
         homeCurrentLead={homeCurrentLead}

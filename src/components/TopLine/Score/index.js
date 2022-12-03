@@ -8,12 +8,12 @@ import styles from './styles.module.scss';
 
 const Score = function Score(props) {
   const {
+    gameStatus,
     state,
     isUpcoming,
   } = props;
 
   const {
-    gameStatus,
     scoreHome,
     scoreAway,
   } = state;
