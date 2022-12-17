@@ -88,6 +88,49 @@ export const gameStateSelector = selectorFamily({
   },
 });
 
+export const lineupSelectorFamily = selectorFamily({
+  key: 'game.lineupSelectorFamily',
+  get: (gameId) => ({ get }) => {
+    const boxScore = get(boxScoreAtomFamily(gameId));
+    const playByPlay = get(playByPlaySelectorFamily(gameId));
+    const homeTeamId = boxScore.homeTeam.teamId;
+    const awayTeamId = boxScore.awayTeam.teamId;
+
+    const teams = {
+      [homeTeamId]: new Map(),
+      [awayTeamId]: new Map(),
+    };
+
+    const sub = (action) => {
+      const {
+        seconds,
+        subType,
+        teamId,
+        personId,
+      } = action;
+      const team = teams[action.teamId];
+      if (!team.has(personId)) {
+        team.set(personId, []);
+      }
+
+      if (subType === 'in') {
+        team.get(personId).push({ start: seconds });
+      } else if (subType === 'out') {
+        const subs = team.get(personId);
+        subs[subs.length - 1].end = seconds;
+      }
+    };
+
+    ['homeTeam', 'awayTeam'].forEach((key) => {
+      const team = boxScore[key];
+      const teamId = team.teamId;
+      team.players.forEach((player) => {
+        if (player.starter !== '1') return;
+      });
+    });
+  },
+});
+
 export const gameSelector = selectorFamily({
   key: 'game.gameSelector',
   get: (gameId) => ({ get }) => {
