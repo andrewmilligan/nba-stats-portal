@@ -14,10 +14,12 @@
   display: grid;
   align-items: center;
   gap: 1em;
+  grid-template-columns: repeat(4, 1fr);
   grid-template-areas: "away-team-name score score home-team-name"
                        "away-team-stats away-team-stats home-team-stats home-team-stats";
 
   @media screen and (min-width: 760px) {
+    grid-template-columns: repeat(3, 1fr);
     grid-template-areas: "away-team-name score home-team-name"
                          "away-team-stats score home-team-stats";
   }
