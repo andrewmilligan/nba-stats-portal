@@ -8,7 +8,7 @@ const format = function format(dateInput, formatString) {
 
   // parse time components
   const timeString = date.toLocaleTimeString('en-US', { timeZoneName: 'short' });
-  const [time, rawAmPm, timezone] = timeString.split(' ');
+  const [time, rawAmPm, timezone] = timeString.split(/\s/g);
   const [hour, minute, second] = time.split(':');
   const ampm = ({ AM: 'a.m.', PM: 'p.m.' })[rawAmPm];
 
