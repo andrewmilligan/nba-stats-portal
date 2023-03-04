@@ -17,6 +17,10 @@ export const dailyScoreboard = function dailyScoreboard() {
   return dataUrl('stats/global/scoreboard.json');
 };
 
+export const records = function records() {
+  return dataUrl('stats/global/records.json');
+};
+
 export const dailySchedule = function dailySchedule(date) {
   if (!date) return undefined;
   return dataUrl(`stats/global/daily-schedule/${date}.json`);

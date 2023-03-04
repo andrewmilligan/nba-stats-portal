@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 
 import { teamLogo } from 'Utils/data/urls';
+import { useTeamRecord } from 'Atoms/records';
 
 import styles from './styles.module.scss';
 
@@ -12,14 +13,17 @@ const TeamScore = function TeamScore(props) {
       teamName,
       teamTricode,
       score,
-      wins,
-      losses,
     },
     lost,
     isFinal,
     isLive,
     mode,
   } = props;
+
+  const {
+    wins = '',
+    losses = '',
+  } = useTeamRecord(teamId);
 
   const logo = teamLogo(teamId, { variant: 'D' });
 

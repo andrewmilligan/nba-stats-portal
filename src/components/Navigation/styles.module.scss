@@ -1,5 +1,6 @@
 @import "~Styles/colors.scss";
 @import "~Styles/fonts.scss";
+@import "~Styles/breakpoints.scss";
 
 .container {
   background-color: $color-canvas-overlay;
@@ -15,7 +16,7 @@
   gap: 2em;
   align-items: center;
 
-  @media screen and (min-width: 760px) {
+  @include is-desktop {
     grid-template-columns: 80px 1fr;
     gap: 4em;
   }

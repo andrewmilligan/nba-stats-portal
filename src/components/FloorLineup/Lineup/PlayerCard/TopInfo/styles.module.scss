@@ -1,5 +1,6 @@
 @import "~Styles/colors.scss";
 @import "~Styles/fonts.scss";
+@import "~Styles/breakpoints.scss";
 
 .topline {
   display: grid;
@@ -26,7 +27,7 @@
     display: initial;
   }
 
-  @media screen and (min-width: 760px) {
+  @include is-desktop {
     .fullName {
       display: initial;
     }

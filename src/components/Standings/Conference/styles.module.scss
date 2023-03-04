@@ -1,0 +1,86 @@
+@import "~Styles/colors.scss";
+@import "~Styles/fonts.scss";
+@import "~Styles/spacing.scss";
+@import "~Styles/breakpoints.scss";
+
+.container {
+  margin-bottom: 1em;
+  background-color: $color-canvas-overlay;
+  padding: $spacer-module-padding;
+  border: 1px solid $color-border-default;
+}
+
+.conference {
+  text-transform: uppercase;
+  margin-bottom: 1em;
+  padding-bottom: .4em;
+  color: $color-fg-muted;
+
+  @include body-bold;
+}
+
+.standings {
+  display: grid;
+  grid-template-columns: 1fr max-content max-content max-content;
+  grid-row-gap: .6rem;
+
+  @include condensed-regular;
+}
+
+.name,
+.record,
+.gamesBack {
+  display: flex;
+  align-items: center;
+
+  &.header {
+    border: none;
+    color: $color-fg-muted;
+    text-transform: uppercase;
+    font-size: .8em;
+  }
+
+  &.row6 {
+    border-top: 2px dashed $color-fg-muted;
+  }
+
+  &.row10 {
+    border-top: 1px solid $color-border-default;
+  }
+}
+
+.rule {
+  grid-column: 1 / span 4;
+  border-bottom: 1px solid $color-border-muted;
+
+  &.playIn {
+    border-bottom: 2px dashed $color-fg-muted;
+  }
+
+  &.notIn {
+    border-bottom: 2px solid $color-fg-muted;
+  }
+}
+
+.record,
+.gamesBack {
+  justify-content: flex-end;
+  padding-left: 1em;
+
+  @include is-desktop {
+    padding-left: 2em;
+  }
+}
+
+.rank {
+  margin-right: .4em;
+  color: $color-fg-muted;
+
+  @include condensed-bold;
+}
+
+.logo {
+  width: 1.4em;
+  height: 1.4em;
+  margin-right: .4em;
+}

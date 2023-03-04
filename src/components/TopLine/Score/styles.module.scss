@@ -1,5 +1,6 @@
 @import "~Styles/colors.scss";
 @import "~Styles/fonts.scss";
+@import "~Styles/breakpoints.scss";
 
 .container {
   display: grid;
@@ -13,7 +14,7 @@
 .content {
   font-size: 2rem;
 
-  @media screen and (min-width: 760px) {
+  @include is-desktop {
     font-size: 3.2rem;
   }
 }

@@ -1,6 +1,7 @@
 @import "~Styles/colors.scss";
 @import "~Styles/fonts.scss";
 @import "~Styles/spacing.scss";
+@import "~Styles/breakpoints.scss";
 
 .container {
   margin: $spacer-module-gap 0;
@@ -18,7 +19,7 @@
   grid-template-areas: "away-team-name score score home-team-name"
                        "away-team-stats away-team-stats home-team-stats home-team-stats";
 
-  @media screen and (min-width: 760px) {
+  @include is-desktop {
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: "away-team-name score home-team-name"
                          "away-team-stats score home-team-stats";

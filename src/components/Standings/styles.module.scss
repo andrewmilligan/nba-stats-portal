@@ -1,0 +1,16 @@
+@import "~Styles/spacing.scss";
+@import "~Styles/breakpoints.scss";
+
+.container {
+  margin: $spacer-module-gap auto;
+}
+
+.standings {
+  margin: $internal-spacer 0;
+
+  @include is-desktop {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+  }
+}

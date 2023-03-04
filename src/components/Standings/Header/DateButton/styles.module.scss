@@ -1,0 +1,10 @@
+@import "~Styles/colors.scss";
+
+.button {
+  appearance: none;
+  cursor: pointer;
+  padding: none;
+  background: none;
+  border: none;
+  color: $color-fg-muted;
+}
