@@ -6,6 +6,7 @@ import Navigation from 'Components/Navigation';
 import Footer from 'Components/Footer';
 import Well from 'Components/Well';
 import GameSummariesIndex from 'Components/GameSummariesIndex';
+import Standings from 'Components/Standings';
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Navigation />
       <Well>
         <GameSummariesIndex />
+        <Standings />
       </Well>
       <Footer />
     </div>

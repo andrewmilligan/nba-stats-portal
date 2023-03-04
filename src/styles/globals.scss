@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@100;400;700&display=swap');
+@import "~Styles/breakpoints.scss";
 
 // From GH
 // --color-fg-default: #c9d1d9;
@@ -100,7 +101,7 @@
   --spacer-module-gap: 1em;
   --spacer-module-padding: 0.5em;
 
-  @media screen and (min-width: 760px) {
+  @include is-desktop {
     --spacer-module-gap: 2em;
     --spacer-module-padding: 1em;
   }
@@ -124,4 +125,15 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
 }

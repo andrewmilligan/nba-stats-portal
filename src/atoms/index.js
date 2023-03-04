@@ -1,5 +1,6 @@
 import { RecoilRoot } from 'recoil';
 import { useInitializeDailyScoreboard } from './dailyScoreboard';
+import { useInitializeRecords } from './records';
 import { initSchedule, useInitializeSchedule } from './schedule';
 import { initGame, useInitializeGameMetadata } from './game';
 
@@ -25,6 +26,7 @@ const AtomsHydrator = function AtomsHydrator(props) {
 
   useInitializeSchedule();
   useInitializeDailyScoreboard();
+  useInitializeRecords();
   useInitializeGameMetadata(gameMetadata);
 
   return null;
