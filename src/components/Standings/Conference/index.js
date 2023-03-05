@@ -21,6 +21,7 @@ const Conference = function Conference(props) {
           <div className={classnames(styles.header, styles.name)}>
             Team
           </div>
+          <div />
           <div className={classnames(styles.header, styles.record)}>
             W
           </div>
@@ -34,10 +35,10 @@ const Conference = function Conference(props) {
         </>
         {standings.map((team, i) => (
           <Fragment key={team.teamId}>
+            <div className={styles.rank}>
+              {`${i + 1}.`}
+            </div>
             <div className={styles.name}>
-              <span className={styles.rank}>
-                {`${i + 1}.`}
-              </span>
               <img
                 className={styles.logo}
                 src={teamLogo(team.teamId, { variant: 'D' })}
