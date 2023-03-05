@@ -2,12 +2,16 @@
 @import "~Styles/spacing.scss";
 
 .container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   background-color: $color-canvas-overlay;
   border: 1px solid $color-border-default;
 }
 
 .content {
   display: flex;
+  flex-grow: 1;
   gap: 1em;
   justify-content: space-between;
   padding: $spacer-module-padding;

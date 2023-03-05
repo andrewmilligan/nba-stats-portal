@@ -6,6 +6,7 @@ const TeamStatsCard = function TeamStatsCard(props) {
   const {
     team,
     state,
+    otherTeam,
   } = props;
 
   const {
@@ -14,7 +15,12 @@ const TeamStatsCard = function TeamStatsCard(props) {
     inBonus,
   } = team;
 
+  const {
+    inBonus: otherTeamInBonus,
+  } = otherTeam;
+
   const isInBonus = inBonus === '1';
+  const otherTeamIsInBonus = otherTeamInBonus === '1';
   const {
     teamFouls = {},
   } = state || {};
@@ -27,6 +33,7 @@ const TeamStatsCard = function TeamStatsCard(props) {
         <Fouls
           fouls={teamFouls[teamId]}
           isInBonus={isInBonus}
+          otherTeamIsInBonus={otherTeamIsInBonus}
         />
       </div>
 

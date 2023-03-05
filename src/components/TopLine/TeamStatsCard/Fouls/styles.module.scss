@@ -1,5 +1,10 @@
 @import "~Styles/colors.scss";
 
+.container {
+  display: flex;
+  gap: 1em;
+}
+
 .bonus {
   color: $color-danger-fg;
   text-transform: uppercase;

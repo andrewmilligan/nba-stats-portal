@@ -28,7 +28,7 @@ const TopLine = function TopLine(props) {
           <TeamName
             team={awayTeam}
             state={state}
-            side="away"
+            side="awayTeam"
           />
         </div>
 
@@ -37,6 +37,7 @@ const TopLine = function TopLine(props) {
             <TeamStatsCard
               team={awayTeam}
               state={state}
+              otherTeam={homeTeam}
             />
           )}
         </div>
@@ -45,7 +46,7 @@ const TopLine = function TopLine(props) {
           <TeamName
             team={homeTeam}
             state={state}
-            side="home"
+            side="homeTeam"
           />
         </div>
 
@@ -54,6 +55,7 @@ const TopLine = function TopLine(props) {
             <TeamStatsCard
               team={homeTeam}
               state={state}
+              otherTeam={awayTeam}
             />
           )}
         </div>

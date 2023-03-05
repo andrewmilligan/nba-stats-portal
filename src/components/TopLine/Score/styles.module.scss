@@ -25,8 +25,19 @@
 
 .status {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 0.5em;
-  text-transform: uppercase;
+  gap: .4em;
+
+  .text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    text-transform: uppercase;
+  }
+
+  .subtext {
+    text-transform: uppercase;
+  }
 }

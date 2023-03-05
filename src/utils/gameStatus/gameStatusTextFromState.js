@@ -20,23 +20,26 @@ const gameStatusTextFromState = function gameStatusTextFromState(state) {
   const time = `${periodLabel(period)} ${formattedMinutesSeconds}`;
 
   if (status === FINAL) {
-    return 'Final';
+    return { text: 'Final' };
   }
 
   if (status === PERIOD_END) {
     if (period === 2) {
-      return 'Half';
+      return { text: 'Half' };
     }
 
-    return `End ${periodLabel(period)}`;
+    return { text: `End ${periodLabel(period)}` };
   }
 
   if (status === TIMEOUT) {
     const timeoutTeam = teamMetadata.get(teamId);
-    return `${time}, TO ${timeoutTeam.teamTricode}`;
+    return {
+      text: time,
+      subtext: `Timeout ${timeoutTeam.teamTricode}`,
+    };
   }
 
-  return time;
+  return { text: time };
 };
 
 export default gameStatusTextFromState;
