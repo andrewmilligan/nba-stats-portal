@@ -1,6 +1,5 @@
 import Timeouts from './Timeouts';
 import Fouls from './Fouls';
-import Possession from './Possession';
 import styles from './styles.module.scss';
 
 const TeamStatsCard = function TeamStatsCard(props) {
@@ -25,7 +24,6 @@ const TeamStatsCard = function TeamStatsCard(props) {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <Possession hasPossession={hasPossession} />
         <Fouls
           fouls={teamFouls[teamId]}
           isInBonus={isInBonus}
