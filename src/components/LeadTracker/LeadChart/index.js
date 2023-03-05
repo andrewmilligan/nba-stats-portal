@@ -35,8 +35,6 @@ const LeadChart = function LeadChart(props) {
   const homeGradientId = useId();
   const awayGradientId = useId();
 
-  console.log({ maxTime, periodEnd });
-
   const {
     clockScale,
     leadScale,

@@ -25,22 +25,36 @@ const TopLine = function TopLine(props) {
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.awayTeamName}>
-          <TeamName team={awayTeam} />
+          <TeamName
+            team={awayTeam}
+            state={state}
+            side="away"
+          />
         </div>
 
         <div className={styles.awayTeamStats}>
           {!isUpcoming && (
-            <TeamStatsCard team={awayTeam} />
+            <TeamStatsCard
+              team={awayTeam}
+              state={state}
+            />
           )}
         </div>
 
         <div className={styles.homeTeamName}>
-          <TeamName team={homeTeam} />
+          <TeamName
+            team={homeTeam}
+            state={state}
+            side="home"
+          />
         </div>
 
         <div className={styles.homeTeamStats}>
           {!isUpcoming && (
-            <TeamStatsCard team={homeTeam} />
+            <TeamStatsCard
+              team={homeTeam}
+              state={state}
+            />
           )}
         </div>
 

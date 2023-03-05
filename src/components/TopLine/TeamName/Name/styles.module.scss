@@ -1,9 +1,28 @@
+@import "~Styles/colors.scss";
 @import "~Styles/fonts.scss";
 
 .container {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .2em;
   font-size: 2em;
   margin-bottom: 0.4em;
 
   @include body-bold;
+
+  &.home {
+    flex-direction: row-reverse;
+  }
+}
+
+.possessionIndicator {
+  width: 6px;
+  height: 12px;
+  background-color: $color-fg-muted;
+  clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
+
+  &.home {
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+  }
 }

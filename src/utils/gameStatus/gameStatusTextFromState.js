@@ -16,21 +16,27 @@ const gameStatusTextFromState = function gameStatusTextFromState(state) {
     teamId,
   } = state;
 
+  const { formattedMinutesSeconds } = parseClock(clock);
+  const time = `${periodLabel(period)} ${formattedMinutesSeconds}`;
+
   if (status === FINAL) {
     return 'Final';
   }
 
   if (status === PERIOD_END) {
+    if (period === 2) {
+      return 'Half';
+    }
+
     return `End ${periodLabel(period)}`;
   }
 
   if (status === TIMEOUT) {
     const timeoutTeam = teamMetadata.get(teamId);
-    return `Timeout ${timeoutTeam.teamTricode}`;
+    return `${time}, TO ${timeoutTeam.teamTricode}`;
   }
 
-  const { formattedMinutesSeconds } = parseClock(clock);
-  return `${periodLabel(period)} ${formattedMinutesSeconds}`;
+  return time;
 };
 
 export default gameStatusTextFromState;

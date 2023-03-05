@@ -8,23 +8,17 @@ const Fouls = function Fouls(props) {
     isInBonus,
   } = props;
 
-  return (
-    <div className={styles.container}>
-      <div>
-        <span className={styles.labelLong}>
-          Total Fouls:
-        </span>
-        <span className={styles.labelShort}>
-          Fouls:
-        </span>
-        {' '}
-        <span className={styles.fouls}>
-          {fouls}
-        </span>
-      </div>
+  if (isInBonus) {
+    return (
       <div className={styles.bonus}>
-        {isInBonus && 'Bonus'}
+        Bonus
       </div>
+    );
+  }
+
+  return (
+    <div>
+      {`Fouls: ${fouls}`}
     </div>
   );
 };
