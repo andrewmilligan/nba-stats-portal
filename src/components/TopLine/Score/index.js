@@ -36,10 +36,15 @@ const Score = function Score(props) {
         </span>
       </div>
       <div className={styles.status}>
-        <div>
-          {status}
+        <div className={styles.text}>
+          <div>
+            {status.text}
+          </div>
+          <StatusIndicator gameStatus={gameStatus} />
         </div>
-        <StatusIndicator gameStatus={gameStatus} />
+        <div className={styles.subtext}>
+          {status.subtext}
+        </div>
       </div>
     </div>
   );

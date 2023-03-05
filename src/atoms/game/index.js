@@ -19,6 +19,7 @@ import secondsBeforePeriodStart from 'Utils/clock/secondsBeforePeriodStart';
 import secondsInPeriod from 'Utils/clock/secondsInPeriod';
 import parseClock from 'Utils/clock/parseClock';
 import { statusFromLastAction } from 'Utils/gameStatus/statusFromLastAction';
+import teamFouls from 'Utils/gameStatus/teamFouls';
 
 export const gameMetadataAtomFamily = atomFamily({
   key: 'game.gameMetadataAtomFamily',
@@ -47,13 +48,14 @@ export const playByPlaySelectorFamily = selectorFamily({
         scoreAway,
         ...restAction
       } = action;
-      const secondsIntoPeriod = (
-        secondsInPeriod(period) - parseClock(clock).totalSeconds
-      );
+      const secsInPeriod = secondsInPeriod(period);
+      const secsLeftInPeriod = parseClock(clock).totalSeconds;
+      const secsIntoPeriod = secsInPeriod - secsLeftInPeriod;
       return {
         period,
         clock,
-        seconds: secondsBeforePeriodStart(period) + secondsIntoPeriod,
+        seconds: secondsBeforePeriodStart(period) + secsIntoPeriod,
+        secondsLeftInPeriod: secsLeftInPeriod,
         scoreHome: parseInt(scoreHome, 10),
         scoreAway: parseInt(scoreAway, 10),
         ...restAction,
@@ -76,6 +78,7 @@ export const gameStateSelector = selectorFamily({
       scoreAway,
       possession,
     } = lastAction;
+    const fouls = teamFouls(playByPlay);
     return {
       period,
       clock,
@@ -83,6 +86,7 @@ export const gameStateSelector = selectorFamily({
       scoreHome,
       scoreAway,
       possession,
+      teamFouls: fouls,
       ...statusFromLastAction(lastAction),
     };
   },
