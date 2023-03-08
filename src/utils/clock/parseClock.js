@@ -7,7 +7,7 @@ const parseClock = function parseClock(minutes) {
   const numSeconds = +sec;
   const roundedSeconds = Math.round(numSeconds);
   const roundedMinutes = numMinutes + (numSeconds < 30 ? 0 : 1);
-  const formattedMinutes = `${roundedMinutes}`;
+  const formattedMinutes = `${numMinutes}`;
   const formattedSeconds = `${roundedSeconds}`.padStart(2, '0');
   const totalSeconds = numSeconds + (numMinutes * 60);
 
