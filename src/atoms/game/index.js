@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import {
   atomFamily,
   selectorFamily,
@@ -25,6 +25,11 @@ import secondsInPeriod from 'Utils/clock/secondsInPeriod';
 import parseClock from 'Utils/clock/parseClock';
 import { statusFromLastAction } from 'Utils/gameStatus/statusFromLastAction';
 import teamFouls from 'Utils/gameStatus/teamFouls';
+
+export const gameBakedMetadataAtomFamily = atomFamily({
+  key: 'game.gameBakedMetadataAtomFamily',
+  default: undefined,
+});
 
 export const gameMetadataAtomFamily = atomFamily({
   key: 'game.gameMetadataAtomFamily',
@@ -101,7 +106,8 @@ export const gameSelector = selectorFamily({
   key: 'game.gameSelector',
   get: (gameId) => ({ get }) => {
     const now = get(nowAtom);
-    const metadata = get(gameMetadataAtomFamily(gameId));
+    const bakedMetadata = get(gameBakedMetadataAtomFamily(gameId));
+    const metadata = get(gameMetadataAtomFamily(gameId)) || bakedMetadata;
     if (!metadata) return undefined;
 
     const boxScore = get(boxScoreAtomFamily(gameId));
@@ -126,11 +132,13 @@ export const initGame = function initGame(snapshot, opts = {}) {
     gameMetadata,
   } = opts;
 
-  snapshot.set(gameMetadataAtomFamily(gameMetadata.gameId), gameMetadata);
+  snapshot.set(gameBakedMetadataAtomFamily(gameMetadata.gameId), gameMetadata);
 };
 
 export const useGameMetadata = function useGameMetadata(gameId) {
-  return useRecoilValue(gameMetadataAtomFamily(gameId));
+  const baked = useRecoilValue(gameBakedMetadataAtomFamily(gameId));
+  const meta = useRecoilValue(gameMetadataAtomFamily(gameId));
+  return meta || baked;
 };
 
 export const useInitializeGame = function useInitializeGame(gameId) {
@@ -151,6 +159,12 @@ export const useInitializeGame = function useInitializeGame(gameId) {
   const setBoxScore = useSetRecoilState(boxScoreAtom);
   const setPlayByPlay = useSetRecoilState(playByPlayAtom);
   const setGameMetadata = useSetRecoilState(gameMetadataAtom);
+  const setGameMetadataFromGames = useCallback((games) => {
+    const game = games.games.find((g) => g.gameId === gameId);
+    if (game) {
+      setGameMetadata(game);
+    }
+  }, [gameId, setGameMetadata]);
 
   // re-setters for when we're done with this game
   const resetBoxScore = useResetRecoilState(boxScoreAtom);
@@ -169,12 +183,7 @@ export const useInitializeGame = function useInitializeGame(gameId) {
   });
   const dailyScheduleUrl = !game && dailySchedule(gameISODate);
   useDataFetch(dailyScheduleUrl, {
-    onLoad: (data) => {
-      console.log({ data });
-      setGameMetadata(
-        data.games.find((g) => g.gameId === gameId),
-      );
-    },
+    onLoad: setGameMetadataFromGames,
   });
 
   // reset when we're done
