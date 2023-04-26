@@ -4,14 +4,20 @@ import gameStatusTextFromState from 'Utils/gameStatus/gameStatusTextFromState';
 import { teamLogo } from 'Utils/data/urls';
 import StatusIndicator from 'Components/StatusIndicator';
 
+import SeriesStatus from './SeriesStatus';
 import styles from './styles.module.scss';
 
 const Score = function Score(props) {
   const {
-    gameStatus,
-    state,
-    isUpcoming,
+    game,
   } = props;
+
+  const {
+    state,
+    boxScore: {
+      gameStatus,
+    },
+  } = game;
 
   const {
     scoreHome,
@@ -22,6 +28,7 @@ const Score = function Score(props) {
 
   return (
     <div className={styles.container}>
+      <SeriesStatus game={game} />
       <div className={styles.content}>
         <span className={styles.score}>
           {scoreAway}

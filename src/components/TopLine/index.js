@@ -14,12 +14,13 @@ const TopLine = function TopLine(props) {
   const {
     state,
     boxScore,
+    metadata = gameMetadata,
   } = game;
 
   const {
     homeTeam,
     awayTeam,
-  } = boxScore || gameMetadata;
+  } = boxScore || metadata;
 
   return (
     <div className={styles.container}>
@@ -67,8 +68,7 @@ const TopLine = function TopLine(props) {
             />
           ) : (
             <Score
-              gameStatus={boxScore.gameStatus}
-              state={state}
+              game={game}
             />
           )}
         </div>

@@ -8,10 +8,22 @@ import {
 
 import useDataFetch from 'Utils/hooks/useDataFetch';
 import { dailyScoreboard } from 'Utils/data/urls';
+import { gameMetadataAtomFamily } from 'Atoms/game';
 
 export const dailyScoreboardAtom = atom({
   key: 'dailyScoreboard.dailyScoreboardAtom',
   default: undefined,
+});
+
+export const dailyScoreboardSelector = selector({
+  key: 'dailyScoreboard.dailyScoreboardSelector',
+  get: ({ get }) => get(dailyScoreboardAtom),
+  set: ({ set }, data) => {
+    set(dailyScoreboardAtom, data);
+    data.games.forEach((game) => (
+      set(gameMetadataAtomFamily(game.gameId), game)
+    ));
+  },
 });
 
 export const dailyScoreboardGamesByIdSelector = selector({
@@ -36,7 +48,7 @@ export const gameInDailyScoreboardSelectorFamily = selectorFamily({
 });
 
 export const useInitializeDailyScoreboard = function useInitializeDailyScoreboard() {
-  const setDailyScoreboard = useSetRecoilState(dailyScoreboardAtom);
+  const setDailyScoreboard = useSetRecoilState(dailyScoreboardSelector);
   useDataFetch(dailyScoreboard(), {
     interval: 10000,
     onLoad: setDailyScoreboard,

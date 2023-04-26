@@ -15,6 +15,11 @@ const TeamStatsCard = function TeamStatsCard(props) {
     inBonus,
   } = team;
 
+  // pointsFastBreak
+  // pointsFromTurnovers
+  // pointsInThePaint
+  // pointsSecondChance
+
   const {
     inBonus: otherTeamInBonus,
   } = otherTeam;

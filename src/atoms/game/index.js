@@ -14,7 +14,12 @@ import {
 import { nowAtom } from 'Atoms/schedule';
 import { ONGOING_CODE, UPCOMING_CODE } from 'Utils/gameStatus/statuses';
 import useDataFetch from 'Utils/hooks/useDataFetch';
-import { gameBoxScore, gamePlayByPlay, playerBoxScores } from 'Utils/data/urls';
+import {
+  gameBoxScore,
+  gamePlayByPlay,
+  playerBoxScores,
+  dailySchedule,
+} from 'Utils/data/urls';
 import secondsBeforePeriodStart from 'Utils/clock/secondsBeforePeriodStart';
 import secondsInPeriod from 'Utils/clock/secondsInPeriod';
 import parseClock from 'Utils/clock/parseClock';
@@ -133,16 +138,19 @@ export const useInitializeGame = function useInitializeGame(gameId) {
   const interval = (!game || game.gameStatus !== ONGOING_CODE) ? null : 10000;
   const meta = useGameMetadata(gameId);
   const now = new Date();
+  const gameISODate = meta && new Date(meta.gameDateTime).toISOString().split('T')[0];
   const isFuture = !meta || (new Date(meta.gameDateTime) > now && !game);
   const isLaterToday = game && game.gameStatus === UPCOMING_CODE;
   const isUpcoming = !!(isFuture || isLaterToday);
 
   const boxScoreAtom = boxScoreAtomFamily(gameId);
   const playByPlayAtom = playByPlayAtomFamily(gameId);
+  const gameMetadataAtom = gameMetadataAtomFamily(gameId);
 
   // setters for when we load new data
   const setBoxScore = useSetRecoilState(boxScoreAtom);
   const setPlayByPlay = useSetRecoilState(playByPlayAtom);
+  const setGameMetadata = useSetRecoilState(gameMetadataAtom);
 
   // re-setters for when we're done with this game
   const resetBoxScore = useResetRecoilState(boxScoreAtom);
@@ -158,6 +166,15 @@ export const useInitializeGame = function useInitializeGame(gameId) {
   useDataFetch(playByPlayUrl, {
     onLoad: setPlayByPlay,
     interval,
+  });
+  const dailyScheduleUrl = !game && dailySchedule(gameISODate);
+  useDataFetch(dailyScheduleUrl, {
+    onLoad: (data) => {
+      console.log({ data });
+      setGameMetadata(
+        data.games.find((g) => g.gameId === gameId),
+      );
+    },
   });
 
   // reset when we're done
