@@ -10,9 +10,20 @@
 }
 
 .content {
-  display: flex;
-  flex-grow: 1;
-  gap: 1em;
-  justify-content: space-between;
   padding: $spacer-module-padding;
+}
+
+.stats {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: max-content max-content;
+  grid-column-gap: 1em;
+  grid-row-gap: .2em;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid $color-border-default;
+}
+
+.stat {
+  justify-self: flex-end;
 }

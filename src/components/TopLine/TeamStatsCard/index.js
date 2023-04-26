@@ -15,10 +15,13 @@ const TeamStatsCard = function TeamStatsCard(props) {
     inBonus,
   } = team;
 
-  // pointsFastBreak
-  // pointsFromTurnovers
-  // pointsInThePaint
-  // pointsSecondChance
+  const {
+    pointsFastBreak,
+    pointsFromTurnovers,
+    pointsInThePaint,
+    pointsSecondChance,
+    turnovers,
+  } = team.statistics;
 
   const {
     inBonus: otherTeamInBonus,
@@ -35,6 +38,32 @@ const TeamStatsCard = function TeamStatsCard(props) {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
+        <div className={styles.stats}>
+          <div>
+            In paint:
+          </div>
+          <div className={styles.stat}>
+            {pointsInThePaint}
+          </div>
+          <div>
+            2nd chance:
+          </div>
+          <div className={styles.stat}>
+            {pointsSecondChance}
+          </div>
+          <div>
+            Fast break:
+          </div>
+          <div className={styles.stat}>
+            {pointsFastBreak}
+          </div>
+          <div>
+            Turnovers:
+          </div>
+          <div className={styles.stat}>
+            {turnovers}
+          </div>
+        </div>
         <Fouls
           fouls={teamFouls[teamId]}
           isInBonus={isInBonus}
