@@ -9,6 +9,18 @@
   border: 1px solid $color-border-default;
 }
 
+.seed {
+  text-align: center;
+  text-transform: uppercase;
+  padding: calc($spacer-module-padding / 2) $spacer-module-padding;
+  background-color: $color-border-default;
+  border-bottom: 1px solid $color-border-default;
+}
+
+.seedNum {
+  font-weight: bold;
+}
+
 .content {
   padding: $spacer-module-padding;
 }

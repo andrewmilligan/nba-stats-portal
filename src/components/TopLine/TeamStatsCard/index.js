@@ -1,3 +1,5 @@
+import { ordinal } from 'journalize';
+import teams from 'Utils/teams/metadata';
 import Timeouts from './Timeouts';
 import Fouls from './Fouls';
 import styles from './styles.module.scss';
@@ -5,6 +7,7 @@ import styles from './styles.module.scss';
 const TeamStatsCard = function TeamStatsCard(props) {
   const {
     team,
+    teamMeta,
     state,
     otherTeam,
   } = props;
@@ -35,8 +38,28 @@ const TeamStatsCard = function TeamStatsCard(props) {
 
   const hasPossession = state && state.possession === teamId;
 
+  const {
+    seed,
+  } = teamMeta;
+  const conferenceNames = {
+    eastern: 'East',
+    western: 'West',
+  };
+  const conference = conferenceNames[teams.get(teamId).conference];
+
   return (
     <div className={styles.container}>
+      {teamMeta.seed && (
+        <div className={styles.seed}>
+          <span className={styles.seedNum}>
+            {`${ordinal(seed)}`}
+          </span>
+          {' '}
+          <span>
+            {`in the ${conference}`}
+          </span>
+        </div>
+      )}
       <div className={styles.content}>
         <div className={styles.stats}>
           <div>

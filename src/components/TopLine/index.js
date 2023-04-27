@@ -18,6 +18,11 @@ const TopLine = function TopLine(props) {
   } = game;
 
   const {
+    homeTeam: homeTeamMeta,
+    awayTeam: awayTeamMeta,
+  } = metadata;
+
+  const {
     homeTeam,
     awayTeam,
   } = boxScore || metadata;
@@ -37,6 +42,7 @@ const TopLine = function TopLine(props) {
           {!isUpcoming && (
             <TeamStatsCard
               team={awayTeam}
+              teamMeta={awayTeamMeta}
               state={state}
               otherTeam={homeTeam}
             />
@@ -55,6 +61,7 @@ const TopLine = function TopLine(props) {
           {!isUpcoming && (
             <TeamStatsCard
               team={homeTeam}
+              teamMeta={homeTeamMeta}
               state={state}
               otherTeam={awayTeam}
             />
