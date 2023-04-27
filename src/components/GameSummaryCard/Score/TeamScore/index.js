@@ -13,6 +13,7 @@ const TeamScore = function TeamScore(props) {
       teamName,
       teamTricode,
       score,
+      seed,
     },
     lost,
     isFinal,
@@ -54,6 +55,11 @@ const TeamScore = function TeamScore(props) {
         >
           {teamDisplayName}
         </div>
+        {seed && mode !== 'condensed' && (
+          <div className={styles.seed}>
+            {`(${seed})`}
+          </div>
+        )}
       </div>
 
       <div
