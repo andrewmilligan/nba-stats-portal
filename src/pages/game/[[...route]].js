@@ -72,7 +72,10 @@ export default function Game(props) {
               <LeadTracker
                 game={game}
               />
-              {/* <PlayByPlay playByPlay={playByPlay} /> */}
+              <PlayByPlay
+                game={game}
+                playByPlay={game.playByPlay}
+              />
               <FloorLineup
                 game={game}
                 seasonBoxScores={{

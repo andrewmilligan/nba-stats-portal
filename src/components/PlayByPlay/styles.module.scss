@@ -3,27 +3,70 @@
 @import "~Styles/spacing.scss";
 
 .container {
-  display: grid;
-  grid-template-columns: 1fr minmax(320px, 1fr) 1fr;
-  gap: $internal-spacer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1em;
+}
+
+.title {
+  text-transform: uppercase;
+  color: $color-fg-muted;
+  padding: 0.6em 1em 0 1em;
+
+  @include condensed-bold;
+}
+
+.content {
+  transform-origin: top;
+  background-color: $color-canvas-overlay;
+  border: 1px solid $color-border-default;
+  height: 0px;
+  padding: 0;
+  overflow: hidden;
+
+  &.expanded {
+    height: auto;
+    padding: $spacer-module-padding;
+  }
 }
 
 .actions {
 }
 
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+
 .button {
   appearance: none;
   cursor: pointer;
-  padding: none;
+  padding: 0;
   background: none;
   border: none;
   color: $color-fg-muted;
 
-  &.back {
-    justify-self: end;
+  &[disabled] {
+    opacity: .5;
   }
+}
 
-  &.forward {
-    justify-self: start;
-  }
+.expand {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid $color-border-default;
+  background: $color-canvas-overlay;
+  font-size: 24px;
+
+  @include body-bold;
 }

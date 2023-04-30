@@ -1,0 +1,17 @@
+@import "~Styles/colors.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.clock {
+  align-self: flex-end;
+  color: $color-fg-muted;
+}
+
+.text {
+  min-height: 80px;
+  padding-bottom: 1em;
+}

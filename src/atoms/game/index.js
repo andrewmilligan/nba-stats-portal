@@ -105,25 +105,30 @@ export const gameStateSelector = selectorFamily({
 export const gameSelector = selectorFamily({
   key: 'game.gameSelector',
   get: (gameId) => ({ get }) => {
-    const now = get(nowAtom);
-    const bakedMetadata = get(gameBakedMetadataAtomFamily(gameId));
-    const metadata = get(gameMetadataAtomFamily(gameId)) || bakedMetadata;
-    if (!metadata) return undefined;
+    try {
+      const now = get(nowAtom);
+      const bakedMetadata = get(gameBakedMetadataAtomFamily(gameId));
+      const metadata = get(gameMetadataAtomFamily(gameId)) || bakedMetadata;
+      if (!metadata) return undefined;
 
-    const boxScore = get(boxScoreAtomFamily(gameId));
-    const playByPlay = get(playByPlaySelectorFamily(gameId));
-    const state = get(gameStateSelector(gameId));
-    const gameInScoreboard = get(gameInDailyScoreboardSelectorFamily(gameId));
-    const isFuture = new Date(metadata.gameDateTime) > now && !gameInScoreboard;
-    const isLaterToday = gameInScoreboard && gameInScoreboard.gameStatus === UPCOMING_CODE;
+      const boxScore = get(boxScoreAtomFamily(gameId));
+      const playByPlay = get(playByPlaySelectorFamily(gameId));
+      const state = get(gameStateSelector(gameId));
+      const gameInScoreboard = get(gameInDailyScoreboardSelectorFamily(gameId));
+      const isFuture = new Date(metadata.gameDateTime) > now && !gameInScoreboard;
+      const isLaterToday = gameInScoreboard && gameInScoreboard.gameStatus === UPCOMING_CODE;
 
-    return {
-      isUpcoming: !!(isFuture || isLaterToday),
-      metadata,
-      state,
-      boxScore,
-      playByPlay,
-    };
+      return {
+        isUpcoming: !!(isFuture || isLaterToday),
+        metadata,
+        state,
+        boxScore,
+        playByPlay,
+      };
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
   },
 });
 
