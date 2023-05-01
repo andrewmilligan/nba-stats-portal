@@ -19,8 +19,6 @@ const choose = function choose(choices, options = {}) {
     seed,
   } = options;
 
-  console.log({ seed });
-
   if (!choices) return undefined;
   const n = choices.length;
   return choices[Math.floor(seededRandom(seed) * n)];
