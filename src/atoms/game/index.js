@@ -146,12 +146,15 @@ export const useGameMetadata = function useGameMetadata(gameId) {
   return meta || baked;
 };
 
-export const useInitializeGame = function useInitializeGame(gameId, league = 'nba') {
+export const useInitializeGame = function useInitializeGame(
+  gameId,
+  gameISODate,
+  league = 'nba',
+) {
   const game = useGameInDailyScoreboard(gameId, league);
   const interval = (!game || game.gameStatus !== ONGOING_CODE) ? null : 10000;
   const meta = useGameMetadata(gameId);
   const now = new Date();
-  const gameISODate = meta && new Date(meta.gameDateTime).toISOString().split('T')[0];
   const isFuture = !meta || (new Date(meta.gameDateTime) > now && !game);
   const isLaterToday = game && game.gameStatus === UPCOMING_CODE;
   const isUpcoming = !!(isFuture || isLaterToday);

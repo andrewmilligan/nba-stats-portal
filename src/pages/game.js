@@ -18,6 +18,7 @@ import Promo from 'Components/Promo';
 import LeadTracker from 'Components/LeadTracker';
 import PlayByPlay from 'Components/PlayByPlay';
 import FloorLineup from 'Components/FloorLineup';
+import ErrorBoundary from 'Components/ErrorBoundary';
 
 export default function Game() {
   const {
@@ -26,7 +27,7 @@ export default function Game() {
 
   const [league, gameDate, gameId] = gameSlug.split('--');
 
-  useInitializeGame(gameId, league);
+  useInitializeGame(gameId, gameDate, league);
   const game = useGame(gameId);
   const schedule = useDailySchedule(gameDate, league);
 
@@ -45,30 +46,39 @@ export default function Game() {
       <Navigation withGames />
       {isLoaded && (
         <Well>
-          <TopLine
-            game={game}
-            gameMetadata={gameMetadata}
-            isUpcoming={game.isUpcoming}
-            league={league}
-          />
+          <ErrorBoundary>
+            <TopLine
+              game={game}
+              gameMetadata={gameMetadata}
+              isUpcoming={game.isUpcoming}
+              league={league}
+            />
+          </ErrorBoundary>
           {game.isUpcoming ? (
             <Promo
               game={gameMetadata}
             />
           ) : (
             <>
-              <LeadTracker
-                game={game}
-                league={league}
-              />
-              <PlayByPlay
-                game={game}
-                playByPlay={game.playByPlay}
-              />
-              <FloorLineup
-                game={game}
-                league={league}
-              />
+              <ErrorBoundary>
+                <LeadTracker
+                  game={game}
+                  league={league}
+                />
+              </ErrorBoundary>
+              <ErrorBoundary>
+                <PlayByPlay
+                  game={game}
+                  playByPlay={game.playByPlay}
+                  league={league}
+                />
+              </ErrorBoundary>
+              <ErrorBoundary>
+                <FloorLineup
+                  game={game}
+                  league={league}
+                />
+              </ErrorBoundary>
             </>
           )}
         </Well>

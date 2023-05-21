@@ -31,30 +31,43 @@ const make = {
   ],
 };
 
+const getShotType = (play) => {
+  const {
+    actionType,
+    subType,
+  } = play;
+
+  if (actionType === '3pt') return actionType;
+
+  const subLower = subType.toLowerCase();
+  if (subLower === 'hook') return 'hook shot';
+  return subLower;
+};
+
 const getNodes = (play) => {
   const {
     actionNumber: seed,
+    teamId,
     shotResult,
     personId,
     actionType,
     subType,
   } = play;
 
-  const subLower = subType.toLowerCase();
-  const shotType = (subLower === 'hook')
-    ? 'hook shot'
-    : subLower;
+  const shotType = getShotType(play);
   const missName = (actionType === '3pt')
     ? ['a three', 'a three pointer', 'from three', 'from deep']
     : [`a ${shotType}`];
 
   if (shotResult === 'Missed') {
-    return tokenize`${player(personId)} misses
+    return tokenize`${player(personId, { teamId })} misses
       ${choose(missName, { seed })}`;
   }
 
-  const actions = make[shotType] || [`makes a ${shotType}`];
-  return tokenize`${player(personId)} ${choose(actions, { seed })}`;
+  const actions = (actionType === '3pt')
+    ? make[actionType]
+    : (make[shotType] || [`makes a ${shotType}`]);
+  return tokenize`${player(personId, { teamId })} ${choose(actions, { seed })}`;
 };
 
 const shot = function shot(play) {

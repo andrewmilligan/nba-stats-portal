@@ -6,7 +6,7 @@ import Navigation from 'Components/Navigation';
 import Footer from 'Components/Footer';
 import Well from 'Components/Well';
 import GameSummariesIndex from 'Components/GameSummariesIndex';
-import Standings from 'Components/Standings';
+import ErrorBoundary from 'Components/ErrorBoundary';
 
 export default function Home() {
   return (
@@ -14,8 +14,12 @@ export default function Home() {
       <Head />
       <Navigation />
       <Well>
-        <GameSummariesIndex league='nba' />
-        <GameSummariesIndex league='wnba' />
+        <ErrorBoundary>
+          <GameSummariesIndex league='nba' />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <GameSummariesIndex league='wnba' />
+        </ErrorBoundary>
       </Well>
       <Footer />
     </div>

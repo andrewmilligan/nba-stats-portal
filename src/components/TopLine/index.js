@@ -81,6 +81,7 @@ const TopLine = function TopLine(props) {
           ) : (
             <Score
               game={game}
+              league={league}
             />
           )}
         </div>

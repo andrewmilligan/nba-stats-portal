@@ -29,11 +29,12 @@ export const teamVerb = (tokenId, verb) => ({
   verb,
 });
 
-export const player = (playerId, role = 'subject') => ({
+export const player = (playerId, { teamId, role = 'subject' } = {}) => ({
   id: uuidv4(),
   type: 'player',
   token: playerId,
   role,
+  teamId,
 });
 
 export const tokenize = (strings, ...ts) => {
@@ -80,6 +81,10 @@ export const stringifyBlock = (block, context) => {
   const {
     nodes,
   } = block;
+
+  const {
+    league = 'nba',
+  } = context;
 
   const isCurrentSubject = (token) => {
     if (!context.currentSubject) return false;
@@ -133,18 +138,44 @@ export const stringifyBlock = (block, context) => {
     if (token.type === 'teamVerb') {
       const v = token.verb;
       const verb = (typeof v === 'string')
-        ? { plural: v, singular: v.slice(0, v.length - 1) }
+        ? { plural: v.slice(0, v.length - 1), singular: v }
         : v;
       return {
-        text: verb.singular,
+        text: verb.plural,
       };
     }
 
     if (token.type === 'player') {
       const player = context.players.get(token.token);
-      if (isCurrentSubject(token)) {
+      if (!player) {
+        const team = context.teams.get(token.teamId);
+        if (!team) {
+          return {
+            text: 'someone',
+          };
+        }
         return {
-          text: player.pronoun || 'he',
+          text: `a player from ${team.teamCity}`,
+        };
+      }
+
+      if (isCurrentSubject(token) && token.role === 'subject') {
+        const defaultPronoun = ({
+          nba: 'he',
+          wnba: 'she',
+        })[league];
+        return {
+          text: player.pronoun || defaultPronoun,
+          references: [`player:${token.token}`],
+        };
+      }
+      if (isCurrentSubject(token) && token.role === 'object') {
+        const defaultPronoun = ({
+          nba: 'him',
+          wnba: 'her',
+        })[league];
+        return {
+          text: player.pronoun || defaultPronoun,
           references: [`player:${token.token}`],
         };
       }

@@ -1,0 +1,45 @@
+@import "~Styles/colors.scss";
+@import "~Styles/fonts.scss";
+@import "~Styles/spacing.scss";
+
+.container {
+  background-color: $color-canvas-overlay;
+  padding: $spacer-module-padding;
+  border: 1px solid $color-border-default;
+
+  @include condensed-regular;
+}
+
+.header {
+  margin-bottom: 12px;
+
+  @include condensed-bold;
+}
+
+.error {
+  @include monospace;
+}
+
+.message {
+  margin-bottom: 12px;
+}
+
+.trace {
+  font-size: 0.8em;
+  color: $color-fg-muted;
+  margin-bottom: 12px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  appearance: none;
+  cursor: pointer;
+  padding: 0;
+  background: none;
+  border: none;
+  color: $color-fg-muted;
+}

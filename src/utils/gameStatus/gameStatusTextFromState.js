@@ -8,14 +8,20 @@ import {
   TIMEOUT,
 } from './statusFromLastAction';
 
-const gameStatusTextFromState = function gameStatusTextFromState(state) {
+const gameStatusTextFromState = function gameStatusTextFromState(
+  state,
+  opts = {},
+) {
   const {
     status,
     period,
     clock,
     teamId,
-    league = 'nba',
   } = state;
+
+  const {
+    league = 'nba',
+  } = opts;
 
   const { formattedMinutesSeconds } = parseClock(clock);
   const time = `${periodLabel(period)} ${formattedMinutesSeconds}`;
@@ -36,7 +42,9 @@ const gameStatusTextFromState = function gameStatusTextFromState(state) {
     const timeoutTeam = teamMetadata[league].get(teamId);
     return {
       text: time,
-      subtext: `Timeout ${timeoutTeam.teamTricode}`,
+      subtext: timeoutTeam
+        ? `Timeout ${timeoutTeam.teamTricode}`
+        : 'Timeout',
     };
   }
 

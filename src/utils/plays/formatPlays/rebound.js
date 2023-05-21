@@ -15,7 +15,7 @@ const getNodes = (play) => {
       ${subType} rebound`;
   }
 
-  return tokenize`${player(personId)} collects the
+  return tokenize`${player(personId, { teamId })} collects the
     ${subType} rebound`;
 };
 
