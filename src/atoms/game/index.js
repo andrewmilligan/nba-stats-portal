@@ -146,8 +146,8 @@ export const useGameMetadata = function useGameMetadata(gameId) {
   return meta || baked;
 };
 
-export const useInitializeGame = function useInitializeGame(gameId) {
-  const game = useGameInDailyScoreboard(gameId);
+export const useInitializeGame = function useInitializeGame(gameId, league = 'nba') {
+  const game = useGameInDailyScoreboard(gameId, league);
   const interval = (!game || game.gameStatus !== ONGOING_CODE) ? null : 10000;
   const meta = useGameMetadata(gameId);
   const now = new Date();
@@ -176,17 +176,17 @@ export const useInitializeGame = function useInitializeGame(gameId) {
   const resetPlayByPlay = useResetRecoilState(playByPlayAtom);
 
   // subscribe to the data we need
-  const boxScoreUrl = !isUpcoming && gameBoxScore(gameId);
+  const boxScoreUrl = !isUpcoming && gameBoxScore(gameId, league);
   useDataFetch(boxScoreUrl, {
     onLoad: setBoxScore,
     interval,
   });
-  const playByPlayUrl = !isUpcoming && gamePlayByPlay(gameId);
+  const playByPlayUrl = !isUpcoming && gamePlayByPlay(gameId, league);
   useDataFetch(playByPlayUrl, {
     onLoad: setPlayByPlay,
     interval,
   });
-  const dailyScheduleUrl = !game && dailySchedule(gameISODate);
+  const dailyScheduleUrl = !game && dailySchedule(gameISODate, league);
   useDataFetch(dailyScheduleUrl, {
     onLoad: setGameMetadataFromGames,
   });

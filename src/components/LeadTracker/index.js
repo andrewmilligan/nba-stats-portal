@@ -32,8 +32,8 @@ const LeadTracker = function LeadTracker(props) {
   const homeTeam = teamMetadata[league].get(homeTeamId);
   const awayTeam = teamMetadata[league].get(awayTeamId);
 
-  const homeColor = (teamColors.get(homeTeamId) || [])[0];
-  const awayColor = (teamColors.get(awayTeamId) || [])[1];
+  const homeColor = (teamColors[league].get(homeTeamId) || [])[0];
+  const awayColor = (teamColors[league].get(awayTeamId) || [])[1];
 
   const {
     events,

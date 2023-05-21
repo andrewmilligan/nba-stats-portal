@@ -6,6 +6,7 @@ import styles from './styles.module.scss';
 const FloorLineup = function FloorLineup(props) {
   const {
     game,
+    league,
   } = props;
 
   const {
@@ -20,10 +21,12 @@ const FloorLineup = function FloorLineup(props) {
         <Lineup
           team={boxScore.awayTeam}
           gameIsOver={gameIsOver}
+          league={league}
         />
         <Lineup
           team={boxScore.homeTeam}
           gameIsOver={gameIsOver}
+          league={league}
         />
       </div>
     </div>

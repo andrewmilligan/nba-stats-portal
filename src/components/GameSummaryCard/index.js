@@ -29,9 +29,7 @@ const GameSummaryCard = function GameSummaryCard(props) {
   const isFinal = gameStatus === COMPLETE_CODE;
   const isLive = gameStatus === ONGOING_CODE;
 
-  const url = (league === 'nba')
-    ? gamePath({ gameDate, game })
-    : '/';
+  const url = gamePath({ league, gameDate, game });
 
   return (
     <Link
