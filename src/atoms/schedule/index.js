@@ -4,6 +4,7 @@ import {
   atomFamily,
   selector,
   selectorFamily,
+  useRecoilState,
   useRecoilValue,
   useSetRecoilState,
   useResetRecoilState,
@@ -115,14 +116,20 @@ export const useInitializeDailySchedule = function useInitializeDailySchedule(
   date,
   league = 'nba',
 ) {
+  const [dts, setDates] = useRecoilState(datesAtom(league));
+  const { gameDates } = dts || {};
   const dailyScheduleAtom = dailyScheduleAtomFamily(`${league}:${date}`);
-  const setDates = useSetRecoilState(datesAtom(league));
 
   const setDailySchedule = useSetRecoilState(dailyScheduleAtom);
   const resetDailySchedule = useResetRecoilState(dailyScheduleAtom);
 
   // load data
-  useDataFetch(dailySchedule(date, league), {
+  const scheduleUrl = (
+    gameDates
+    && gameDates.includes(date)
+    && dailySchedule(date, league)
+  );
+  useDataFetch(scheduleUrl, {
     onLoad: setDailySchedule,
   });
   useDataFetch(dates(league), {
@@ -136,7 +143,15 @@ export const useInitializeDailySchedule = function useInitializeDailySchedule(
 };
 
 export const useDailySchedule = function useDailySchedule(date, league = 'nba') {
-  return useRecoilValue(dailyScheduleSelectorFamily(`${league}:${date}`));
+  const dts = useRecoilValue(datesAtom(league));
+  const { gameDates } = dts || {};
+  const schedule = useRecoilValue(
+    dailyScheduleSelectorFamily(`${league}:${date}`),
+  );
+  if (gameDates && !gameDates.includes(date)) {
+    return null;
+  }
+  return schedule;
 };
 
 export const useDates = function useDates() {

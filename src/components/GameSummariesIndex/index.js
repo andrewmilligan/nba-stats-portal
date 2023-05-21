@@ -20,7 +20,7 @@ const GameSummariesIndex = function GameSummariesIndex(props) {
 
   useInitializeDailySchedule(date, league);
   const schedule = useDailySchedule(date, league);
-  const isLoading = !schedule;
+  const isLoading = typeof schedule === 'undefined';
 
   const {
     games = [],

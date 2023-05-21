@@ -56,7 +56,7 @@ const TeamScore = function TeamScore(props) {
         >
           {teamDisplayName}
         </div>
-        {seed && mode !== 'condensed' && (
+        {!!seed && mode !== 'condensed' && (
           <div className={styles.seed}>
             {`(${seed})`}
           </div>
