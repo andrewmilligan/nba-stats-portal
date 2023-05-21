@@ -6,12 +6,13 @@ import { initGame, useInitializeGameMetadata } from './game';
 
 const initializeState = function initializeState(opts = {}) {
   const {
-    dates,
+    nbaDates,
+    wnbaDates,
     gameMetadata,
   } = opts;
 
   return (snapshot) => {
-    initSchedule(snapshot, { dates });
+    initSchedule(snapshot, { nbaDates, wnbaDates });
 
     if (gameMetadata) {
       initGame(snapshot, { gameMetadata });
@@ -25,7 +26,8 @@ const AtomsHydrator = function AtomsHydrator(props) {
   } = props;
 
   useInitializeSchedule();
-  useInitializeDailyScoreboard();
+  useInitializeDailyScoreboard('nba');
+  useInitializeDailyScoreboard('wnba');
   useInitializeRecords();
   useInitializeGameMetadata(gameMetadata);
 
@@ -39,12 +41,19 @@ const AtomsRoot = function AtomsRoot(props) {
   } = props;
 
   const {
-    dates,
+    nbaDates,
+    wnbaDates,
     gameMetadata,
   } = pageProps;
 
+  const init = initializeState({
+    nbaDates,
+    wnbaDates,
+    gameMetadata,
+  });
+
   return (
-    <RecoilRoot initializeState={initializeState({ dates, gameMetadata })}>
+    <RecoilRoot initializeState={init}>
       <AtomsHydrator
         gameMetadata={gameMetadata}
       />

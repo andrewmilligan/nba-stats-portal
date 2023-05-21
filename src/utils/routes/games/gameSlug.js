@@ -1,6 +1,6 @@
 import teamMetadata from 'Utils/teams/metadata';
 
-const gameSlug = function gameSlug(game) {
+const gameSlug = function gameSlug(game, league = 'nba') {
   const {
     homeTeam: {
       teamId: homeId,
@@ -10,8 +10,8 @@ const gameSlug = function gameSlug(game) {
     },
   } = game;
 
-  const awayMeta = teamMetadata.get(awayId);
-  const homeMeta = teamMetadata.get(homeId);
+  const awayMeta = teamMetadata[league].get(awayId);
+  const homeMeta = teamMetadata[league].get(homeId);
 
   if (!awayMeta || !homeMeta) return undefined;
 

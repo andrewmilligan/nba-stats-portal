@@ -10,6 +10,7 @@ const TeamStatsCard = function TeamStatsCard(props) {
     teamMeta,
     state,
     otherTeam,
+    league,
   } = props;
 
   const {
@@ -45,7 +46,7 @@ const TeamStatsCard = function TeamStatsCard(props) {
     eastern: 'East',
     western: 'West',
   };
-  const conference = conferenceNames[teams.get(teamId).conference];
+  const conference = conferenceNames[teams[league].get(teamId).conference];
 
   return (
     <div className={styles.container}>
@@ -103,6 +104,7 @@ TeamStatsCard.defaultProps = {
   team: {
     statistics: {},
   },
+  league: 'nba',
 };
 
 export default TeamStatsCard;

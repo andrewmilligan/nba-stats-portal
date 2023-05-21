@@ -6,7 +6,11 @@ import useSelectedDate from './_hooks/useSelectedDate';
 import Header from './Header';
 import styles from './styles.module.scss';
 
-const GameSummariesIndex = function GameSummariesIndex() {
+const GameSummariesIndex = function GameSummariesIndex(props) {
+  const {
+    league,
+  } = props;
+
   const {
     date,
     isCurrentDate,
@@ -14,9 +18,9 @@ const GameSummariesIndex = function GameSummariesIndex() {
     previousDate,
   } = useSelectedDate();
 
-  useInitializeDailySchedule(date);
-  const schedule = useDailySchedule(date);
-  const isLoading = !schedule;
+  useInitializeDailySchedule(date, league);
+  const schedule = useDailySchedule(date, league);
+  const isLoading = typeof schedule === 'undefined';
 
   const {
     games = [],
@@ -29,6 +33,7 @@ const GameSummariesIndex = function GameSummariesIndex() {
         isCurrentDate={isCurrentDate}
         nextDate={nextDate}
         previousDate={previousDate}
+        league={league}
       />
       <div className={styles.games}>
         {!isLoading && (
@@ -37,6 +42,7 @@ const GameSummariesIndex = function GameSummariesIndex() {
               key={game.gameId}
               game={game}
               gameDate={date}
+              league={league}
             />
           ))
         )}
@@ -49,6 +55,10 @@ const GameSummariesIndex = function GameSummariesIndex() {
       </div>
     </div>
   );
+};
+
+GameSummariesIndex.defaultProps = {
+  league: 'nba',
 };
 
 export default GameSummariesIndex;

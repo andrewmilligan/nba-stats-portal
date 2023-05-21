@@ -12,6 +12,7 @@ import styles from './styles.module.scss';
 const LeadTracker = function LeadTracker(props) {
   const {
     game,
+    league,
   } = props;
 
   const {
@@ -28,11 +29,11 @@ const LeadTracker = function LeadTracker(props) {
     },
   } = boxScore;
 
-  const homeTeam = teamMetadata.get(homeTeamId);
-  const awayTeam = teamMetadata.get(awayTeamId);
+  const homeTeam = teamMetadata[league].get(homeTeamId);
+  const awayTeam = teamMetadata[league].get(awayTeamId);
 
-  const homeColor = (teamColors.get(homeTeamId) || [])[0];
-  const awayColor = (teamColors.get(awayTeamId) || [])[1];
+  const homeColor = (teamColors[league].get(homeTeamId) || [])[0];
+  const awayColor = (teamColors[league].get(awayTeamId) || [])[1];
 
   const {
     events,
@@ -78,6 +79,7 @@ LeadTracker.defaultProps = {
     awayTeam: {},
   },
   playByPlay: [],
+  league: 'nba',
 };
 
 export default LeadTracker;

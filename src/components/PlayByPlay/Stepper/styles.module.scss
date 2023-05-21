@@ -2,43 +2,18 @@
 @import "~Styles/fonts.scss";
 @import "~Styles/spacing.scss";
 
-.container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 1em;
-}
-
-.title {
-  text-transform: uppercase;
-  color: $color-fg-muted;
-  padding: 0.6em 1em 0 1em;
-
-  @include condensed-bold;
-}
-
-.inner {
-  position: relative;
-  border-top: 1px solid $color-border-default;
-
-  &.expanded {
-    border: none;
-  }
-}
-
-.expandable {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows ease-in-out 0.2s;
-
-  &.expanded {
-    grid-template-rows: 1fr;
-  }
-}
-
 .content {
-  overflow: hidden;
+  background-color: $color-canvas-overlay;
+  border: 1px solid $color-border-default;
+  padding: $spacer-module-padding;
+}
+
+.actions {
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
 }
 
 .button {
@@ -48,6 +23,24 @@
   background: none;
   border: none;
   color: $color-fg-muted;
+
+  &[disabled] {
+    opacity: .5;
+  }
+}
+
+.autoplay {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}
+
+.button.play {
+  height: 32px;
+
+  img {
+    height: 100%;
+  }
 }
 
 .expand {

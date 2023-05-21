@@ -7,6 +7,7 @@ const Score = function Score(props) {
     isFinal,
     isLive,
     mode,
+    league,
   } = props;
 
   const homeTeamLost = isFinal && (homeTeam.score < awayTeam.score);
@@ -20,6 +21,7 @@ const Score = function Score(props) {
         isFinal={isFinal}
         isLive={isLive}
         mode={mode}
+        league={league}
       />
       <TeamScore
         team={homeTeam}
@@ -27,6 +29,7 @@ const Score = function Score(props) {
         isFinal={isFinal}
         isLive={isLive}
         mode={mode}
+        league={league}
       />
     </div>
   );

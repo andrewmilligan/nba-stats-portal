@@ -1,14 +1,17 @@
 import Script from 'next/script';
 import AtomsRoot from 'Atoms/index';
+import ErrorBoundary from 'Components/ErrorBoundary';
 
 import 'Styles/globals.scss'
 
 const App = function App({ Component, pageProps }) {
   return (
     <>
-      <AtomsRoot pageProps={pageProps}>
-        <Component {...pageProps} />
-      </AtomsRoot>
+      <ErrorBoundary>
+        <AtomsRoot pageProps={pageProps}>
+          <Component {...pageProps} />
+        </AtomsRoot>
+      </ErrorBoundary>
 
       {/* Cloudflare Web Analytics */}
       <Script

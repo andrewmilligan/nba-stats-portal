@@ -8,6 +8,7 @@ const Lineup = function Lineup(props) {
     team,
     gameIsOver,
     seasonBoxScores,
+    league,
   } = props;
 
   const {
@@ -50,6 +51,7 @@ const Lineup = function Lineup(props) {
           key={player.personId}
           player={player}
           seasonBoxScores={seasonBoxScoresByPlayer.get(player.personId)}
+          league={league}
         />
       ))}
 
@@ -60,6 +62,7 @@ const Lineup = function Lineup(props) {
           key={player.personId}
           player={player}
           seasonBoxScores={seasonBoxScoresByPlayer.get(player.personId)}
+          league={league}
         />
       ))}
 

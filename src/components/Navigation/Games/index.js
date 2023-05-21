@@ -8,21 +8,26 @@ import GameSummaryCard from 'Components/GameSummaryCard';
 import styles from './styles.module.scss';
 
 const Games = function Games() {
-  const schedule = useDailyScoreboard();
-  const isLoading = !schedule;
+  const nbaSchedule = useDailyScoreboard('nba');
+  const wnbaSchedule = useDailyScoreboard('wnba');
+  const isLoading = !nbaSchedule || !wnbaSchedule;
 
-  if (!schedule) return null;
+  if (isLoading) return null;
 
   const {
     gameDate: date,
-    games = [],
-  } = schedule;
+    games: nbaGames = [],
+  } = nbaSchedule;
+
+  const {
+    games: wnbaGames = [],
+  } = wnbaSchedule;
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
         {!isLoading && (
-          games.map((game, i, allGames) => (
+          nbaGames.map((game, i, allGames) => (
             <div
               key={game.gameId}
               className={classnames(
@@ -35,6 +40,27 @@ const Games = function Games() {
                 gameDate={date}
                 mode="condensed"
                 border={false}
+                league="nba"
+              />
+            </div>
+          ))
+        )}
+        <div className={styles.sep} />
+        {!isLoading && (
+          wnbaGames.map((game, i, allGames) => (
+            <div
+              key={game.gameId}
+              className={classnames(
+                styles.game,
+                { [styles.isNotLast]: i < allGames.length - 1 },
+              )}
+            >
+              <GameSummaryCard
+                game={game}
+                gameDate={date}
+                mode="condensed"
+                border={false}
+                league="wnba"
               />
             </div>
           ))

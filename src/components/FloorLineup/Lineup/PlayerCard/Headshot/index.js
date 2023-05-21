@@ -7,6 +7,7 @@ import styles from './styles.module.scss';
 const Headshot = function Headshot(props) {
   const {
     player,
+    league,
   } = props;
 
   const {
@@ -27,12 +28,16 @@ const Headshot = function Headshot(props) {
       >
         <img
           className={styles.headshotImage}
-          src={playerHeadshot(personId)}
+          src={playerHeadshot(personId, { league })}
           alt={`${name} headshot`}
         />
       </div>
     </div>
   );
+};
+
+Headshot.defaultProps = {
+  league: 'nba',
 };
 
 export default Headshot;

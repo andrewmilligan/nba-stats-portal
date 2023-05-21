@@ -6,11 +6,15 @@ const TeamName = function TeamName(props) {
     team,
     state,
     side,
+    league,
   } = props;
 
   return (
     <div>
-      <TeamLogo team={team} />
+      <TeamLogo
+        team={team}
+        league={league}
+      />
       <Name
         team={team}
         state={state}

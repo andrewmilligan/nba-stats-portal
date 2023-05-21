@@ -27,6 +27,7 @@ const allSameOutcome = (plays) => {
 const getNodes = (play) => {
   const {
     personId,
+    teamId,
     subType,
     shotResult,
   } = play;
@@ -35,7 +36,7 @@ const getNodes = (play) => {
   const isLast = shot === shots;
 
   if (shots === 1) {
-    return tokenize`${player(personId)} ${getVerb(play)} the freethrow`;
+    return tokenize`${player(personId, { teamId })} ${getVerb(play)} the freethrow`;
   }
 
   const {
@@ -43,7 +44,7 @@ const getNodes = (play) => {
   } = play;
   if (isLast && allSameOutcome([play, ...previousFreethrows])) {
     const num = shots === 2 ? 'both' : `all ${apnumber(shots)}`;
-    return tokenize`${player(personId)} ${getVerb(play)} ${num} freethrows`;
+    return tokenize`${player(personId, { teamId })} ${getVerb(play)} ${num} freethrows`;
   }
 
   const playToOutcome = (p) => (
@@ -59,7 +60,7 @@ const getNodes = (play) => {
     outcomes.slice(outcomes.length - 2).join(' and '),
   ].join(' ');
 
-  return tokenize`${player(personId)} ${outcomeStrings}`;
+  return tokenize`${player(personId, { teamId })} ${outcomeStrings}`;
 };
 
 const freethrow = function freethrow(play) {

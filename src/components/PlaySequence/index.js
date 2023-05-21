@@ -13,6 +13,7 @@ const PlaySequence = function PlaySequence(props) {
         awayTeam,
       },
     },
+    league,
   } = props;
 
   const teams = new Map([
@@ -27,6 +28,7 @@ const PlaySequence = function PlaySequence(props) {
   const context = {
     teams,
     players,
+    league,
   };
   const formattedPlays = formatPlays(plays);
   const finalText = stringify(formattedPlays, context);

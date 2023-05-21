@@ -15,6 +15,7 @@ const GameSummaryCard = function GameSummaryCard(props) {
     game,
     mode,
     border,
+    league,
   } = props;
 
   const {
@@ -28,9 +29,11 @@ const GameSummaryCard = function GameSummaryCard(props) {
   const isFinal = gameStatus === COMPLETE_CODE;
   const isLive = gameStatus === ONGOING_CODE;
 
+  const url = gamePath({ league, gameDate, game });
+
   return (
     <Link
-      href={gamePath({ gameDate, game })}
+      href={url}
       className={classnames(
         styles.container,
         styles[mode],
@@ -47,6 +50,7 @@ const GameSummaryCard = function GameSummaryCard(props) {
         isFinal={isFinal}
         isLive={isLive}
         mode={mode}
+        league={league}
       />
     </Link>
   );
@@ -55,6 +59,7 @@ const GameSummaryCard = function GameSummaryCard(props) {
 GameSummaryCard.defaultProps = {
   mode: 'default',
   border: true,
+  league: 'nba',
 };
 
 export default GameSummaryCard;

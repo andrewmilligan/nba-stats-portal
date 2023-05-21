@@ -10,3 +10,20 @@ Game detail page
   of the game
 - next is a team stat comparison radar chart lockup
 - next is detailed player stats for each team
+
+## Plays
+
+- jump ball
+  - self-contained
+  - who vs. who, tipped to who, which team controlled it
+
+
+## Possession enders
+
+- defensive rebound by the other team
+- turnover
+- made basket (with an and-one included if applicable)
+- any foul (freethrows are their own "possession" if applicable)
+
+- update teamMetadata in:
+  - gameStatusTextFromState

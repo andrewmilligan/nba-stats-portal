@@ -6,7 +6,7 @@ import Navigation from 'Components/Navigation';
 import Footer from 'Components/Footer';
 import Well from 'Components/Well';
 import GameSummariesIndex from 'Components/GameSummariesIndex';
-import Standings from 'Components/Standings';
+import ErrorBoundary from 'Components/ErrorBoundary';
 
 export default function Home() {
   return (
@@ -14,7 +14,12 @@ export default function Home() {
       <Head />
       <Navigation />
       <Well>
-        <GameSummariesIndex />
+        <ErrorBoundary>
+          <GameSummariesIndex league='nba' />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <GameSummariesIndex league='wnba' />
+        </ErrorBoundary>
       </Well>
       <Footer />
     </div>
@@ -22,11 +27,16 @@ export default function Home() {
 }
 
 export const getStaticProps = async function getStaticProps() {
-  const rsp = await fetch(getAssetUrl('/stats/global/dates.json'));
-  const dates = await rsp.json();
+  const nbaRsp = await fetch(getAssetUrl('/stats/nba/global/dates.json'));
+  const nbaDates = await nbaRsp.json();
+
+  const wnbaRsp = await fetch(getAssetUrl('/stats/wnba/global/dates.json'));
+  const wnbaDates = await wnbaRsp.json();
+
   return {
     props: {
-      dates,
+      nbaDates,
+      wnbaDates,
     },
   };
 };

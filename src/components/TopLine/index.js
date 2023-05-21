@@ -9,6 +9,7 @@ const TopLine = function TopLine(props) {
     game,
     gameMetadata,
     isUpcoming,
+    league,
   } = props;
 
   const {
@@ -35,6 +36,7 @@ const TopLine = function TopLine(props) {
             team={awayTeam}
             state={state}
             side="awayTeam"
+            league={league}
           />
         </div>
 
@@ -45,6 +47,7 @@ const TopLine = function TopLine(props) {
               teamMeta={awayTeamMeta}
               state={state}
               otherTeam={homeTeam}
+              league={league}
             />
           )}
         </div>
@@ -54,6 +57,7 @@ const TopLine = function TopLine(props) {
             team={homeTeam}
             state={state}
             side="homeTeam"
+            league={league}
           />
         </div>
 
@@ -64,6 +68,7 @@ const TopLine = function TopLine(props) {
               teamMeta={homeTeamMeta}
               state={state}
               otherTeam={awayTeam}
+              league={league}
             />
           )}
         </div>
@@ -76,6 +81,7 @@ const TopLine = function TopLine(props) {
           ) : (
             <Score
               game={game}
+              league={league}
             />
           )}
         </div>

@@ -22,7 +22,7 @@ export const standingsSelector = selector({
   get: ({ get }) => {
     const recs = get(recordsAtom) || {};
     const conferences = Object.entries(recs).reduce((standings, [teamId, record]) => {
-      const team = teamMetadata.get(+teamId);
+      const team = teamMetadata.nba.get(+teamId);
       standings[team.conference].push({
         ...team,
         record,

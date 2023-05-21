@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 const TeamLogo = function TeamLogo(props) {
   const {
     team,
+    league,
   } = props;
 
   const {
@@ -11,7 +12,7 @@ const TeamLogo = function TeamLogo(props) {
     teamCity,
     teamName,
   } = team;
-  const logo = teamLogo(teamId, { variant: 'D' });
+  const logo = teamLogo(teamId, { variant: 'D', league });
 
   return (
     <div className={styles.container}>
@@ -25,6 +26,7 @@ const TeamLogo = function TeamLogo(props) {
 };
 
 TeamLogo.defaultProps = {
+  league: 'nba',
   team: {},
 };
 
