@@ -9,50 +9,52 @@ export const dataUrl = function dataUrl(path) {
   return `${baseUrl}/${path}`;
 };
 
-export const dates = function dates() {
-  return dataUrl('stats/global/dates.json');
+export const dates = function dates(league = 'nba') {
+  return dataUrl(`stats/${league}/global/dates.json`);
 };
 
-export const dailyScoreboard = function dailyScoreboard() {
-  return dataUrl('stats/global/scoreboard.json');
+export const dailyScoreboard = function dailyScoreboard(league = 'nba') {
+  return dataUrl(`stats/${league}/global/scoreboard.json`);
 };
 
-export const records = function records() {
-  return dataUrl('stats/global/records.json');
+export const records = function records(league = 'nba') {
+  return dataUrl(`stats/${league}/global/records.json`);
 };
 
-export const dailySchedule = function dailySchedule(date) {
+export const dailySchedule = function dailySchedule(date, league = 'nba') {
   if (!date) return undefined;
-  return dataUrl(`stats/global/daily-schedule/${date}.json`);
+  return dataUrl(`stats/${league}/global/daily-schedule/${date}.json`);
 };
 
-export const gameBoxScore = function gameBoxScore(gameId) {
+export const gameBoxScore = function gameBoxScore(gameId, league = 'nba') {
   if (!gameId) return undefined;
-  return dataUrl(`stats/game/${gameId}/boxscore.json`);
+  return dataUrl(`stats/${league}/game/${gameId}/boxscore.json`);
 };
 
-export const gamePlayByPlay = function gamePlayByPlay(gameId) {
+export const gamePlayByPlay = function gamePlayByPlay(gameId, league = 'nba') {
   if (!gameId) return undefined;
-  return dataUrl(`stats/game/${gameId}/playbyplay.json`);
+  return dataUrl(`stats/${league}/game/${gameId}/playbyplay.json`);
 };
 
-export const playerBoxScores = function playerBoxScores(teamId) {
+export const playerBoxScores = function playerBoxScores(teamId, league = 'nba') {
   if (!teamId) return undefined;
-  return dataUrl(`stats/team/${teamId}/playerBoxScores.json`);
+  return dataUrl(`stats/${league}/team/${teamId}/playerBoxScores.json`);
 };
 
 export const teamLogo = function teamLogo(teamId, opts = {}) {
   const {
     variant = 'L',
+    league = 'nba',
   } = opts;
   if (!teamId) return undefined;
-  return dataUrl(`images/teams/logos/${teamId}/primary/${variant}/logo.svg`);
+  return dataUrl(`images/${league}/teams/logos/primary/${variant}/${teamId}.svg`);
 };
 
 export const playerHeadshot = function playerHeadshot(personId, opts = {}) {
   const {
     variant = 'small',
+    league = 'nba',
   } = opts;
   if (!personId) return undefined;
-  return dataUrl(`images/players/headshots/latest/${variant}/${personId}.png`);
+  return dataUrl(`images/${league}/players/headshots/latest/${variant}/${personId}.png`);
 };

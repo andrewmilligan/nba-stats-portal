@@ -1,4 +1,4 @@
-const teamMetadata = new Map([
+const nba = new Map([
     [
         1610612764,
         {
@@ -8,7 +8,7 @@ const teamMetadata = new Map([
             teamTricode: 'WAS',
             teamSlug: 'wizards',
             conference: 'eastern',
-        }
+        },
     ],
     [
         1610612746,
@@ -19,7 +19,7 @@ const teamMetadata = new Map([
             teamTricode: 'LAC',
             teamSlug: 'clippers',
             conference: 'western',
-        }
+        },
     ],
     [
         1610612749,
@@ -30,7 +30,7 @@ const teamMetadata = new Map([
             teamTricode: 'MIL',
             teamSlug: 'bucks',
             conference: 'eastern',
-        }
+        },
     ],
     [
         1610612744,
@@ -41,7 +41,7 @@ const teamMetadata = new Map([
             teamTricode: 'GSW',
             teamSlug: 'warriors',
             conference: 'western',
-        }
+        },
     ],
     [
         1610612738,
@@ -52,7 +52,7 @@ const teamMetadata = new Map([
             teamTricode: 'BOS',
             teamSlug: 'celtics',
             conference: 'eastern',
-        }
+        },
     ],
     [
         1610612761,
@@ -63,7 +63,7 @@ const teamMetadata = new Map([
             teamTricode: 'TOR',
             teamSlug: 'raptors',
             conference: 'eastern',
-        }
+        },
     ],
     [
         1610612745,
@@ -74,7 +74,7 @@ const teamMetadata = new Map([
             teamTricode: 'HOU',
             teamSlug: 'rockets',
             conference: 'western',
-        }
+        },
     ],
     [
         1610612756,
@@ -85,7 +85,7 @@ const teamMetadata = new Map([
             teamTricode: 'PHX',
             teamSlug: 'suns',
             conference: 'western',
-        }
+        },
     ],
     [
         1610612751,
@@ -96,7 +96,7 @@ const teamMetadata = new Map([
             teamTricode: 'BKN',
             teamSlug: 'nets',
             conference: 'eastern',
-        }
+        },
     ],
     [
         1610612763,
@@ -107,7 +107,7 @@ const teamMetadata = new Map([
             teamTricode: 'MEM',
             teamSlug: 'grizzlies',
             conference: 'western',
-        }
+        },
     ],
     [
         1610612743,
@@ -118,7 +118,7 @@ const teamMetadata = new Map([
             teamTricode: 'DEN',
             teamSlug: 'nuggets',
             conference: 'western',
-        }
+        },
     ],
     [
         1610612747,
@@ -129,7 +129,7 @@ const teamMetadata = new Map([
             teamTricode: 'LAL',
             teamSlug: 'lakers',
             conference: 'western',
-        }
+        },
     ],
     [
         1610612752,
@@ -140,7 +140,7 @@ const teamMetadata = new Map([
             teamTricode: 'NYK',
             teamSlug: 'knicks',
             conference: 'eastern',
-        }
+        },
     ],
     [
         1610612748,
@@ -151,7 +151,7 @@ const teamMetadata = new Map([
             teamTricode: 'MIA',
             teamSlug: 'heat',
             conference: 'eastern',
-        }
+        },
     ],
     [
         1610612741,
@@ -162,7 +162,7 @@ const teamMetadata = new Map([
             teamTricode: 'CHI',
             teamSlug: 'bulls',
             conference: 'eastern',
-        }
+        },
     ],
     [
         1610612757,
@@ -173,7 +173,7 @@ const teamMetadata = new Map([
             teamTricode: 'POR',
             teamSlug: 'blazers',
             conference: 'western',
-        }
+        },
     ],
     [
         1610612766,
@@ -184,7 +184,7 @@ const teamMetadata = new Map([
             teamTricode: 'CHA',
             teamSlug: 'hornets',
             conference: 'eastern',
-        }
+        },
     ],
     [
         1610612755,
@@ -195,7 +195,7 @@ const teamMetadata = new Map([
             teamTricode: 'PHI',
             teamSlug: 'sixers',
             conference: 'eastern',
-        }
+        },
     ],
     [
         1610612760,
@@ -206,7 +206,7 @@ const teamMetadata = new Map([
             teamTricode: 'OKC',
             teamSlug: 'thunder',
             conference: 'western',
-        }
+        },
     ],
     [
         1610612737,
@@ -217,7 +217,7 @@ const teamMetadata = new Map([
             teamTricode: 'ATL',
             teamSlug: 'hawks',
             conference: 'eastern',
-        }
+        },
     ],
     [
         1610612759,
@@ -228,7 +228,7 @@ const teamMetadata = new Map([
             teamTricode: 'SAS',
             teamSlug: 'spurs',
             conference: 'western',
-        }
+        },
     ],
     [
         1610612740,
@@ -239,7 +239,7 @@ const teamMetadata = new Map([
             teamTricode: 'NOP',
             teamSlug: 'pelicans',
             conference: 'western',
-        }
+        },
     ],
     [
         1610612742,
@@ -250,7 +250,7 @@ const teamMetadata = new Map([
             teamTricode: 'DAL',
             teamSlug: 'mavericks',
             conference: 'western',
-        }
+        },
     ],
     [
         1610612758,
@@ -261,7 +261,7 @@ const teamMetadata = new Map([
             teamTricode: 'SAC',
             teamSlug: 'kings',
             conference: 'western',
-        }
+        },
     ],
     [
         1610612739,
@@ -272,7 +272,7 @@ const teamMetadata = new Map([
             teamTricode: 'CLE',
             teamSlug: 'cavaliers',
             conference: 'eastern',
-        }
+        },
     ],
     [
         1610612765,
@@ -283,7 +283,7 @@ const teamMetadata = new Map([
             teamTricode: 'DET',
             teamSlug: 'pistons',
             conference: 'eastern',
-        }
+        },
     ],
     [
         1610612753,
@@ -294,7 +294,7 @@ const teamMetadata = new Map([
             teamTricode: 'ORL',
             teamSlug: 'magic',
             conference: 'eastern',
-        }
+        },
     ],
     [
         1610612762,
@@ -305,7 +305,7 @@ const teamMetadata = new Map([
             teamTricode: 'UTA',
             teamSlug: 'jazz',
             conference: 'western',
-        }
+        },
     ],
     [
         1610612754,
@@ -316,7 +316,7 @@ const teamMetadata = new Map([
             teamTricode: 'IND',
             teamSlug: 'pacers',
             conference: 'eastern',
-        }
+        },
     ],
     [
         1610612750,
@@ -327,8 +327,148 @@ const teamMetadata = new Map([
             teamTricode: 'MIN',
             teamSlug: 'timberwolves',
             conference: 'western',
-        }
+        },
     ]
 ]);
 
-export default teamMetadata;
+const wnba = new Map([
+  [
+    1611661319,
+    {
+      teamId: 1611661319,
+      teamName: 'Aces',
+      teamCity: 'Las Vegas',
+      teamTricode: 'LVA',
+      teamSlug: 'aces',
+      conference: 'western',
+    },
+  ],
+  [
+    1611661330,
+    {
+      teamId: 1611661330,
+      teamName: 'Dream',
+      teamCity: 'Atlanta',
+      teamTricode: 'ATL',
+      teamSlug: 'dream',
+      conference: 'eastern',
+    },
+  ],
+  [
+    1611661325,
+    {
+      teamId: 1611661325,
+      teamName: 'Fever',
+      teamCity: 'Indiana',
+      teamTricode: 'IND',
+      teamSlug: 'fever',
+      conference: 'eastern',
+    },
+  ],
+  [
+    1611661313,
+    {
+      teamId: 1611661313,
+      teamName: 'Liberty',
+      teamCity: 'New York',
+      teamTricode: 'NYL',
+      teamSlug: 'liberty',
+      conference: 'eastern',
+    },
+  ],
+  [
+    1611661324,
+    {
+      teamId: 1611661324,
+      teamName: 'Lynx',
+      teamCity: 'Minnesota',
+      teamTricode: 'MIN',
+      teamSlug: 'lynx',
+      conference: 'western',
+    },
+  ],
+  [
+    1611661317,
+    {
+      teamId: 1611661317,
+      teamName: 'Mercury',
+      teamCity: 'Phoenix',
+      teamTricode: 'PHO',
+      teamSlug: 'mercury',
+      conference: 'western',
+    },
+  ],
+  [
+    1611661322,
+    {
+      teamId: 1611661322,
+      teamName: 'Mystics',
+      teamCity: 'Washington',
+      teamTricode: 'WAS',
+      teamSlug: 'mystics',
+      conference: 'eastern',
+    },
+  ],
+  [
+    1611661329,
+    {
+      teamId: 1611661329,
+      teamName: 'Sky',
+      teamCity: 'Chicago',
+      teamTricode: 'CHI',
+      teamSlug: 'sky',
+      conference: 'eastern',
+    },
+  ],
+  [
+    1611661320,
+    {
+      teamId: 1611661320,
+      teamName: 'Sparks',
+      teamCity: 'Los Angeles',
+      teamTricode: 'LAS',
+      teamSlug: 'sparks',
+      conference: 'western',
+    },
+  ],
+  [
+    1611661328,
+    {
+      teamId: 1611661328,
+      teamName: 'Storm',
+      teamCity: 'Seattle',
+      teamTricode: 'SEA',
+      teamSlug: 'storm',
+      conference: 'western',
+    },
+  ],
+  [
+    1611661323,
+    {
+      teamId: 1611661323,
+      teamName: 'Sun',
+      teamCity: 'Connecticut',
+      teamTricode: 'CON',
+      teamSlug: 'sun',
+      conference: 'eastern',
+    },
+  ],
+  [
+    1611661321,
+    {
+      teamId: 1611661321,
+      teamName: 'Wings',
+      teamCity: 'Dallas',
+      teamTricode: 'DAL',
+      teamSlug: 'wings',
+      conference: 'western',
+    },
+  ],
+]);
+
+const leagues = {
+  nba,
+  wnba,
+};
+
+export default leagues;

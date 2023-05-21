@@ -14,6 +14,7 @@ const gameStatusTextFromState = function gameStatusTextFromState(state) {
     period,
     clock,
     teamId,
+    league = 'nba',
   } = state;
 
   const { formattedMinutesSeconds } = parseClock(clock);
@@ -32,7 +33,7 @@ const gameStatusTextFromState = function gameStatusTextFromState(state) {
   }
 
   if (status === TIMEOUT) {
-    const timeoutTeam = teamMetadata.get(teamId);
+    const timeoutTeam = teamMetadata[league].get(teamId);
     return {
       text: time,
       subtext: `Timeout ${timeoutTeam.teamTricode}`,

@@ -56,7 +56,6 @@ const PlayerCard = function PlayerCard(props) {
   return (
     <div
       className={styles.container}
-      onClick={toggleExpanded}
     >
       <div className={styles.content}>
 

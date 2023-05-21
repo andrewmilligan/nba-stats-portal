@@ -8,6 +8,7 @@ const Header = function Header(props) {
     gameDate,
     nextDate,
     previousDate,
+    league,
   } = props;
 
   if (!gameDate) return null;
@@ -20,6 +21,10 @@ const Header = function Header(props) {
       />
 
       <div className={styles.title}>
+        <span>
+          {league.toUpperCase()}
+          {' '}
+        </span>
         <span className={styles.preamble}>
           Games on
           {' '}

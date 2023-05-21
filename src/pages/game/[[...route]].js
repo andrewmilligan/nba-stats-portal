@@ -6,7 +6,6 @@ import fs from 'fs';
 import getAssetUrl from 'Utils/paths/getAssetUrl';
 import formatUTCDate from 'Utils/dates/formatUTCDate';
 import useDataFetch from 'Utils/hooks/useDataFetch';
-import { playerBoxScores } from 'Utils/data/urls';
 import gameSlug from 'Utils/routes/games/gameSlug';
 import { useInitializeGame, useGame } from 'Atoms/game';
 import Head from 'Components/Head';
@@ -34,12 +33,6 @@ export default function Game(props) {
     homeTeam,
     awayTeam,
   } = gameMetadata;
-  const { data: homeTeamPlayerBoxScores, } = useDataFetch(
-    playerBoxScores(homeTeam.teamId),
-  );
-  const { data: awayTeamPlayerBoxScores, } = useDataFetch(
-    playerBoxScores(awayTeam.teamId),
-  );
 
   const isLoaded = game && (
     game.isUpcoming || !!(game.boxScore && game.playByPlay)
@@ -78,10 +71,6 @@ export default function Game(props) {
               />
               <FloorLineup
                 game={game}
-                seasonBoxScores={{
-                  homeTeam: homeTeamPlayerBoxScores,
-                  awayTeam: awayTeamPlayerBoxScores,
-                }}
               />
             </>
           )}
