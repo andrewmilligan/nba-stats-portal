@@ -26,6 +26,11 @@ import parseClock from 'Utils/clock/parseClock';
 import { statusFromLastAction } from 'Utils/gameStatus/statusFromLastAction';
 import teamFouls from 'Utils/gameStatus/teamFouls';
 
+export const gameLeagueAtomFamily = atomFamily({
+  key: 'game.gameLeagueAtomFamily',
+  default: 'nba',
+});
+
 export const gameBakedMetadataAtomFamily = atomFamily({
   key: 'game.gameBakedMetadataAtomFamily',
   default: undefined,
@@ -49,6 +54,7 @@ export const playByPlayAtomFamily = atomFamily({
 export const playByPlaySelectorFamily = selectorFamily({
   key: 'game.playByPlaySelectorFamily',
   get: (gameId) => ({ get }) => {
+    const league = get(gameLeagueAtomFamily(gameId));
     const playByPlay = get(playByPlayAtomFamily(gameId));
     return playByPlay && playByPlay.map((action) => {
       const {
@@ -58,13 +64,13 @@ export const playByPlaySelectorFamily = selectorFamily({
         scoreAway,
         ...restAction
       } = action;
-      const secsInPeriod = secondsInPeriod(period);
+      const secsInPeriod = secondsInPeriod(period, { league });
       const secsLeftInPeriod = parseClock(clock).totalSeconds;
       const secsIntoPeriod = secsInPeriod - secsLeftInPeriod;
       return {
         period,
         clock,
-        seconds: secondsBeforePeriodStart(period) + secsIntoPeriod,
+        seconds: secondsBeforePeriodStart(period, { league }) + secsIntoPeriod,
         secondsLeftInPeriod: secsLeftInPeriod,
         scoreHome: parseInt(scoreHome, 10),
         scoreAway: parseInt(scoreAway, 10),
@@ -151,6 +157,9 @@ export const useInitializeGame = function useInitializeGame(
   gameISODate,
   league = 'nba',
 ) {
+  const setGameLeague = useSetRecoilState(gameLeagueAtomFamily(gameId));
+  setGameLeague(league);
+
   const game = useGameInDailyScoreboard(gameId, league);
   const interval = (!game || game.gameStatus !== ONGOING_CODE) ? null : 10000;
   const meta = useGameMetadata(gameId);

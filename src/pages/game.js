@@ -44,45 +44,47 @@ export default function Game() {
     <div>
       <Head />
       <Navigation withGames />
-      {isLoaded && (
-        <Well>
-          <ErrorBoundary>
-            <TopLine
-              game={game}
-              gameMetadata={gameMetadata}
-              isUpcoming={game.isUpcoming}
-              league={league}
-            />
-          </ErrorBoundary>
-          {game.isUpcoming ? (
-            <Promo
-              game={gameMetadata}
-            />
-          ) : (
-            <>
-              <ErrorBoundary>
-                <LeadTracker
-                  game={game}
-                  league={league}
-                />
-              </ErrorBoundary>
-              <ErrorBoundary>
-                <PlayByPlay
-                  game={game}
-                  playByPlay={game.playByPlay}
-                  league={league}
-                />
-              </ErrorBoundary>
-              <ErrorBoundary>
-                <FloorLineup
-                  game={game}
-                  league={league}
-                />
-              </ErrorBoundary>
-            </>
-          )}
-        </Well>
-      )}
+      <div style={{ minHeight: 500 }}>
+        {isLoaded && (
+          <Well>
+            <ErrorBoundary>
+              <TopLine
+                game={game}
+                gameMetadata={gameMetadata}
+                isUpcoming={game.isUpcoming}
+                league={league}
+              />
+            </ErrorBoundary>
+            {game.isUpcoming ? (
+              <Promo
+                game={gameMetadata}
+              />
+            ) : (
+              <>
+                <ErrorBoundary>
+                  <LeadTracker
+                    game={game}
+                    league={league}
+                  />
+                </ErrorBoundary>
+                <ErrorBoundary>
+                  <PlayByPlay
+                    game={game}
+                    playByPlay={game.playByPlay}
+                    league={league}
+                  />
+                </ErrorBoundary>
+                <ErrorBoundary>
+                  <FloorLineup
+                    game={game}
+                    league={league}
+                  />
+                </ErrorBoundary>
+              </>
+            )}
+          </Well>
+        )}
+      </div>
       <Footer />
     </div>
   )

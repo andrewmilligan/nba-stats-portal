@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import formatUTCDate from 'Utils/dates/formatUTCDate';
 
 import DateButton from './DateButton';
@@ -25,11 +26,24 @@ const Header = function Header(props) {
           {league.toUpperCase()}
           {' '}
         </span>
-        <span className={styles.preamble}>
+        <span className={styles.desktop}>
           Games on
           {' '}
         </span>
-        <span className={styles.date}>
+        <span
+          className={classnames(
+            styles.date,
+            styles.mobile,
+          )}
+        >
+          {formatUTCDate(gameDate, '{apday}')}
+        </span>
+        <span
+          className={classnames(
+            styles.date,
+            styles.desktop,
+          )}
+        >
           {formatUTCDate(gameDate, '{weekday}, {apday}')}
         </span>
       </div>

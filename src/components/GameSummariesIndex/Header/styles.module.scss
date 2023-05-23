@@ -15,16 +15,24 @@
 
 .title {
   font-size: 1.2em;
-
-  .preamble {
-    display: none;
-
-    @include is-desktop {
-      display: initial;
-    }
-  }
 }
 
 .date {
   @include condensed-bold;
+}
+
+.desktop {
+  display: none;
+
+  @include is-desktop {
+    display: initial;
+  }
+}
+
+.mobile {
+  display: initial;
+
+  @include is-desktop {
+    display: none;
+  }
 }
