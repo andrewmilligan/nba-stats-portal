@@ -9,6 +9,10 @@ const Fouls = function Fouls(props) {
     otherTeamIsInBonus,
   } = props;
 
+  if (typeof fouls === 'undefined') {
+    return null;
+  }
+
   return (
     <div className={styles.container}>
       {!otherTeamIsInBonus && (
@@ -23,10 +27,6 @@ const Fouls = function Fouls(props) {
       )}
     </div>
   );
-};
-
-Fouls.defaultProps = {
-  fouls: 0,
 };
 
 export default Fouls;

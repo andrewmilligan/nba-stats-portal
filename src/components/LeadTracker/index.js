@@ -43,7 +43,7 @@ const LeadTracker = function LeadTracker(props) {
     homeCurrentLead,
     awayCurrentLead,
     periods,
-  } = usePlayByPlayEvents(playByPlay);
+  } = usePlayByPlayEvents(playByPlay, { league });
 
   return (
     <div className={styles.container}>

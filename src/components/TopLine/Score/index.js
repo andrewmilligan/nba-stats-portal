@@ -20,6 +20,8 @@ const Score = function Score(props) {
     },
   } = game;
 
+  if (!state) return null;
+
   const {
     scoreHome,
     scoreAway,

@@ -5,7 +5,11 @@ import secondsBeforePeriodStart from 'Utils/clock/secondsBeforePeriodStart';
 import secondsInPeriod from 'Utils/clock/secondsInPeriod';
 import periodLabel from 'Utils/clock/periodLabel';
 
-const usePlayByPlayEvents = function usePlayByPlayEvents(playByPlay) {
+const usePlayByPlayEvents = function usePlayByPlayEvents(playByPlay, opts = {}) {
+  const {
+    league = 'nba',
+  } = opts;
+
   return useMemo(() => {
     let periodEnd = 0;
     let maxTime = 0;
@@ -27,7 +31,8 @@ const usePlayByPlayEvents = function usePlayByPlayEvents(playByPlay) {
         };
 
         const endOfPeriod = (
-          secondsBeforePeriodStart(period) + secondsInPeriod(period)
+          secondsBeforePeriodStart(period, { league })
+          + secondsInPeriod(period, { league })
         );
         periodEnd = Math.max(periodEnd, endOfPeriod);
         maxTime = Math.max(maxTime, seconds);
@@ -72,7 +77,7 @@ const usePlayByPlayEvents = function usePlayByPlayEvents(playByPlay) {
 
     const periods = [...Array(maxPeriod)].map((_, i) => {
       const period = i + 1;
-      const seconds = secondsBeforePeriodStart(period);
+      const seconds = secondsBeforePeriodStart(period, { league });
       return {
         period,
         seconds, 
@@ -90,7 +95,7 @@ const usePlayByPlayEvents = function usePlayByPlayEvents(playByPlay) {
       awayCurrentLead,
       periods,
     };
-  }, [playByPlay]);
+  }, [playByPlay, league]);
 };
 
 export default usePlayByPlayEvents;

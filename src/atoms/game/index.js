@@ -83,8 +83,40 @@ export const playByPlaySelectorFamily = selectorFamily({
 export const gameStateSelector = selectorFamily({
   key: 'game.gameStateSelector',
   get: (gameId) => ({ get }) => {
+    const league = get(gameLeagueAtomFamily(gameId));
+    const boxScore = get(boxScoreAtomFamily(gameId));
     const playByPlay = get(playByPlaySelectorFamily(gameId));
-    if (!playByPlay) return undefined;
+    console.log({
+      boxScore,
+      playByPlay,
+    });
+
+    if (!playByPlay && !boxScore) return undefined;
+
+    if (!playByPlay || playByPlay.length < 1) {
+      const {
+        period,
+        gameClock: clock,
+        homeTeam: {
+          score: scoreHome,
+        },
+        awayTeam: {
+          score: scoreAway,
+        },
+      } = boxScore;
+      const secsInPeriod = secondsInPeriod(period, { league });
+      const secsLeftInPeriod = parseClock(clock).totalSeconds;
+      const secsIntoPeriod = secsInPeriod - secsLeftInPeriod;
+      const seconds = secondsBeforePeriodStart(period, { league }) + secsIntoPeriod;
+      return {
+        period,
+        clock,
+        seconds,
+        scoreHome,
+        scoreAway,
+      };
+    }
+
     const lastAction = playByPlay[playByPlay.length - 1];
     const {
       period,
@@ -157,8 +189,6 @@ export const useInitializeGame = function useInitializeGame(
   gameISODate,
   league = 'nba',
 ) {
-  const setGameLeague = useSetRecoilState(gameLeagueAtomFamily(gameId));
-  setGameLeague(league);
 
   const game = useGameInDailyScoreboard(gameId, league);
   const interval = (!game || game.gameStatus !== ONGOING_CODE) ? null : 10000;
@@ -176,6 +206,7 @@ export const useInitializeGame = function useInitializeGame(
   const setBoxScore = useSetRecoilState(boxScoreAtom);
   const setPlayByPlay = useSetRecoilState(playByPlayAtom);
   const setGameMetadata = useSetRecoilState(gameMetadataAtom);
+  const setGameLeague = useSetRecoilState(gameLeagueAtomFamily(gameId));
   const setGameMetadataFromGames = useCallback((games) => {
     const game = games.games.find((g) => g.gameId === gameId);
     if (game) {
@@ -202,6 +233,11 @@ export const useInitializeGame = function useInitializeGame(
   useDataFetch(dailyScheduleUrl, {
     onLoad: setGameMetadataFromGames,
   });
+
+  // set game league
+  useEffect(() => {
+    setGameLeague(league);
+  }, [league, setGameLeague]);
 
   // reset when we're done
   useEffect(() => () => {
