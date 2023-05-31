@@ -30,9 +30,10 @@ export const gameDatesSelector = selector({
   get: ({ get }) => {
     const allGameDates = ['nba', 'wnba'].reduce((games, league) => {
       const { gameDates = [] } = get(datesAtom(league)) || {};
-      return [...games, ...gameDates];
-    }, []);
-    return allGameDates;
+      gameDates.forEach((date) => games.add(date));
+      return games;
+    }, new Set());
+    return [...allGameDates].sort();
   },
 });
 
