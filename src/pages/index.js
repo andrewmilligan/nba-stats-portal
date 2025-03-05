@@ -7,6 +7,7 @@ import Footer from 'Components/Footer';
 import Well from 'Components/Well';
 import GameSummariesIndex from 'Components/GameSummariesIndex';
 import ErrorBoundary from 'Components/ErrorBoundary';
+import Standings from 'Components/Standings';
 
 export default function Home() {
   return (
@@ -18,8 +19,11 @@ export default function Home() {
           <GameSummariesIndex league='nba' />
         </ErrorBoundary>
         <ErrorBoundary>
-          <GameSummariesIndex league='wnba' />
+          <Standings />
         </ErrorBoundary>
+        {/*<ErrorBoundary>
+          <GameSummariesIndex league='wnba' />
+        </ErrorBoundary>*/}
       </Well>
       <Footer />
     </div>

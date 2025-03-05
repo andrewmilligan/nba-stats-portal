@@ -11,12 +11,12 @@ const Standings = function Standings() {
       <Header />
       <div className={styles.standings}>
         <Conference
-          conference="Eastern"
-          standings={standings.eastern}
-        />
-        <Conference
           conference="Western"
           standings={standings.western}
+        />
+        <Conference
+          conference="Eastern"
+          standings={standings.eastern}
         />
       </div>
     </div>
